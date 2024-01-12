@@ -1,0 +1,179 @@
+{
+  "structs": [
+    {
+      "name": "PPtr<T0>",
+      "fields": [
+        { "type": "int", "name": "m_InstanceID" }
+      ]
+    },
+    {
+      "name": "UnityGUID",
+      "fields": [
+        { "type": "uint[4]", "name": "data" }
+      ]
+    },
+
+    {
+      "name": "basic_string<T0>",
+      "fields": [
+        { "type": "T0*", "name": "m_data" },
+        { "type": "ulong", "name": "m_capacity", "alignment": 4 },
+        { "type": "ulong", "name": "m_size", "alignment": 4 },
+        { "type": "sbyte", "name": "free_count", "alignment": 4 },
+        { "type": "short", "name": "m_label", "alignment": 8 }
+      ]
+    },
+
+    {
+      "name": "SharedObject",
+      "fields": [
+        { "type": "short", "name": "m_MemLabel" },
+        { "type": "int", "name": "m_RefCount" }
+      ]
+    },
+
+    {
+      "name": "dynamic_array<T0>",
+      "fields": [
+        { "type": "T0*", "name": "m_ptr" },
+        { "type": "short", "name": "m_label" },
+        { "type": "nuint", "name": "m_size" },
+        { "type": "nuint", "name": "m_capacity" }
+      ]
+    },
+
+    {
+      "name": "ListElement",
+      "fields": [
+        { "type": "ListElement*", "name": "m_Prev" },
+        { "type": "ListElement*", "name": "m_Next" }
+      ]
+    },
+    {
+      "name": "ListNode<T0>", "super": "ListElement",
+      "fields": [
+        { "type": "T0*", "name": "m_Data" }
+      ]
+    },
+    {
+      "name": "List<T0>",
+      "fields": [
+        { "type": "ListElement", "name": "m_Root" }
+      ]
+    },
+
+    {
+      "name": "RootStorageContainer",
+      "fields": [
+        { "type": "List<ListNode<Transform>>", "name": "m_Roots" },
+        { "type": "dynamic_array<Transform*>", "name": "m_AddedRoots" }
+      ]
+    },
+    {
+      "name": "UnityScene", "super": "SharedObject",
+      "fields": [
+        { "type": "int", "name": "m_Handle" },
+        { "type": "basic_string<sbyte>", "name": "m_ScenePath" },
+        { "type": "basic_string<sbyte>", "name": "m_SceneName" },
+        { "type": "basic_string<sbyte>", "name": "m_AssetPath" },
+        { "type": "UnityGUID", "name": "m_SceneGUID" },
+        { "type": "int", "name": "m_SceneBuildIndex" },
+        { "type": "int", "name": "m_LoadingState" },
+        { "type": "RootStorageContainer", "name": "m_Roots" }
+      ]
+    },
+    {
+      "name": "RuntimeSceneManager",
+      "fields": [
+        { "type": "ulong", "name": "__padding_1" },
+        { "type": "dynamic_array<UnityScene*>", "name": "m_Scenes" },
+        { "type": "dynamic_array<UnityScene*>", "name": "m_ScenesWaitingForLoading" },
+        { "type": "UnityScene*", "name": "m_ActiveScene" },
+        { "type": "dynamic_array<UnityScene*>", "name": "m_ScenesIntegratingOnMainThread" },
+        { "type": "UnityScene", "name": "m_DontDestroyOnLoadScene" }
+      ]
+    },
+
+    {
+      "name": "Quaternionf",
+      "fields": [
+        { "type": "float", "name": "x" },
+        { "type": "float", "name": "y" },
+        { "type": "float", "name": "z" },
+        { "type": "float", "name": "w" }
+      ]
+    },
+    {
+      "name": "Vector3f",
+      "fields": [
+        { "type": "float", "name": "x" },
+        { "type": "float", "name": "y" },
+        { "type": "float", "name": "z" }
+      ]
+    },
+
+    {
+      "name": "Object",
+      "fields": [
+        { "type": "void*", "name": "vftable" },
+        { "type": "int", "name": "m_InstanceID" },
+        { "type": "uint:12", "name": "m_MemLabelIdentifier" },
+        { "type": "uint:1", "name": "m_TemporaryFlags" },
+        { "type": "uint:7", "name": "m_HideFlags" },
+        { "type": "uint:1", "name": "m_IsPersistent" },
+        { "type": "uint:11", "name": "m_CachedTypeIndex" },
+        { "type": "EventEntry*", "name": "m_EventIndex" },
+        { "type": "short", "name": "m_FullMemoryLabel" },
+        { "type": "void*", "name": "__padding_1" },
+        { "type": "void*", "name": "m_MonoReference" }
+      ]
+    },
+
+    {
+      "name": "GameObject", "super": "Object",
+      "fields": [
+        { "type": "dynamic_array<ComponentPair>", "name": "m_Component" },
+        { "type": "uint", "name": "m_Layer" },
+        { "type": "ushort", "name": "m_Tag" },
+        { "type": "bool", "name": "m_IsActive" },
+        { "type": "bool", "name": "m_IsActiveCached" },
+        { "type": "int", "name": "m_ActivationState" },
+        { "type": "uint", "name": "m_SupportedMessages" },
+        { "type": "sbyte*", "name": "m_Name" }
+      ]
+    },
+    {
+      "name": "Component", "super": "Object",
+      "fields": [
+        { "type": "GameObject*", "name": "m_GameObject" }
+      ]
+    },
+
+    {
+      "name": "TransformAccess",
+      "fields": [
+        { "type": "TransformHierarchy*", "name": "hierarchy" },
+        { "type": "uint", "name": "index" }
+      ]
+    },
+    {
+      "name": "SceneRootNode",
+      "fields": [
+        { "type": "ListNode<Transform>", "name": "m_ListNode" },
+        { "type": "UnityScene*", "name": "m_UnityScene" },
+        { "type": "ListNode<Transform>", "name": "m_SortedListNode" }
+      ]
+    },
+    {
+      "name": "Transform", "super": "Component",
+      "fields": [
+        { "type": "TransformAccess", "name": "m_TransformData" },
+        { "type": "Quaternionf", "name": "m_LocalRotation" },
+        { "type": "Vector3f", "name": "m_LocalPosition" },
+        { "type": "Vector3f", "name": "m_LocalScale" },
+        { "type": "dynamic_array<Transform*>", "name": "m_Children" },
+        { "type": "Transform*", "name": "m_Father" }
+      ]
+    }
+  ]
+}

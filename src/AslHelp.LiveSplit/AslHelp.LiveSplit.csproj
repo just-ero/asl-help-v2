@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net4.8.1</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(SrcDir)\AslHelp.Common\*.csproj" />
+    <ProjectReference Include="$(SrcDir)\AslHelp.Diagnostics\*.csproj" />
+    <ProjectReference Include="$(SrcDir)\AslHelp.IO\*.csproj" />
+    <ProjectReference Include="$(SrcDir)\AslHelp.Memory\*.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="$(LibDir)\*.dll" />
+  </ItemGroup>
+
+</Project>
