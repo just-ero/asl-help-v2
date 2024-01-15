@@ -2,6 +2,10 @@ name: Build asl-help
 
 on:
   workflow_call:
+    inputs:
+      is_workflow_call:
+        type: boolean
+        default: true
   workflow_dispatch:
   pull_request:
 
@@ -38,7 +42,7 @@ jobs:
         run: dotnet build ./src/AslHelp.Build -c Release -p:LibraryName=asl-help
 
       - name: Cache asl-help.dll as artifact
-        if: ${{ github.event_name == 'workflow_call' }}
+        if: ${{ inputs.is_workflow_call }}
         uses: actions/upload-artifact@v3.1.3
         with:
           name: asl-help-dll
