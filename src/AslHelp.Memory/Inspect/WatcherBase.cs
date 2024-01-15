@@ -1,8 +1,9 @@
-using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
+using AslHelp.Common.Results;
 using AslHelp.Memory.Ipc;
 
-namespace AslHelp.Memory.Watch;
+namespace AslHelp.Memory.Inspect;
 
 public abstract class WatcherBase<T> : IWatcher<T>
 {
@@ -34,7 +35,6 @@ public abstract class WatcherBase<T> : IWatcher<T>
 
             return _current;
         }
-        set => _current = value;
     }
 
     /// <inheritdoc/>
@@ -49,7 +49,6 @@ public abstract class WatcherBase<T> : IWatcher<T>
 
             return _old;
         }
-        set => _old = value;
     }
 
     /// <inheritdoc/>
@@ -62,9 +61,9 @@ public abstract class WatcherBase<T> : IWatcher<T>
     public bool UpdateOnFail { get; set; } = false;
 
     /// <inheritdoc/>
-    public virtual bool TryDeref(out nuint result)
+    public virtual Result<nuint> Deref()
     {
-        return _memory.TryDeref(out result, _baseAddress, _offsets);
+        return _memory.Deref(_baseAddress, _offsets);
     }
 
     private void Update()
@@ -77,31 +76,30 @@ public abstract class WatcherBase<T> : IWatcher<T>
         _tick = _memory.Tick;
         _old = _current;
 
-        if (TryDeref(out nuint deref)
-            && TryRead(deref, out T? value))
-        {
-            _current = value;
-            Changed = !Equals(_old, _current);
-        }
-        else if (UpdateOnFail)
-        {
-            _current = default;
-            Changed = false;
-        }
+        Deref()
+            .AndThen(Read)
+            .AndThen(value => _current = value)
+            .OrElse(_ =>
+            {
+                if (UpdateOnFail)
+                {
+                    _current = default;
+                }
+            });
+
+        Changed = !Equals(_old, _current);
     }
 
-    protected abstract bool TryRead(nuint address, [NotNullWhen(true)] out T? value);
+    protected abstract Result<T> Read(nuint address);
     protected abstract bool Equals(T? old, T? current);
 
-    object? IWatcher.Current
+    public abstract override string ToString();
+
+    protected string WatcherPathToString()
     {
-        get => Current;
-        set => Current = (T?)value;
+        return $"0x{(ulong)_baseAddress:X}, {string.Join(", ", _offsets.Select(static o => $"0x{o:X}"))}";
     }
 
-    object? IWatcher.Old
-    {
-        get => Old;
-        set => Old = (T?)value;
-    }
+    object? IWatcher.Current => Current;
+    object? IWatcher.Old => Old;
 }

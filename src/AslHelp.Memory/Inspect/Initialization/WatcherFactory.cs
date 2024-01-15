@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 using AslHelp.Memory.Ipc;
 
-namespace AslHelp.Memory.Watch.Initialization;
+namespace AslHelp.Memory.Inspect.Initialization;
 
 public sealed class WatcherFactory : Dictionary<string, IWatcher>
 {

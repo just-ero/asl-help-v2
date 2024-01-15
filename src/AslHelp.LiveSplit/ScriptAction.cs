@@ -38,10 +38,10 @@ public sealed class ScriptAction
         Body += code;
         _methods.SetFieldValue<ASLMethod>(Name, new(Body, Name, Line));
 
-        Debug.Info($"Added the following code to the end of '{Name}':");
-        using (Debug.Indent())
+        AslDebug.Info($"Added the following code to the end of '{Name}':");
+        using (AslDebug.Indent())
         {
-            Debug.Info($"`{code}`");
+            AslDebug.Info($"`{code}`");
         }
     }
 
@@ -50,10 +50,10 @@ public sealed class ScriptAction
         Body = code + Body;
         _methods.SetFieldValue<ASLMethod>(Name, new(Body, Name, Line));
 
-        Debug.Info($"Added the following code to the beginning of '{Name}':");
-        using (Debug.Indent())
+        AslDebug.Info($"Added the following code to the beginning of '{Name}':");
+        using (AslDebug.Indent())
         {
-            Debug.Info($"`{code}`");
+            AslDebug.Info($"`{code}`");
         }
     }
 }

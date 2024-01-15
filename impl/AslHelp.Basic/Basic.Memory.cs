@@ -1,7 +1,7 @@
 using System.Diagnostics;
 
 using AslHelp.Memory.Ipc;
-using AslHelp.Memory.Watch.Initialization;
+using AslHelp.Memory.Inspect.Initialization;
 
 public partial class Basic
 {
@@ -16,13 +16,13 @@ public partial class Basic
             {
                 if (Game is Process game)
                 {
-                    Debug.Info("Initializing memory...");
+                    AslDebug.Info("Initializing memory...");
 
-                    using (Debug.Indent())
+                    using (AslDebug.Indent())
                     {
                         _memory = InitializeMemory(game);
 
-                        Debug.Info("Success.");
+                        AslDebug.Info("Success.");
                     }
                 }
             }
@@ -55,7 +55,7 @@ public partial class Basic
         return new ProcessMemory(process);
     }
 
-    protected override void DisposeProcessInstanceData()
+    protected override void DisposeGameData()
     {
         _memory?.Dispose();
 

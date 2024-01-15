@@ -21,7 +21,7 @@ internal sealed unsafe class ScanEnumerator : IEnumerable<uint>, IEnumerator<uin
 
     private uint _cursor;
 
-    public ScanEnumerator(byte[] data, ScanPattern pattern)
+    public ScanEnumerator(ScanPattern pattern, byte[] data)
     {
         _data = data;
         _values = pattern.Values;

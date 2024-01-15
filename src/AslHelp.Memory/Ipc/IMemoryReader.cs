@@ -7,25 +7,28 @@ namespace AslHelp.Memory.Ipc;
 
 public interface IMemoryReader
 {
-    Result<nuint> Deref(uint baseOffset, params int[] offsets);
-    Result<nuint> Deref(string moduleName, uint baseOffset, params int[] offsets);
-    Result<nuint> Deref(Module module, uint baseOffset, params int[] offsets);
+    Result<nuint> Deref(int baseOffset, params int[] offsets);
+    Result<nuint> Deref(string? moduleName, int baseOffset, params int[] offsets);
+    Result<nuint> Deref(Module? module, int baseOffset, params int[] offsets);
     Result<nuint> Deref(nuint baseAddress, params int[] offsets);
 
-    Result<T> Read<T>(uint baseOffset, params int[] offsets) where T : unmanaged;
-    Result<T> Read<T>(string? moduleName, uint baseOffset, params int[] offsets) where T : unmanaged;
-    Result<T> Read<T>(Module? module, uint baseOffset, params int[] offsets) where T : unmanaged;
+    Result<T> Read<T>(int baseOffset, params int[] offsets) where T : unmanaged;
+    Result<T> Read<T>(string? moduleName, int baseOffset, params int[] offsets) where T : unmanaged;
+    Result<T> Read<T>(Module? module, int baseOffset, params int[] offsets) where T : unmanaged;
     Result<T> Read<T>(nuint baseAddress, params int[] offsets) where T : unmanaged;
 
-    Result<T[]> ReadSpan<T>(int length, uint baseOffset, params int[] offsets) where T : unmanaged;
-    Result<T[]> ReadSpan<T>(int length, string? moduleName, uint baseOffset, params int[] offsets) where T : unmanaged;
-    Result<T[]> ReadSpan<T>(int length, Module? module, uint baseOffset, params int[] offsets) where T : unmanaged;
+    Result<T[]> ReadSpan<T>(int length, int baseOffset, params int[] offsets) where T : unmanaged;
+    Result<T[]> ReadSpan<T>(int length, string? moduleName, int baseOffset, params int[] offsets) where T : unmanaged;
+    Result<T[]> ReadSpan<T>(int length, Module? module, int baseOffset, params int[] offsets) where T : unmanaged;
     Result<T[]> ReadSpan<T>(int length, nuint baseAddress, params int[] offsets) where T : unmanaged;
 
-    Result ReadSpan<T>(Span<T> buffer, uint baseOffset, params int[] offsets) where T : unmanaged;
-    Result ReadSpan<T>(Span<T> buffer, string? moduleName, uint baseOffset, params int[] offsets) where T : unmanaged;
-    Result ReadSpan<T>(Span<T> buffer, Module? module, uint baseOffset, params int[] offsets) where T : unmanaged;
+    Result ReadSpan<T>(Span<T> buffer, int baseOffset, params int[] offsets) where T : unmanaged;
+    Result ReadSpan<T>(Span<T> buffer, string? moduleName, int baseOffset, params int[] offsets) where T : unmanaged;
+    Result ReadSpan<T>(Span<T> buffer, Module? module, int baseOffset, params int[] offsets) where T : unmanaged;
     Result ReadSpan<T>(Span<T> buffer, nuint baseAddress, params int[] offsets) where T : unmanaged;
 
-    bool TryReadString([NotNullWhen(true)] out string? result, int maxLength, StringType stringType, nuint baseAddress, params int[] offsets);
+    Result<string> ReadString(int maxLength, StringType stringType, int baseOffset, params int[] offsets);
+    Result<string> ReadString(int maxLength, StringType stringType, string? moduleName, int baseOffset, params int[] offsets);
+    Result<string> ReadString(int maxLength, StringType stringType, Module? module, int baseOffset, params int[] offsets);
+    Result<string> ReadString(int maxLength, StringType stringType, nuint baseAddress, params int[] offsets);
 }

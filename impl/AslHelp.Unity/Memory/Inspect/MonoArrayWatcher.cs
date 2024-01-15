@@ -1,20 +1,15 @@
 using System.Diagnostics.CodeAnalysis;
 
-using AslHelp.Memory.Watch;
+using AslHelp.Common.Results;
 using AslHelp.Unity.Memory.Ipc;
 
-namespace AslHelp.Unity.Memory.Watch;
+namespace AslHelp.Unity.Memory.Inspect;
 
-internal sealed class MonoArrayWatcher<T> : WatcherBase<T[]>
+internal sealed class MonoArrayWatcher<T> : MonoWatcherBase<T[]>
     where T : unmanaged
 {
-    private new readonly IMonoProcessMemory _memory;
-
     public MonoArrayWatcher(IMonoProcessMemory memory, nuint baseAddress, params int[] offsets)
-        : base(memory, baseAddress, offsets)
-    {
-        _memory = memory;
-    }
+        : base(memory, baseAddress, offsets) { }
 
     protected override bool TryRead(nuint address, [NotNullWhen(true)] out T[]? value)
     {
@@ -42,5 +37,15 @@ internal sealed class MonoArrayWatcher<T> : WatcherBase<T[]>
         }
 
         return true;
+    }
+
+    protected override Result<T[]> Read(nuint address)
+    {
+        return _memory.ReadArray<T>(address);
+    }
+
+    public override string ToString()
+    {
+        throw new System.NotImplementedException();
     }
 }

@@ -8,67 +8,69 @@ namespace AslHelp.Memory.Ipc;
 
 public partial class ProcessMemory
 {
-    public Result<T[]> ReadSpan<T>(int length, uint baseOffset, params int[] offsets)
+    public Result<T[]> ReadSpan<T>(int length, int baseOffset, params int[] offsets)
         where T : unmanaged
     {
         return ReadSpan<T>(length, MainModule, baseOffset, offsets);
     }
 
-    public Result<T[]> ReadSpan<T>(int length, string? moduleName, uint baseOffset, params int[] offsets)
+    public Result<T[]> ReadSpan<T>(int length, string? moduleName, int baseOffset, params int[] offsets)
         where T : unmanaged
     {
         if (moduleName is null)
         {
-            return IpcError.ModuleNameMustNotBeNull;
+            return IpcError.ModuleName_MustNot_BeNull;
         }
 
         return ReadSpan<T>(length, Modules[moduleName], baseOffset, offsets);
     }
 
-    public Result<T[]> ReadSpan<T>(int length, Module? module, uint baseOffset, params int[] offsets)
+    public Result<T[]> ReadSpan<T>(int length, Module? module, int baseOffset, params int[] offsets)
         where T : unmanaged
     {
         if (module is null)
         {
-            return IpcError.ModuleMustNotBeNull;
+            return IpcError.Module_MustNot_BeNull;
         }
 
-        return ReadSpan<T>(length, module.Base + baseOffset, offsets);
+        return ReadSpan<T>(length, module.Base + (nuint)baseOffset, offsets);
     }
 
     public Result<T[]> ReadSpan<T>(int length, nuint baseAddress, params int[] offsets)
         where T : unmanaged
     {
         T[] result = new T[length];
-        return ReadSpan<T>(result, baseAddress, offsets);
+        return
+            ReadSpan<T>(result, baseAddress, offsets)
+            .And<T[]>(result);
     }
 
-    public Result ReadSpan<T>(Span<T> buffer, uint baseOffset, params int[] offsets)
+    public Result ReadSpan<T>(Span<T> buffer, int baseOffset, params int[] offsets)
         where T : unmanaged
     {
         return ReadSpan(buffer, MainModule, baseOffset, offsets);
     }
 
-    public Result ReadSpan<T>(Span<T> buffer, string? moduleName, uint baseOffset, params int[] offsets)
+    public Result ReadSpan<T>(Span<T> buffer, string? moduleName, int baseOffset, params int[] offsets)
         where T : unmanaged
     {
         if (moduleName is null)
         {
-            return IpcError.ModuleNameMustNotBeNull;
+            return IpcError.ModuleName_MustNot_BeNull;
         }
 
         return ReadSpan(buffer, Modules[moduleName], baseOffset, offsets);
     }
 
-    public Result ReadSpan<T>(Span<T> buffer, Module? module, uint baseOffset, params int[] offsets)
+    public Result ReadSpan<T>(Span<T> buffer, Module? module, int baseOffset, params int[] offsets)
         where T : unmanaged
     {
         if (module is null)
         {
-            return IpcError.ModuleMustNotBeNull;
+            return IpcError.Module_MustNot_BeNull;
         }
 
-        return ReadSpan(buffer, module.Base + baseOffset, offsets);
+        return ReadSpan(buffer, module.Base + (nuint)baseOffset, offsets);
     }
 
     public unsafe Result ReadSpan<T>(Span<T> buffer, nuint baseAddress, params int[] offsets)
@@ -112,7 +114,7 @@ public partial class ProcessMemory
         {
             if (!WinInteropWrapper.ReadMemory(_handle, deref, pBuffer, size))
             {
-                return IpcError.ReadMemoryFailure(deref);
+                return IpcError.ReadMemoryFailure_Win32Error(deref);
             }
 
             return Result.Ok();

@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-using AslHelp.Memory.Watch;
+using AslHelp.Memory.Inspect;
 using AslHelp.Unity.Memory.Ipc;
 
-namespace AslHelp.Unity.Memory.Watch;
+namespace AslHelp.Unity.Memory.Inspect;
 
 internal sealed class MonoListWatcher<T> : WatcherBase<List<T>>
     where T : unmanaged

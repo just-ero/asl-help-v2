@@ -8,8 +8,8 @@ using AslHelp.Diagnostics.Logging;
 
 namespace AslHelp.LiveSplit.Diagnostics;
 
-[Obsolete("Do not use ASL-specific features.", true)]
-public static class Debug
+// [Obsolete("Do not use ASL-specific features.", true)]
+public static class AslDebug
 {
     private static readonly TraceLogger _logger = new();
     private static int _indentLevel;

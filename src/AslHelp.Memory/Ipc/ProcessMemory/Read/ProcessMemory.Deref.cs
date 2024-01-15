@@ -8,41 +8,41 @@ namespace AslHelp.Memory.Ipc;
 
 public partial class ProcessMemory
 {
-    public Result<nuint> Deref(uint baseOffset, params int[] offsets)
+    public Result<nuint> Deref(int baseOffset, params int[] offsets)
     {
         return Deref(MainModule, baseOffset, offsets);
     }
 
-    public Result<nuint> Deref(string? moduleName, uint baseOffset, params int[] offsets)
+    public Result<nuint> Deref(string? moduleName, int baseOffset, params int[] offsets)
     {
         if (moduleName is null)
         {
-            return IpcError.ModuleNameMustNotBeNull;
+            return IpcError.ModuleName_MustNot_BeNull;
         }
 
         return Deref(Modules[moduleName], baseOffset, offsets);
     }
 
-    public Result<nuint> Deref(Module? module, uint baseOffset, params int[] offsets)
+    public Result<nuint> Deref(Module? module, int baseOffset, params int[] offsets)
     {
         if (module is null)
         {
-            return IpcError.ModuleMustNotBeNull;
+            return IpcError.Module_MustNot_BeNull;
         }
 
-        return Deref(module.Base + baseOffset, offsets);
+        return Deref(module.Base + (nuint)baseOffset, offsets);
     }
 
     public unsafe Result<nuint> Deref(nuint baseAddress, params int[] offsets)
     {
         if (_disposed)
         {
-            return IpcError.ProcessMemoryWasDisposed;
+            return IpcError.ProcessMemory_MustNot_BeDisposed;
         }
 
         if (baseAddress == 0)
         {
-            return IpcError.BaseAddressMustNotBeNull;
+            return IpcError.BaseAddress_MustNot_BeNull;
         }
 
         nuint result = baseAddress;
@@ -51,12 +51,12 @@ public partial class ProcessMemory
         {
             if (!WinInteropWrapper.ReadMemory(_handle, result, &result, PointerSize))
             {
-                return IpcError.DerefFailure(result);
+                return IpcError.DerefFailure_Win32Error(result);
             }
 
             if (result == 0)
             {
-                return IpcError.DerefFailureNullPointer;
+                return IpcError.DerefFailure_ReadNull;
             }
 
             result += (nuint)offsets[i];

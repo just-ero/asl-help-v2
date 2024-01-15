@@ -346,6 +346,11 @@ dotnet_naming_style._camelcase.required_suffix =
 dotnet_naming_style._camelcase.word_separator  =
 dotnet_naming_style._camelcase.capitalization  = camel_case
 
+# Suppressions
+
+[*.cs]
+dotnet_diagnostic.IDE0305.severity = none # IDE0305: Collection initialization can be simplified.
+
 [src/AslHelp.Memory/Native/{Structs,Enums}/*.cs]
 
 dotnet_diagnostic.CS0649.severity  = none # CS0649: Field is never assigned to, and will always have its default value.

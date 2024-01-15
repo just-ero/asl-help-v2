@@ -1,6 +1,7 @@
+using AslHelp.Common.Results;
 using AslHelp.Memory.Ipc;
 
-namespace AslHelp.Memory.Watch;
+namespace AslHelp.Memory.Inspect;
 
 internal sealed class Watcher<T> : WatcherBase<T>
     where T : unmanaged
@@ -8,13 +9,18 @@ internal sealed class Watcher<T> : WatcherBase<T>
     public Watcher(IProcessMemory memory, nuint baseAddress, params int[] offsets)
         : base(memory, baseAddress, offsets) { }
 
-    protected override bool TryRead(nuint address, out T value)
+    protected override Result<T> Read(nuint address)
     {
-        return _memory.TryRead(out value, address);
+        return _memory.Read<T>(address);
     }
 
     protected override bool Equals(T old, T current)
     {
         return old.Equals(current);
+    }
+
+    public override string ToString()
+    {
+        return $"{nameof(Watcher<T>)}<{typeof(T).Name}>({WatcherPathToString()})";
     }
 }

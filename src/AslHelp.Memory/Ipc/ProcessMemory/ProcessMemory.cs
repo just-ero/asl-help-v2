@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 
 using AslHelp.Collections;
+using AslHelp.Common.Results;
 using AslHelp.Memory.Native;
 using AslHelp.Memory.Native.Enums;
 
@@ -70,23 +71,17 @@ public partial class ProcessMemory : IProcessMemory
         return (uint)(IsNativeInt<T>() ? PointerSize : sizeof(T));
     }
 
-    public bool TryReadRelative(out nuint result, nuint relativeAddress, uint instructionSize = 0x4U)
+    public Result<nuint> ReadRelative(nuint relativeAddress, uint instructionSize = 4)
     {
         if (Is64Bit)
         {
-            if (!TryRead(out int relativeOffset, relativeAddress))
-            {
-                result = default;
-                return false;
-            }
-
-            result = relativeAddress + instructionSize + (nuint)relativeOffset;
-
-            return true;
+            return
+                Read<uint>(relativeAddress)
+                .AndThen<nuint>(relativeOffset => relativeAddress + instructionSize + (nuint)relativeOffset);
         }
         else
         {
-            return TryRead(out result, relativeAddress);
+            return Read<nuint>(relativeAddress);
         }
     }
 }

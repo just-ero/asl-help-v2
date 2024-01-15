@@ -1,8 +1,7 @@
-using System.Diagnostics.CodeAnalysis;
-
+using AslHelp.Common.Results;
 using AslHelp.Memory.Ipc;
 
-namespace AslHelp.Memory.Watch;
+namespace AslHelp.Memory.Inspect;
 
 internal sealed class SpanWatcher<T> : WatcherBase<T[]>
     where T : unmanaged
@@ -15,14 +14,9 @@ internal sealed class SpanWatcher<T> : WatcherBase<T[]>
         _length = length;
     }
 
-    protected override unsafe bool TryRead(nuint address, [NotNullWhen(true)] out T[]? value)
+    protected override Result<T[]> Read(nuint address)
     {
-        // We need to allocate a new array here every single time.
-        // Otherwise, we would be changing the contents of `_old` as well.
-        // This would cause the `Equals` method to always return true.
-
-        value = new T[_length];
-        return _memory.TryReadSpan<T>(value, address);
+        return _memory.ReadSpan<T>(_length, address);
     }
 
     protected override bool Equals(T[]? old, T[]? current)
@@ -41,5 +35,10 @@ internal sealed class SpanWatcher<T> : WatcherBase<T[]>
         }
 
         return true;
+    }
+
+    public override string ToString()
+    {
+        return $"{nameof(SpanWatcher<T>)}<{typeof(T).Name}>({WatcherPathToString()})";
     }
 }

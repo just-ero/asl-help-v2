@@ -103,16 +103,6 @@ public readonly struct Result : IResult
         return Error;
     }
 
-    public bool IsOkAnd(Func<bool> op)
-    {
-        return IsOk && op();
-    }
-
-    public bool IsErrAnd(Func<IResultError, bool> op)
-    {
-        return IsErr && op(Error);
-    }
-
     public Result<TValue> Map<TValue>(TValue value)
     {
         return IsOk

@@ -1,8 +1,7 @@
-using System.Diagnostics.CodeAnalysis;
-
+using AslHelp.Common.Results;
 using AslHelp.Memory.Ipc;
 
-namespace AslHelp.Memory.Watch;
+namespace AslHelp.Memory.Inspect;
 
 internal sealed class StringWatcher : WatcherBase<string>
 {
@@ -19,13 +18,18 @@ internal sealed class StringWatcher : WatcherBase<string>
         _stringType = stringType;
     }
 
-    protected override bool TryRead(nuint address, [NotNullWhen(true)] out string? value)
+    protected override Result<string> Read(nuint address)
     {
-        return _memory.TryReadString(out value, _maxLength, _stringType, address);
+        return _memory.ReadString(_maxLength, _stringType, address);
     }
 
     protected override bool Equals(string? old, string? current)
     {
         return old == current;
+    }
+
+    public override string ToString()
+    {
+        return $"{nameof(StringWatcher)}({WatcherPathToString()})";
     }
 }

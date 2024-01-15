@@ -21,7 +21,7 @@ public partial class Unity
                 return default;
             }
 
-            Debug.Info("Initializing Mono...");
+            AslDebug.Info("Initializing Mono...");
 
             _mono = memory.RuntimeVersion >= MonoRuntimeVersion.Il2CppV24
                 ? Il2CppOperator.Create(memory).Unwrap()

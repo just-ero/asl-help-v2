@@ -1,25 +1,51 @@
-using System.Diagnostics.CodeAnalysis;
+using AslHelp.Common.Results;
+using AslHelp.Memory;
 
 namespace AslHelp.Unity.Memory.Ipc;
 
 internal partial class MonoProcessMemory
 {
-    public bool TryReadArray<T>([NotNullWhen(true)] out T[]? results, nuint address, params int[] offsets)
+    public Result<T[]> ReadArray<T>(int baseOffset, params int[] offsets)
         where T : unmanaged
     {
-        results = default;
+        return ReadArray<T>(MainModule, baseOffset, offsets);
+    }
 
-        if (!TryRead(out nuint array, address, offsets))
+    public Result<T[]> ReadArray<T>(string? moduleName, int baseOffset, params int[] offsets)
+        where T : unmanaged
+    {
+        if (moduleName is null)
         {
-            return false;
+            return IpcError.ModuleName_MustNot_BeNull;
         }
 
-        if (!TryRead(out int length, array + (PointerSize * 3U)))
+        return ReadArray<T>(Modules[moduleName], baseOffset, offsets);
+    }
+
+    public Result<T[]> ReadArray<T>(Module? module, int baseOffset, params int[] offsets)
+        where T : unmanaged
+    {
+        if (module is null)
         {
-            return false;
+            return IpcError.Module_MustNot_BeNull;
         }
 
-        results = new T[length];
-        return TryReadSpan<T>(results, array + (PointerSize * 4U));
+        return ReadArray<T>(module.Base + (nuint)baseOffset, offsets);
+    }
+
+    public Result<T[]> ReadArray<T>(nuint baseAddress, params int[] offsets)
+        where T : unmanaged
+    {
+        return
+            Read<nuint>(baseAddress, offsets)
+            .AndThen(array =>
+            {
+                nuint arrayLength = array + (PointerSize * 3U);
+                nuint arrayStart = array + (PointerSize * 4U);
+
+                return
+                    Read<int>(arrayLength)
+                    .AndThen(length => ReadSpan<T>(length, arrayStart));
+            });
     }
 }

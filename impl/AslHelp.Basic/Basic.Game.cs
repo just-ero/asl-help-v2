@@ -20,7 +20,7 @@ public partial class Basic
 
             if (value is null)
             {
-                DisposeProcessInstanceData();
+                DisposeGameData();
             }
         }
     }

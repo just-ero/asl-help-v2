@@ -5,32 +5,32 @@ namespace AslHelp.Memory.Ipc;
 
 public partial class ProcessMemory
 {
-    public Result<T> Read<T>(uint baseOffset, params int[] offsets)
+    public Result<T> Read<T>(int baseOffset, params int[] offsets)
         where T : unmanaged
     {
         return Read<T>(MainModule, baseOffset, offsets);
     }
 
-    public Result<T> Read<T>(string? moduleName, uint baseOffset, params int[] offsets)
+    public Result<T> Read<T>(string? moduleName, int baseOffset, params int[] offsets)
         where T : unmanaged
     {
         if (moduleName is null)
         {
-            return IpcError.ModuleNameMustNotBeNull;
+            return IpcError.ModuleName_MustNot_BeNull;
         }
 
         return Read<T>(Modules[moduleName], baseOffset, offsets);
     }
 
-    public Result<T> Read<T>(Module? module, uint baseOffset, params int[] offsets)
+    public Result<T> Read<T>(Module? module, int baseOffset, params int[] offsets)
         where T : unmanaged
     {
         if (module is null)
         {
-            return IpcError.ModuleMustNotBeNull;
+            return IpcError.Module_MustNot_BeNull;
         }
 
-        return Read<T>(module.Base + baseOffset, offsets);
+        return Read<T>(module.Base + (nuint)baseOffset, offsets);
     }
 
     public unsafe Result<T> Read<T>(nuint baseAddress, params int[] offsets)
@@ -43,7 +43,7 @@ public partial class ProcessMemory
                 T result;
                 if (!WinInteropWrapper.ReadMemory(_handle, deref, &result, GetNativeSizeOf<T>()))
                 {
-                    return IpcError.ReadMemoryFailure(deref);
+                    return IpcError.ReadMemoryFailure_Win32Error(deref);
                 }
 
                 return result;

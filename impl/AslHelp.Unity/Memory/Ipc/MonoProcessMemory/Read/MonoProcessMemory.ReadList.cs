@@ -1,28 +1,55 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 using AslHelp.Collections.Extensions;
+using AslHelp.Common.Results;
+using AslHelp.Memory;
 
 namespace AslHelp.Unity.Memory.Ipc;
 
 internal partial class MonoProcessMemory
 {
-    public bool TryReadList<T>([NotNullWhen(true)] out List<T>? results, nuint address, params int[] offsets)
+    public Result<List<T>> ReadList<T>(int baseOffset, params int[] offsets)
         where T : unmanaged
     {
-        results = default;
+        return ReadList<T>(MainModule, baseOffset, offsets);
+    }
 
-        if (!TryRead(out nuint list, address, offsets))
+    public Result<List<T>> ReadList<T>(string? moduleName, int baseOffset, params int[] offsets)
+        where T : unmanaged
+    {
+        if (moduleName is null)
         {
-            return false;
+            return IpcError.ModuleName_MustNot_BeNull;
         }
 
-        if (!TryRead(out int count, list + (PointerSize * 3U)))
+        return ReadList<T>(Modules[moduleName], baseOffset, offsets);
+    }
+
+    public Result<List<T>> ReadList<T>(Module? module, int baseOffset, params int[] offsets)
+        where T : unmanaged
+    {
+        if (module is null)
         {
-            return false;
+            return IpcError.Module_MustNot_BeNull;
         }
 
-        List<T> values = new(count);
-        return TryReadSpan(ListExtensions.AsSpan(values), list + (PointerSize * 4U));
+        return ReadList<T>(module.Base + (nuint)baseOffset, offsets);
+    }
+
+    public Result<List<T>> ReadList<T>(nuint baseAddress, params int[] offsets)
+        where T : unmanaged
+    {
+        return
+            Read<nuint>(baseAddress, offsets)
+            .AndThen(list =>
+                Read<int>(list + (PointerSize * 3U))
+                .AndThen(count =>
+                {
+                    List<T> values = new(count);
+
+                    return
+                        ReadSpan(values.AsSpan(), list + (PointerSize * 2U), PointerSize * 4)
+                        .And<List<T>>(values);
+                }));
     }
 }

@@ -29,25 +29,25 @@ public partial class AslHelpEntryPoint
             ThrowHelper.ThrowInvalidOperationException(Msg);
         }
 
-        Debug.Info("Initializing asl-help...");
+        AslDebug.Info("Initializing asl-help...");
 
-        using (Debug.Indent())
+        using (AslDebug.Indent())
         {
             AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolve;
             AppDomain.CurrentDomain.FirstChanceException += FirstChanceHandler;
 
-            Debug.Info("Initializing timer and script data...");
+            AslDebug.Info("Initializing timer and script data...");
 
-            using (Debug.Indent())
+            using (AslDebug.Indent())
             {
                 _asl = AutoSplitter.TryInitialize().Unwrap();
 
-                Debug.Info("Success.");
+                AslDebug.Info("Success.");
             }
 
-            Debug.Info("Generating code...");
+            AslDebug.Info("Generating code...");
 
-            using (Debug.Indent())
+            using (AslDebug.Indent())
             {
                 if (generateCode)
                 {
@@ -63,7 +63,7 @@ public partial class AslHelpEntryPoint
             Texts = new(_asl.State);
             // Settings = new(_asl.SettingsBuilder);
 
-            Debug.Info("Success.");
+            AslDebug.Info("Success.");
         }
 
         Initialized = true;
