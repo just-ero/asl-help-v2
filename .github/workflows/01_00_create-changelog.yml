@@ -45,12 +45,13 @@ jobs:
 
             if [ -n "${{ steps.previous-release.outputs.tag_name }}" ]; then
               echo "All changed files: https://github.com/${{ github.repository }}/compare/${{ steps.previous-release.outputs.tag_name }}...${{ inputs.tag }}."
-              echo "<details>"
-              echo "<summary><i>Detailed Change Log</i></summary>"
-              echo ""
-              git log --pretty=format:"- %s (%H)" ${{ steps.previous-release.outputs.tag_name }}..HEAD
-              echo "</details>"
             fi
+
+            echo "<details>"
+            echo "<summary><i>Detailed Change Log</i></summary>"
+            echo ""
+            git log --pretty=format:"- %s (%H)" ${{ steps.previous-release.outputs.tag_name }}..HEAD
+            echo "</details>"
 
             echo EOF
           } >> $GITHUB_OUTPUT
