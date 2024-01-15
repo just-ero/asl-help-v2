@@ -47,8 +47,9 @@ jobs:
               echo "All changed files: https://github.com/${{ github.repository }}/compare/${{ steps.previous-release.outputs.tag_name }}...${{ inputs.tag }}."
               echo "<details>"
               echo "<summary><i>Detailed Change Log</i></summary>"
+              echo "<br/>"
               echo ""
-              git log --pretty=format:"- %ad [%s](%H)" --date=format:"%d-%b-%Y %H:%M:%S" ${{ steps.previous-release.outputs.tag_name }}..HEAD
+              git log --reverse --date=format:"%d-%b-%Y %H:%M:%S" --pretty=format:"- [%ad] %s (%H)" ${{ steps.previous-release.outputs.tag_name }}..HEAD
               echo "</details>"
             fi
 
