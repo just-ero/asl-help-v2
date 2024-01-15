@@ -45,6 +45,11 @@ public readonly struct Result<TValue> : IResult<TValue>
         return Ok(value);
     }
 
+    public static implicit operator TValue(Result<TValue> result)
+    {
+        return result.Unwrap();
+    }
+
     public static implicit operator Result<TValue>(ResultError error)
     {
         return Err(error);

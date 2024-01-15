@@ -8,108 +8,60 @@ namespace AslHelp.Memory.Ipc;
 
 public partial class ProcessMemory
 {
-    public nuint Deref(uint baseOffset, params int[] offsets)
+    public Result<nuint> Deref(uint baseOffset, params int[] offsets)
     {
         return Deref(MainModule, baseOffset, offsets);
     }
 
-    public nuint Deref(string moduleName, uint baseOffset, params int[] offsets)
+    public Result<nuint> Deref(string? moduleName, uint baseOffset, params int[] offsets)
     {
+        if (moduleName is null)
+        {
+            return IpcError.ModuleNameMustNotBeNull;
+        }
+
         return Deref(Modules[moduleName], baseOffset, offsets);
     }
 
-    public nuint Deref(Module module, uint baseOffset, params int[] offsets)
+    public Result<nuint> Deref(Module? module, uint baseOffset, params int[] offsets)
     {
+        if (module is null)
+        {
+            return IpcError.ModuleMustNotBeNull;
+        }
+
         return Deref(module.Base + baseOffset, offsets);
     }
 
-    public unsafe nuint Deref(nuint baseAddress, params int[] offsets)
+    public unsafe Result<nuint> Deref(nuint baseAddress, params int[] offsets)
     {
-        if (_isDisposed)
+        if (_disposed)
         {
-            ThrowHelper.ThrowObjectDisposedException(nameof(ProcessMemory));
+            return IpcError.ProcessMemoryWasDisposed;
         }
 
         if (baseAddress == 0)
         {
-            string msg = IpcError.InvalidAddress(baseAddress).Message;
-            ThrowHelper.ThrowArgumentOutOfRangeException(nameof(baseAddress), msg);
+            return IpcError.BaseAddressMustNotBeNull;
         }
 
         nuint result = baseAddress;
 
         for (int i = 0; i < offsets.Length; i++)
         {
-            if (!WinInteropWrapper.ReadMemory(_handle, result, &result, PointerSize)
-                || result == 0)
+            if (!WinInteropWrapper.ReadMemory(_handle, result, &result, PointerSize))
             {
-                string msg = IpcError.DerefFailure.Message;
-                ThrowHelper.ThrowInvalidOperationException(msg);
+                return IpcError.DerefFailure(result);
+            }
+
+            if (result == 0)
+            {
+                return IpcError.DerefFailureNullPointer;
             }
 
             result += (nuint)offsets[i];
         }
 
         return result;
-    }
-
-    public bool TryDeref(out nuint result, uint baseOffset, params int[] offsets)
-    {
-        return TryDeref(out result, MainModule, baseOffset, offsets);
-    }
-
-    public bool TryDeref(out nuint result, [NotNullWhen(true)] string? moduleName, uint baseOffset, params int[] offsets)
-    {
-        if (moduleName is null)
-        {
-            result = default;
-            return false;
-        }
-
-        return TryDeref(out result, Modules[moduleName], baseOffset, offsets);
-    }
-
-    public bool TryDeref(out nuint result, [NotNullWhen(true)] Module? module, uint baseOffset, params int[] offsets)
-    {
-        if (module is null)
-        {
-            result = default;
-            return false;
-        }
-
-        return TryDeref(out result, module.Base + baseOffset, offsets);
-    }
-
-    public unsafe bool TryDeref(out nuint result, nuint baseAddress, params int[] offsets)
-    {
-        if (_isDisposed)
-        {
-            result = default;
-            return false;
-        }
-
-        if (baseAddress == 0)
-        {
-            result = default;
-            return false;
-        }
-
-        result = baseAddress;
-
-        fixed (nuint* pResult = &result)
-        {
-            for (int i = 0; i < offsets.Length; i++)
-            {
-                if (!WinInteropWrapper.ReadMemory(_handle, result, pResult, PointerSize)
-                    || result == 0)
-                {
-                    return false;
-                }
-
-                result += (nuint)offsets[i];
-            }
-        }
-
-        return true;
     }
 }

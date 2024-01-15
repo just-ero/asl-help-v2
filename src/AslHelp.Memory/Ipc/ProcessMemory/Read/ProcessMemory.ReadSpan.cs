@@ -1,15 +1,84 @@
 using System;
 using System.Runtime.InteropServices;
 
+using AslHelp.Common.Results;
 using AslHelp.Memory.Native;
 
 namespace AslHelp.Memory.Ipc;
 
 public partial class ProcessMemory
 {
-    public unsafe bool TryReadSpan<T>(Span<T> buffer, nuint baseAddress, params int[] offsets)
+    public Result<T[]> ReadSpan<T>(int length, uint baseOffset, params int[] offsets)
         where T : unmanaged
     {
+        return ReadSpan<T>(length, MainModule, baseOffset, offsets);
+    }
+
+    public Result<T[]> ReadSpan<T>(int length, string? moduleName, uint baseOffset, params int[] offsets)
+        where T : unmanaged
+    {
+        if (moduleName is null)
+        {
+            return IpcError.ModuleNameMustNotBeNull;
+        }
+
+        return ReadSpan<T>(length, Modules[moduleName], baseOffset, offsets);
+    }
+
+    public Result<T[]> ReadSpan<T>(int length, Module? module, uint baseOffset, params int[] offsets)
+        where T : unmanaged
+    {
+        if (module is null)
+        {
+            return IpcError.ModuleMustNotBeNull;
+        }
+
+        return ReadSpan<T>(length, module.Base + baseOffset, offsets);
+    }
+
+    public Result<T[]> ReadSpan<T>(int length, nuint baseAddress, params int[] offsets)
+        where T : unmanaged
+    {
+        T[] result = new T[length];
+        return ReadSpan<T>(result, baseAddress, offsets);
+    }
+
+    public Result ReadSpan<T>(Span<T> buffer, uint baseOffset, params int[] offsets)
+        where T : unmanaged
+    {
+        return ReadSpan(buffer, MainModule, baseOffset, offsets);
+    }
+
+    public Result ReadSpan<T>(Span<T> buffer, string? moduleName, uint baseOffset, params int[] offsets)
+        where T : unmanaged
+    {
+        if (moduleName is null)
+        {
+            return IpcError.ModuleNameMustNotBeNull;
+        }
+
+        return ReadSpan(buffer, Modules[moduleName], baseOffset, offsets);
+    }
+
+    public Result ReadSpan<T>(Span<T> buffer, Module? module, uint baseOffset, params int[] offsets)
+        where T : unmanaged
+    {
+        if (module is null)
+        {
+            return IpcError.ModuleMustNotBeNull;
+        }
+
+        return ReadSpan(buffer, module.Base + baseOffset, offsets);
+    }
+
+    public unsafe Result ReadSpan<T>(Span<T> buffer, nuint baseAddress, params int[] offsets)
+        where T : unmanaged
+    {
+        if (buffer.Length == 0)
+        {
+            return Result.Ok();
+        }
+
         if (!Is64Bit && IsNativeInt<T>())
         {
             // Need to read 32-bit integers for the pointers and then copy.
@@ -17,9 +86,10 @@ public partial class ProcessMemory
             Span<uint> buf32 = MemoryMarshal.Cast<T, uint>(buffer);
             Span<ulong> buf64 = MemoryMarshal.Cast<T, ulong>(buffer);
 
-            if (!TryReadSpan(buf32[..buf64.Length], baseAddress, offsets))
+            Result res = ReadSpan(buf32[buf64.Length..], baseAddress, offsets);
+            if (res.IsErr)
             {
-                return false;
+                return Result.Err(res.UnwrapErr());
             }
 
             for (int i = 0; i < buf64.Length; i++)
@@ -27,15 +97,25 @@ public partial class ProcessMemory
                 buf64[i] = buf32[buf64.Length + i];
             }
 
-            return true;
+            return Result.Ok();
+        }
+
+        Result<nuint> deref = Deref(baseAddress, offsets);
+        if (deref.IsErr)
+        {
+            return Result.Err(deref.Error);
         }
 
         uint size = GetNativeSizeOf<T>() * (uint)buffer.Length;
 
         fixed (T* pBuffer = buffer)
         {
-            return TryDeref(out nuint deref, baseAddress, offsets)
-                && WinInteropWrapper.ReadMemory(_handle, deref, pBuffer, size);
+            if (!WinInteropWrapper.ReadMemory(_handle, deref, pBuffer, size))
+            {
+                return IpcError.ReadMemoryFailure(deref);
+            }
+
+            return Result.Ok();
         }
     }
 }

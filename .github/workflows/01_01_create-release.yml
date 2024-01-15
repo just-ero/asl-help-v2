@@ -16,14 +16,15 @@ jobs:
     uses: ./.github/workflows/00_01_build-asl-help.yml
 
   create-changelog:
-    needs: build-asl-help
     uses: ./.github/workflows/01_00_create-changelog.yml
     with:
       tag: ${{ inputs.tag }}
       pre_release: ${{ inputs.pre_release }}
 
   create-release:
-    needs: create-changelog
+    needs: |
+      build-asl-help
+      create-changelog
     runs-on: ubuntu-latest
 
     steps:

@@ -16,7 +16,7 @@ public partial class ProcessMemory : IProcessMemory
 
     protected readonly nuint _handle;
 
-    private bool _isDisposed;
+    private bool _disposed;
 
     public ProcessMemory(Process process)
     {
@@ -46,7 +46,7 @@ public partial class ProcessMemory : IProcessMemory
 
     public void Dispose()
     {
-        if (_isDisposed)
+        if (_disposed)
         {
             return;
         }
@@ -54,7 +54,7 @@ public partial class ProcessMemory : IProcessMemory
         WinInterop.CloseHandle(_handle);
         Process.Dispose();
 
-        _isDisposed = true;
+        _disposed = true;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
