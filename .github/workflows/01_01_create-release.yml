@@ -30,17 +30,6 @@ jobs:
       - name: Checkout asl-help
         uses: actions/checkout@v4
 
-      - name: Create release
-        id: create-release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          tag_name: ${{ inputs.tag }}
-          release_name: ${{ inputs.tag }}
-          body: ${{ needs.create-changelog.outputs.changelog }}
-          prerelease: ${{ github.event.inputs.pre_release }}
-
       - name: Load cached asl-help.dll from artifacts
         uses: actions/download-artifact@v3.0.2
         with:
@@ -51,6 +40,17 @@ jobs:
         with:
           name: asl-help-dll
           failOnError: false
+
+      - name: Create release
+        id: create-release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          tag_name: ${{ inputs.tag }}
+          release_name: ${{ inputs.tag }}
+          body: ${{ needs.create-changelog.outputs.changelog }}
+          prerelease: ${{ github.event.inputs.pre_release }}
 
       - name: Upload asl-help as release asset
         uses: actions/upload-release-asset@v1.0.2
