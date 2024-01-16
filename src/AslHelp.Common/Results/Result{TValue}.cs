@@ -100,24 +100,11 @@ public readonly struct Result<TValue> : IResult<TValue>
             : Result<TOther>.Err(Error);
     }
 
-    public TValue ExpectOk(string message)
+    public Result<TValue> Finally(Action op)
     {
-        if (!IsOk)
-        {
-            ThrowHelper.ThrowInvalidOperationException(message);
-        }
+        op();
 
-        return Value;
-    }
-
-    public IResultError ExpectErr(string message)
-    {
-        if (!IsErr)
-        {
-            ThrowHelper.ThrowInvalidOperationException(message);
-        }
-
-        return Error;
+        return this;
     }
 
     public Result<TOther> Map<TOther>(Func<TValue, TOther> op)

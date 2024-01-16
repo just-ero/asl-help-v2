@@ -85,22 +85,11 @@ public readonly struct Result : IResult
             : Result<TValue>.Err(Error);
     }
 
-    public void ExpectOk(string message)
+    public Result Finally(Action op)
     {
-        if (!IsOk)
-        {
-            ThrowHelper.ThrowInvalidOperationException(message);
-        }
-    }
+        op();
 
-    public IResultError ExpectErr(string message)
-    {
-        if (!IsErr)
-        {
-            ThrowHelper.ThrowInvalidOperationException(message);
-        }
-
-        return Error;
+        return this;
     }
 
     public Result<TValue> Map<TValue>(TValue value)

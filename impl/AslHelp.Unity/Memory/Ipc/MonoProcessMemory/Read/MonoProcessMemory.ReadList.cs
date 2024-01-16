@@ -42,13 +42,13 @@ internal partial class MonoProcessMemory
         return
             Read<nuint>(baseAddress, offsets)
             .AndThen(list =>
-                Read<int>(list + (PointerSize * 3U))
+                Read<int>(list + (PointerSize * 3U)) // List<T>._size
                 .AndThen(count =>
                 {
                     List<T> values = new(count);
 
                     return
-                        ReadSpan(values.AsSpan(), list + (PointerSize * 2U), PointerSize * 4)
+                        ReadSpan(values.AsSpan(), list + (PointerSize * 2U), PointerSize * 4) // List<T>._items[0]
                         .And<List<T>>(values);
                 }));
     }

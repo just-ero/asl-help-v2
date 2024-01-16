@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 using AslHelp.Collections;
 using AslHelp.Common.Results;
-using AslHelp.LiveSplit.Diagnostics;
 using AslHelp.Memory.StructReflection;
 using AslHelp.Unity.Memory.Ipc;
 
@@ -31,41 +29,13 @@ public abstract class MonoOperator
 
     public static Result<MonoOperator> Create(IMonoProcessMemory memory)
     {
-        Initializer initializer = memory.RuntimeVersion switch
+        return memory.RuntimeVersion switch
         {
-            MonoRuntimeVersion.MonoV1 => new MonoOperatorV1.Initializer(),
-            MonoRuntimeVersion.MonoV2 => new MonoOperatorV2.Initializer(),
-            MonoRuntimeVersion.MonoV2_1 => new MonoOperatorV2_1.Initializer(),
-            _ => throw new NotSupportedException("Unsupported runtime version. Use Il2CppOperator.TryCreate for IL2CPP.")
+            MonoRuntimeVersion.MonoV1 => MonoOperatorV1.Initialize(memory),
+            MonoRuntimeVersion.MonoV2 => MonoOperatorV2.Initialize(memory),
+            MonoRuntimeVersion.MonoV2_1 => MonoOperatorV2_1.Initialize(memory),
+            _ => MonoInitError.RuntimeNotSupported
         };
-
-        return
-            initializer.GetStructs(memory)
-            .AndThen(structs =>
-            {
-                return
-                    initializer.GetDefaults(memory)
-                    .Map(defaults => (Structs: structs, Defaults: defaults));
-            })
-            .AndThen(res =>
-            {
-                return
-                    initializer.GetAssemblies(memory)
-                    .Map(assemblies => (res.Structs, res.Defaults, assemblies));
-            })
-            .AndThen<MonoOperator>(res =>
-            {
-                var (structs, defaults, assemblies) = res;
-
-#pragma warning disable CS8509 // The switch expression does not handle all possible values of its input type (it is not exhaustive).
-                return memory.RuntimeVersion switch
-#pragma warning restore CS8509
-                {
-                    MonoRuntimeVersion.MonoV1 => new MonoOperatorV1(memory, structs, defaults, assemblies),
-                    MonoRuntimeVersion.MonoV2 => new MonoOperatorV2(memory, structs, defaults, assemblies),
-                    MonoRuntimeVersion.MonoV2_1 => new MonoOperatorV2_1(memory, structs, defaults, assemblies)
-                };
-            });
     }
 
     public abstract IEnumerable<nuint> TryGetImages();
@@ -86,11 +56,4 @@ public abstract class MonoOperator
     public abstract bool TryGetTypeData(nuint type, out nuint data);
     public abstract bool TryGetTypeAttributes(nuint type, out MonoFieldAttribute attributes);
     public abstract bool TryGetTypeElementType(nuint type, out MonoElementType elementType);
-
-    public abstract class Initializer
-    {
-        public abstract Result<Reflection> GetStructs(IMonoProcessMemory memory);
-        public abstract Result<MonoDefaults> GetDefaults(IMonoProcessMemory memory);
-        public abstract Result<nuint> GetAssemblies(IMonoProcessMemory memory);
-    }
 }

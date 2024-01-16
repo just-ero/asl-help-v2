@@ -12,6 +12,9 @@ internal sealed record MonoInitError : ResultError
         return new(message);
     }
 
+    public static MonoInitError RuntimeNotSupported
+        => new("Unsupported runtime version.");
+
     // Mono
     public static MonoInitError SymbolMonoGetCorlibNotFound
         => new("Symbol 'mono_get_corlib' could not be found in the target process.");

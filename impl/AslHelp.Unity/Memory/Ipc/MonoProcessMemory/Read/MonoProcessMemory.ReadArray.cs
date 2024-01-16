@@ -40,12 +40,9 @@ internal partial class MonoProcessMemory
             Read<nuint>(baseAddress, offsets)
             .AndThen(array =>
             {
-                nuint arrayLength = array + (PointerSize * 3U);
-                nuint arrayStart = array + (PointerSize * 4U);
-
                 return
-                    Read<int>(arrayLength)
-                    .AndThen(length => ReadSpan<T>(length, arrayStart));
+                    Read<int>(array + (PointerSize * 3U))
+                    .AndThen(length => ReadSpan<T>(length, array + (PointerSize * 4U)));
             });
     }
 }

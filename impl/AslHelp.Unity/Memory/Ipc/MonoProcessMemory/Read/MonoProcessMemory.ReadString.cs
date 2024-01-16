@@ -1,43 +1,56 @@
 using System;
 using System.Buffers;
-using System.Diagnostics.CodeAnalysis;
 
 using AslHelp.Collections.Extensions;
+using AslHelp.Common.Results;
+using AslHelp.Memory;
 
 namespace AslHelp.Unity.Memory.Ipc;
 
 internal partial class MonoProcessMemory
 {
-    public bool TryReadString([NotNullWhen(true)] out string? result, nuint address, params int[] offsets)
+    public Result<string> ReadString(int baseOffset, params int[] offsets)
     {
-        result = default;
+        return ReadString(MainModule, baseOffset, offsets);
+    }
 
-        if (!TryRead(out nuint str, address, offsets))
+    public Result<string> ReadString(string? moduleName, int baseOffset, params int[] offsets)
+    {
+        if (moduleName is null)
         {
-            return false;
+            return IpcError.ModuleName_MustNot_BeNull;
         }
 
-        if (!TryRead(out int length, str + (PointerSize * 2U)))
+        return ReadString(Modules[moduleName], baseOffset, offsets);
+    }
+
+    public Result<string> ReadString(Module? module, int baseOffset, params int[] offsets)
+    {
+        if (module is null)
         {
-            return false;
+            return IpcError.Module_MustNot_BeNull;
         }
 
-        char[]? rented = null;
-        Span<char> chars = length <= 512
-            ? stackalloc char[length]
-            : (rented = ArrayPool<char>.Shared.Rent(length));
+        return ReadString(module.Base + (nuint)baseOffset, offsets);
+    }
 
-        if (!TryReadSpan(chars, str + (PointerSize * 2U) + sizeof(int)))
-        {
-            ArrayPool<char>.Shared.ReturnIfNotNull(rented);
+    public Result<string> ReadString(nuint baseAddress, params int[] offsets)
+    {
+        return
+            Read<nuint>(baseAddress, offsets)
+            .AndThen(str =>
+                Read<int>(str + (PointerSize * 2U)) // String.m_stringLength
+                .AndThen(length =>
+                {
+                    char[]? rented = null;
+                    Span<char> chars = length <= 512
+                        ? stackalloc char[length]
+                        : (rented = ArrayPool<char>.Shared.Rent(length));
 
-            return false;
-        }
-
-        result = chars.ToString();
-
-        ArrayPool<char>.Shared.ReturnIfNotNull(rented);
-
-        return true;
+                    return
+                        ReadSpan(chars, str + (PointerSize * 2U) + sizeof(int)) // String.m_firstChar
+                        .And<string>(chars.ToString())
+                        .Finally(() => ArrayPool<char>.Shared.ReturnIfNotNull(rented));
+                }));
     }
 }
