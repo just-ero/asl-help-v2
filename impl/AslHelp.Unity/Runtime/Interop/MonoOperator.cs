@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
@@ -38,22 +37,22 @@ public abstract class MonoOperator
         };
     }
 
-    public abstract IEnumerable<nuint> TryGetImages();
-    public abstract bool TryGetImageName(nuint image, [NotNullWhen(true)] out string? name);
-    public abstract bool TryGetImageFileName(nuint image, [NotNullWhen(true)] out string? fileName);
+    public abstract Result<IEnumerable<Result<nuint>>> GetImages();
+    public abstract Result<string> GetImageName(nuint image);
+    public abstract Result<string> GetImageFileName(nuint image);
 
-    public abstract IEnumerable<nuint> TryGetClasses(nuint image);
-    public abstract bool TryGetClassName(nuint klass, [NotNullWhen(true)] out string? name);
-    public abstract bool TryGetClassNamespace(nuint klass, [NotNullWhen(true)] out string? @namespace);
-    public abstract bool TryGetClassParent(nuint klass, out nuint parent);
-    public abstract bool TryGetClassStaticDataChunk(nuint klass, out nuint staticDataChunk);
+    public abstract Result<IEnumerable<Result<nuint>>> GetClasses(nuint image);
+    public abstract Result<string> GetClassName(nuint klass);
+    public abstract Result<string> GetClassNamespace(nuint klass);
+    public abstract Result<nuint> GetClassParent(nuint klass);
+    public abstract Result<nuint> GetClassStaticDataChunk(nuint klass);
 
-    public abstract IEnumerable<nuint> TryGetFields(nuint klass);
-    public abstract bool TryGetFieldName(nuint field, [NotNullWhen(true)] out string? name);
-    public abstract bool TryGetFieldOffset(nuint field, out int offset);
-    public abstract bool TryGetFieldType(nuint field, out nuint type);
+    public abstract Result<IEnumerable<Result<nuint>>> GetFields(nuint klass);
+    public abstract Result<string> GetFieldName(nuint field);
+    public abstract Result<int> GetFieldOffset(nuint field);
+    public abstract Result<nuint> GetFieldType(nuint field);
 
-    public abstract bool TryGetTypeData(nuint type, out nuint data);
-    public abstract bool TryGetTypeAttributes(nuint type, out MonoFieldAttribute attributes);
-    public abstract bool TryGetTypeElementType(nuint type, out MonoElementType elementType);
+    public abstract Result<nuint> GetTypeData(nuint type);
+    public abstract Result<MonoFieldAttribute> GetTypeAttributes(nuint type);
+    public abstract Result<MonoElementType> GetTypeElementType(nuint type);
 }

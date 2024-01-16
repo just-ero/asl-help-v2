@@ -24,13 +24,13 @@ public sealed class Field
         }
     }
 
-    internal string Name { get; }
-    internal string Type { get; }
-    internal uint Offset { get; }
-    internal uint Size { get; }
-    internal uint Alignment { get; }
+    public string Name { get; }
+    public string Type { get; }
+    public uint Offset { get; }
+    public uint Size { get; }
+    public uint Alignment { get; }
 
-    internal uint BitMask { get; }
+    public uint BitMask { get; }
 
     public static byte operator +(byte value, Field field)
     {

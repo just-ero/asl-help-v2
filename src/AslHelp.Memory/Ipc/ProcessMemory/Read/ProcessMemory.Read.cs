@@ -33,20 +33,30 @@ public partial class ProcessMemory
         return Read<T>(module.Base + (nuint)baseOffset, offsets);
     }
 
-    public unsafe Result<T> Read<T>(nuint baseAddress, params int[] offsets)
+    public Result<T> Read<T>(nuint baseAddress, params int[] offsets)
         where T : unmanaged
     {
         return
             Deref(baseAddress, offsets)
-            .AndThen<T>(deref =>
-            {
-                T result;
-                if (!WinInteropWrapper.ReadMemory(_handle, deref, &result, GetNativeSizeOf<T>()))
-                {
-                    return IpcError.ReadMemoryFailure_Win32Error(deref);
-                }
+            .AndThen(ReadOp<T>);
+    }
 
-                return result;
-            });
+    private unsafe Result<T> ReadOp<T>(nuint deref)
+        where T : unmanaged
+    {
+        T result;
+        return ReadOp(deref, &result, GetNativeSizeOf<T>())
+            .Map(result);
+    }
+
+    private unsafe Result ReadOp<T>(nuint deref, T* buffer, uint bufferLength)
+        where T : unmanaged
+    {
+        if (!WinInteropWrapper.ReadMemory(_handle, deref, buffer, bufferLength))
+        {
+            return IpcError.ReadMemoryFailure_Win32Error(deref);
+        }
+
+        return Result.Ok();
     }
 }

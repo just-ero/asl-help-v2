@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 using AslHelp.Collections;
+using AslHelp.Common.Results;
 using AslHelp.Unity.Runtime.Interop;
 
 namespace AslHelp.Unity.Runtime;
@@ -19,9 +20,9 @@ internal sealed class MonoClassLookup : KeyedCollection<string, MonoClass>
 
     public override IEnumerator<MonoClass> GetEnumerator()
     {
-        foreach (nuint klass in _mono.TryGetClasses(_image))
+        foreach (Result<nuint> klass in _mono.GetClasses(_image).Unwrap())
         {
-            yield return new(klass, _mono);
+            yield return new(klass.Unwrap(), _mono);
         }
     }
 
@@ -41,13 +42,13 @@ internal sealed class MonoClassLookup : KeyedCollection<string, MonoClass>
 
     protected override string KeyNotFoundMessage(string key)
     {
-        if (_mono.TryGetImageName(_image, out string? imageName))
-        {
-            return $"A class with the given name '{key}' was not present in image '{imageName}'.";
-        }
-        else
-        {
-            return $"A class with the given name '{key}' was not present in the image.";
-        }
+        // if (_mono.TryGetImageName(_image, out string? imageName))
+        // {
+        //     return $"A class with the given name '{key}' was not present in image '{imageName}'.";
+        // }
+        // else
+        // {
+        return $"A class with the given name '{key}' was not present in the image.";
+        // }
     }
 }

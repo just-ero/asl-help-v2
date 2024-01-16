@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -75,8 +74,7 @@ public partial class ProcessMemory : IProcessMemory
     {
         if (Is64Bit)
         {
-            return
-                Read<uint>(relativeAddress)
+            return Read<uint>(relativeAddress)
                 .AndThen<nuint>(relativeOffset => relativeAddress + instructionSize + (nuint)relativeOffset);
         }
         else

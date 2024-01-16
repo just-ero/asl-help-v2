@@ -1,9 +1,11 @@
+using AslHelp.Common.Results;
+
 namespace AslHelp.Unity.Runtime.Interop;
 
 internal partial class MonoOperatorV2_1
 {
-    protected override bool TryGetMonoClassClassKind(nuint klass, out MonoTypeKind classKind)
+    protected override Result<MonoTypeKind> GetMonoClassClassKind(nuint klass)
     {
-        return _memory.TryRead(out classKind, klass + _structs["MonoClass"]["class_kind"]);
+        return _memory.Read<MonoTypeKind>(klass + _structs["MonoClass"]["class_kind"]);
     }
 }

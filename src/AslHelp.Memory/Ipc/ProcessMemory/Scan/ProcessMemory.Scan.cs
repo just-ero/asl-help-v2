@@ -1,9 +1,7 @@
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 
+using AslHelp.Common.Extensions;
 using AslHelp.Common.Results;
-using AslHelp.Memory.Native;
 using AslHelp.Memory.Scanning;
 
 namespace AslHelp.Memory.Ipc;
@@ -181,8 +179,7 @@ public partial class ProcessMemory
             return IpcError.PatternScan_Alignment_Must_BePositive;
         }
 
-        return Result<IEnumerable<nuint>>
-            .Ok(scanAll(pattern, startAddress, memory, alignment));
+        return scanAll(pattern, startAddress, memory, alignment).AsOk();
 
         static IEnumerable<nuint> scanAll(ScanPattern pattern, nuint startAddress, byte[] memory, int alignment)
         {

@@ -62,18 +62,17 @@ internal partial class Il2CppOperatorV24 : Il2CppOperator
             .AndThen(il2CppGetCorlibRelative =>
                 memory.ReadRelative(il2CppGetCorlibRelative)
                 .AndThen(il2CppGetCorlib => memory.Scan(patternFromIl2CppGetCorlib, il2CppGetCorlib, 0x10))
-                .OrElse(_ => memory.Scan(patternFromIl2CppGetCorlib, symIl2CppGetCorlib.Address, 0x10))
-                .Or())
+                .OrElse(_ => memory.Scan(patternFromIl2CppGetCorlib, symIl2CppGetCorlib.Address, 0x10)))
             .AndThen(il2CppDefaultsRelative =>
                 memory.ReadRelative(il2CppDefaultsRelative)
-                .Or())
+                .MapErr(_ => MonoInitError.Il2CppDefaultsNotResolved))
             .AndThen(il2CppDefaults =>
             {
                 Span<nuint> defaults = stackalloc nuint[18];
 
                 return
                     memory.ReadSpan(defaults, il2CppDefaults)
-                    .Or()
+                    .MapErr(_ => MonoInitError.Il2CppDefaultsReadFailed)
                     .Map(Unsafe.As<nuint, MonoDefaults>(ref defaults[0]));
             });
     }
@@ -103,11 +102,10 @@ internal partial class Il2CppOperatorV24 : Il2CppOperator
             .AndThen(getAssembliesRelative =>
                 memory.ReadRelative(getAssembliesRelative)
                 .AndThen(getAssemblies => memory.Scan(patternFromGetAssemblies, getAssemblies, 0x10))
-                .OrElse(_ => memory.Scan(patternFromIl2CppDomainGetAssemblies, symIl2CppDomainGetAssemblies.Address, 0x20))
-                .Or()
+                .OrElse(_ => memory.Scan(patternFromIl2CppDomainGetAssemblies, symIl2CppDomainGetAssemblies.Address, 0x20)))
             .AndThen(sAssembliesRelative =>
                 memory.ReadRelative(sAssembliesRelative)
-                .Or(MonoInitError.SAssembliesNotResolved));
+                .MapErr(_ => MonoInitError.SAssembliesNotResolved));
     }
 
     protected static Result<nuint> GetTypeInfoDefinitions(IMonoProcessMemory memory)
@@ -116,12 +114,10 @@ internal partial class Il2CppOperatorV24 : Il2CppOperator
             ? new(3, "48 8B 05 ???????? 48 83 3C ?? 00")
             : new(1, "A1 ???????? 83 3C ?? 00");
 
-        nuint sTypeInfoDefinitionsRelative = memory.Scan(pattern, memory.MonoModule.Base, (int)memory.MonoModule.MemorySize);
-        if (!memory.TryReadRelative(out nuint sTypeInfoDefinitions, sTypeInfoDefinitionsRelative))
-        {
-            return MonoInitError.STypeInfoDefinitionTableNotResolved;
-        }
-
-        return sTypeInfoDefinitions;
+        return
+            memory.Scan(pattern, memory.MonoModule.Base, (int)memory.MonoModule.MemorySize)
+            .AndThen(sTypeInfoDefinitionsRelative =>
+                memory.ReadRelative(sTypeInfoDefinitionsRelative)
+                .MapErr(_ => MonoInitError.STypeInfoDefinitionTableNotResolved));
     }
 }

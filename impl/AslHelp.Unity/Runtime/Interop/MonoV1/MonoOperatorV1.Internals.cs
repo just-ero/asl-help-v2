@@ -1,57 +1,58 @@
+using AslHelp.Common.Results;
+
 namespace AslHelp.Unity.Runtime.Interop;
 
 internal partial class MonoOperatorV1
 {
-    protected virtual bool TryGetGListData(nuint gList, out nuint gListData)
+    protected virtual Result<nuint> GetGListData(nuint gList)
     {
-        return _memory.TryRead(out gListData, gList + _structs["GList"]["data"]);
+        return _memory.Read<nuint>(gList + _structs["GList"]["data"]);
     }
 
-    protected virtual bool TryGetGListNext(nuint gList, out nuint gListNext)
+    protected virtual Result<nuint> GetGListNext(nuint gList)
     {
-        return _memory.TryRead(out gListNext, gList + _structs["GList"]["next"]);
+        return _memory.Read<nuint>(gList + _structs["GList"]["next"]);
     }
 
-    protected virtual bool TryGetMonoAssemblyImage(nuint assembly, out nuint image)
+    protected virtual Result<nuint> GetMonoAssemblyImage(nuint assembly)
     {
-        return _memory.TryRead(out image, assembly + _structs["MonoAssembly"]["image"]);
+        return _memory.Read<nuint>(assembly + _structs["MonoAssembly"]["image"]);
     }
 
-    protected virtual bool TryGetMonoClassFields(nuint klass, out nuint classFields)
+    protected virtual Result<nuint> GetMonoClassFields(nuint klass)
     {
-        return _memory.TryRead(out classFields, klass + _structs["MonoClass"]["fields"]);
+        return _memory.Read<nuint>(klass + _structs["MonoClass"]["fields"]);
     }
 
-    protected virtual bool TryGetMonoClassFieldCount(nuint klass, out uint fieldCount)
+    protected virtual Result<uint> GetMonoClassFieldCount(nuint klass)
     {
-        return _memory.TryRead(out fieldCount, klass + _structs["MonoClass"]["field.count"]);
+        return _memory.Read<uint>(klass + _structs["MonoClass"]["field.count"]);
     }
 
-    protected virtual bool TryGetMonoClassNextClassCache(nuint monoClass, out nuint nextClassCache)
+    protected virtual Result<nuint> GetMonoClassNextClassCache(nuint monoClass)
     {
-        return _memory.TryRead(out nextClassCache, monoClass + _structs["MonoClass"]["next_class_cache"]);
+        return _memory.Read<nuint>(monoClass + _structs["MonoClass"]["next_class_cache"]);
     }
 
-    protected virtual bool TryGetMonoClassVTable(nuint klass, out nuint vTable)
+    protected virtual Result<nuint> GetMonoClassVTable(nuint klass)
     {
-        vTable = default;
-
-        return _memory.TryRead(out nuint runtimeInfo, klass + _structs["MonoClass"]["runtime_info"])
-            && _memory.TryRead(out vTable, runtimeInfo + _structs["MonoClassRuntimeInfo"]["domain_vtables"]);
+        return
+            _memory.Read<nuint>(klass + _structs["MonoClass"]["runtime_info"])
+            .AndThen(runtimeInfo => _memory.Read<nuint>(runtimeInfo + _structs["MonoClassRuntimeInfo"]["domain_vtables"]));
     }
 
-    protected virtual bool TryGetMonoGenericClassClass(nuint genericClass, out nuint klass)
+    protected virtual Result<nuint> GetMonoGenericInstClass(nuint genericClass)
     {
-        return _memory.TryRead(out klass, genericClass + _structs["MonoGenericClass"]["container_class"]);
+        return _memory.Read<nuint>(genericClass + _structs["MonoGenericClass"]["container_class"]);
     }
 
-    protected virtual bool TryGetMonoTypeData(nuint type, out nuint data)
+    protected virtual Result<nuint> GetMonoTypeData(nuint type)
     {
-        return _memory.TryRead(out data, type + _structs["MonoType"]["data"]);
+        return _memory.Read<nuint>(type + _structs["MonoType"]["data"]);
     }
 
-    protected virtual bool TryGetMonoArrayTypeClass(nuint arrayType, out nuint klass)
+    protected virtual Result<nuint> GetMonoArrayTypeClass(nuint arrayType)
     {
-        return _memory.TryRead(out klass, arrayType + _structs["MonoArrayType"]["eklass"]);
+        return _memory.Read<nuint>(arrayType + _structs["MonoArrayType"]["eklass"]);
     }
 }

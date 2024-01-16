@@ -1,41 +1,41 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
+using AslHelp.Common.Extensions;
+using AslHelp.Common.Results;
 using AslHelp.Memory;
 
 namespace AslHelp.Unity.Runtime.Interop;
 
 internal partial class MonoOperatorV1
 {
-    public override IEnumerable<nuint> TryGetFields(nuint klass)
+    public override Result<IEnumerable<Result<nuint>>> GetFields(nuint klass)
     {
-        if (!TryGetMonoClassFields(klass, out nuint fields) || fields == 0
-            || !TryGetMonoClassFieldCount(klass, out uint fieldCount) || fieldCount == 0)
+        return _memory.Read<nuint>(klass + _structs["MonoClass"]["fields"])
+            .AndThen(fields => _memory.Read<uint>(klass + _structs["MonoClass"]["field_count"])
+                .AndThen(fieldCount => getFields(fieldCount, fields).AsOk()));
+
+        IEnumerable<Result<nuint>> getFields(uint fieldCount, nuint fields)
         {
-            yield break;
-        }
-
-        for (uint i = 0; i < fieldCount; i++)
-        {
-            yield return fields + (_structs["MonoClassField"].SelfAlignedSize * i);
+            for (uint i = 0; i < fieldCount; i++)
+            {
+                yield return fields + (_structs["MonoClassField"].SelfAlignedSize * i);
+            }
         }
     }
 
-    public override bool TryGetFieldName(nuint field, [NotNullWhen(true)] out string? name)
+    public override Result<string> GetFieldName(nuint field)
     {
-        name = default;
-
-        return _memory.TryRead(out nuint nameStart, field + _structs["MonoClassField"]["name"])
-            && _memory.TryReadString(out name, 128, StringType.Ansi, nameStart);
+        return _memory.Read<nuint>(field + _structs["MonoClassField"]["name"])
+            .AndThen(nameStart => _memory.ReadString(128, StringType.Ansi, nameStart));
     }
 
-    public override bool TryGetFieldOffset(nuint field, out int offset)
+    public override Result<int> GetFieldOffset(nuint field)
     {
-        return _memory.TryRead(out offset, field + _structs["MonoClassField"]["offset"]);
+        return _memory.Read<int>(field + _structs["MonoClassField"]["offset"]);
     }
 
-    public override bool TryGetFieldType(nuint field, out nuint type)
+    public override Result<nuint> GetFieldType(nuint field)
     {
-        return _memory.TryRead(out type, field + _structs["MonoClassField"]["type"]);
+        return _memory.Read<nuint>(field + _structs["MonoClassField"]["type"]);
     }
 }

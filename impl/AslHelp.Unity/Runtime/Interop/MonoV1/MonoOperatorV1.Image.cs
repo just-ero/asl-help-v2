@@ -1,47 +1,40 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
+using AslHelp.Common.Extensions;
+using AslHelp.Common.Results;
 using AslHelp.Memory;
 
 namespace AslHelp.Unity.Runtime.Interop;
 
 internal partial class MonoOperatorV1
 {
-    public override IEnumerable<nuint> TryGetImages()
+    public override Result<IEnumerable<Result<nuint>>> GetImages()
     {
-        if (!_memory.TryRead(out nuint assemblies, _loadedAssemblies))
-        {
-            yield break;
-        }
+        return _memory.Read<nuint>(_loadedAssemblies)
+            .AndThen(assemblies => getImages(assemblies).AsOk());
 
-        while (assemblies != 0)
+        IEnumerable<Result<nuint>> getImages(nuint assemblies)
         {
-            if (TryGetGListData(assemblies, out nuint gListData)
-                && TryGetMonoAssemblyImage(gListData, out nuint image))
+            while (assemblies != 0)
             {
-                yield return image;
-            }
+                yield return GetGListData(assemblies)
+                    .AndThen(GetMonoAssemblyImage);
 
-            if (!TryGetGListNext(assemblies, out assemblies))
-            {
-                yield break;
+                assemblies = GetGListNext(assemblies)
+                    .UnwrapOrDefault();
             }
         }
     }
 
-    public override bool TryGetImageName(nuint image, [NotNullWhen(true)] out string? name)
+    public override Result<string> GetImageName(nuint image)
     {
-        name = default;
-
-        return _memory.TryRead(out nuint assemblyNameStart, image + _structs["MonoImage"]["assembly_name"])
-            && _memory.TryReadString(out name, 256, StringType.Ansi, assemblyNameStart);
+        return _memory.Read<nuint>(image + _structs["MonoImage"]["assembly_name"])
+            .AndThen(nameStart => _memory.ReadString(256, StringType.Ansi, nameStart));
     }
 
-    public override bool TryGetImageFileName(nuint image, [NotNullWhen(true)] out string? fileName)
+    public override Result<string> GetImageFileName(nuint image)
     {
-        fileName = default;
-
-        return _memory.TryRead(out nuint nameStart, image + _structs["MonoImage"]["name"])
-            && _memory.TryReadString(out fileName, 260, StringType.Ansi, nameStart);
+        return _memory.Read<nuint>(image + _structs["MonoImage"]["name"])
+            .AndThen(nameStart => _memory.ReadString(260, StringType.Ansi, nameStart));
     }
 }

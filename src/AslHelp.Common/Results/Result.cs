@@ -7,9 +7,10 @@ namespace AslHelp.Common.Results;
 
 public readonly struct Result : IResult
 {
-    private Result(IResultError? error)
+    private Result(IResultError? error, IResult? innerResult)
     {
         Error = error;
+        InnerResult = innerResult;
 
         IsOk = Error is null;
         IsErr = Error is not null;
@@ -22,16 +23,17 @@ public readonly struct Result : IResult
     public bool IsErr { get; }
 
     public IResultError? Error { get; }
+    public IResult? InnerResult { get; }
 
     // Construction
     public static Result Ok()
     {
-        return new(null);
+        return new(default, default);
     }
 
-    public static Result Err(IResultError error)
+    public static Result Err(IResultError error, IResult? innerResult = null)
     {
-        return new(error);
+        return new(error, innerResult);
     }
 
     // Operators
@@ -102,9 +104,9 @@ public readonly struct Result : IResult
     public Result MapErr<TError>(Func<IResultError, TError> op)
         where TError : IResultError
     {
-        return IsOk
-            ? this
-            : Result.Err(op(Error));
+        return IsErr
+            ? Result.Err(op(Error), this)
+            : this;
     }
 
     public TValue MapOrElse<TValue>(TValue @default, Func<IResultError, TValue> err)
@@ -157,7 +159,17 @@ public readonly struct Result : IResult
         }
         else
         {
-            return $"Result.Err({Error})";
+            if (InnerResult is not null)
+            {
+                return $"""
+                    Result.Err({Error})
+                      -> {InnerResult}
+                    """;
+            }
+            else
+            {
+                return $"Result.Err({Error})";
+            }
         }
     }
 }

@@ -15,14 +15,10 @@ internal partial class MonoOperatorV1 : MonoOperator
 
     public static Result<MonoOperator> Initialize(IMonoProcessMemory memory)
     {
-        return
-            GetStructs(memory)
-            .AndThen(structs =>
-                GetDefaults(memory)
-                .AndThen(defaults =>
-                    GetAssemblies(memory)
-                    .AndThen<MonoOperator>(assemblies =>
-                        new MonoOperatorV1(memory, structs, defaults, assemblies))));
+        return GetStructs(memory)
+            .AndThen(structs => GetDefaults(memory)
+                .AndThen(defaults => GetAssemblies(memory)
+                    .AndThen<MonoOperator>(assemblies => new MonoOperatorV1(memory, structs, defaults, assemblies))));
     }
 
     protected static Result<Reflection> GetStructs(IMonoProcessMemory memory)

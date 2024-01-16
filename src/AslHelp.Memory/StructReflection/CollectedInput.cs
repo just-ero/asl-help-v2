@@ -49,24 +49,23 @@ internal sealed class CollectedInput : OrderedDictionary<string, InputStruct>
             return ReflectionInitializationError.InheritanceOrStructsMustBeProvided;
         }
 
-        Result<CollectedInput> res;
-        if (definition.Inheritance is { Runtime.Length: > 0, Version.Length: > 0 } inheritance)
-        {
-            res = GetFromEmbeddedResource(containingAssembly, @namespace, inheritance.Runtime, inheritance.Version);
-        }
-        else
-        {
-            res = new CollectedInput();
-        }
+        Result<CollectedInput> res =
+            definition.Inheritance is { Runtime: { Length: > 0 } iRuntime, Version: { Length: > 0 } iVersion }
+            ? GetFromEmbeddedResource(containingAssembly, @namespace, iRuntime, iVersion)
+            : new CollectedInput();
 
         return res
-            .AndThen<CollectedInput>(input =>
+            .AndThen(input =>
             {
                 if (definition.Structs is { Length: > 0 } structs)
                 {
                     foreach (JsonStruct @struct in structs)
                     {
-                        input[@struct.Name] = (@struct.Name, @struct.Super, @struct.Fields.Select(f => (f.Type, f.Name, f.Alignment)).ToArray());
+                        string name = @struct.Name;
+                        string? super = @struct.Super;
+                        InputField[] fields = @struct.Fields.Select(f => (f.Type, f.Name, f.Alignment)).ToArray();
+
+                        input[name] = (name, super, fields);
                     }
                 }
 
@@ -77,8 +76,6 @@ internal sealed class CollectedInput : OrderedDictionary<string, InputStruct>
                         input.Patterns[pattern.Name] = new(pattern.Offset, pattern.Pattern);
                     }
                 }
-
-                return input;
             });
     }
 

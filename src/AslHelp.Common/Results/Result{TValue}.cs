@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 using AslHelp.Common.Results.Errors;
@@ -7,10 +8,11 @@ namespace AslHelp.Common.Results;
 
 public readonly struct Result<TValue> : IResult<TValue>
 {
-    private Result(TValue? value, IResultError? error)
+    private Result(TValue? value, IResultError? error, IResult? innerResult)
     {
         Value = value;
         Error = error;
+        InnerResult = innerResult;
 
         IsOk = Error is null;
         IsErr = Error is not null;
@@ -27,27 +29,23 @@ public readonly struct Result<TValue> : IResult<TValue>
     public TValue? Value { get; }
 
     public IResultError? Error { get; }
+    public IResult? InnerResult { get; }
 
     // Construction
     public static Result<TValue> Ok(TValue value)
     {
-        return new(value, default);
+        return new(value, default, default);
     }
 
-    public static Result<TValue> Err(IResultError error)
+    public static Result<TValue> Err(IResultError error, IResult? innerResult = null)
     {
-        return new(default, error);
+        return new(default, error, innerResult);
     }
 
     // Operators
     public static implicit operator Result<TValue>(TValue value)
     {
         return Ok(value);
-    }
-
-    public static implicit operator TValue(Result<TValue> result)
-    {
-        return result.Unwrap();
     }
 
     public static implicit operator Result<TValue>(ResultError error)
@@ -100,13 +98,6 @@ public readonly struct Result<TValue> : IResult<TValue>
             : Result<TOther>.Err(Error);
     }
 
-    public Result<TValue> Finally(Action op)
-    {
-        op();
-
-        return this;
-    }
-
     public Result<TOther> Map<TOther>(Func<TValue, TOther> op)
     {
         return IsOk
@@ -118,7 +109,7 @@ public readonly struct Result<TValue> : IResult<TValue>
         where TOtherErr : IResultError
     {
         return IsErr
-            ? Result<TValue>.Err(op(Error))
+            ? Result<TValue>.Err(op(Error), this)
             : this;
     }
 
@@ -211,7 +202,17 @@ public readonly struct Result<TValue> : IResult<TValue>
         }
         else
         {
-            return $"Result<{typeof(TValue).FullName}>.Err({Error})";
+            if (InnerResult is not null)
+            {
+                return $"""
+                    Result<{typeof(TValue).FullName}>.Err({Error})
+                      -> {InnerResult}
+                    """;
+            }
+            else
+            {
+                return $"Result.Err({Error})";
+            }
         }
     }
 }

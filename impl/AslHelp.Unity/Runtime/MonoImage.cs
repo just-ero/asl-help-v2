@@ -12,38 +12,10 @@ public sealed partial class MonoImage(
     public nuint Address { get; } = address;
 
     private string? _name;
-    public string? Name
-    {
-        get
-        {
-            if (_name is null)
-            {
-                if (_mono.TryGetImageName(Address, out string? name))
-                {
-                    _name = name;
-                }
-            }
-
-            return _name;
-        }
-    }
+    public string? Name => _name ??= _mono.GetImageName(Address).UnwrapOrDefault();
 
     private string? _fileName;
-    public string? FileName
-    {
-        get
-        {
-            if (_fileName is null)
-            {
-                if (_mono.TryGetImageFileName(Address, out string? fileName))
-                {
-                    _fileName = fileName;
-                }
-            }
-
-            return _fileName;
-        }
-    }
+    public string? FileName => _fileName ??= _mono.GetImageFileName(Address).UnwrapOrDefault();
 
     public KeyedCollection<string, MonoClass> Classes { get; } = new MonoClassLookup(address, mono);
 

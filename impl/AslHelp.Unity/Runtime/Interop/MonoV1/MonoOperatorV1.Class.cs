@@ -1,68 +1,58 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
+using AslHelp.Common.Extensions;
+using AslHelp.Common.Results;
 using AslHelp.Memory;
 
 namespace AslHelp.Unity.Runtime.Interop;
 
 internal partial class MonoOperatorV1
 {
-    public override IEnumerable<nuint> TryGetClasses(nuint image)
+    public override Result<IEnumerable<Result<nuint>>> GetClasses(nuint image)
     {
         nuint classCache = image + _structs["MonoImage"]["class_cache"];
-        if (!_memory.TryRead(out int size, classCache + _structs["MonoInternalHashTable"]["size"]) || size == 0
-            || !_memory.TryRead(out nuint table, classCache + _structs["MonoInternalHashTable"]["table"]) || table == 0)
-        {
-            yield break;
-        }
 
-        nuint[] classes = new nuint[size];
-        if (!_memory.TryReadSpan<nuint>(classes, table))
-        {
-            yield break;
-        }
+        return _memory.Read<int>(classCache + _structs["MonoInternalHashTable"]["size"])
+            .AndThen(size => _memory.Read<nuint>(classCache + _structs["MonoInternalHashTable"]["table"])
+                .AndThen(table => _memory.ReadSpan<nuint>(size, table)))
+            .AndThen(classes => getClasses(classes).AsOk());
 
-        for (int i = 0; i < classes.Length; i++)
+        IEnumerable<Result<nuint>> getClasses(nuint[] classes)
         {
-            nuint klass = classes[i];
-            while (klass != 0)
+            for (int i = 0; i < classes.Length; i++)
             {
-                yield return klass;
-
-                if (!TryGetMonoClassNextClassCache(klass, out klass))
+                nuint klass = classes[i];
+                while (klass != 0)
                 {
-                    break;
+                    yield return klass;
+
+                    klass = GetMonoClassNextClassCache(klass)
+                        .UnwrapOrDefault();
                 }
             }
         }
     }
 
-    public override bool TryGetClassName(nuint klass, [NotNullWhen(true)] out string? name)
+    public override Result<string> GetClassName(nuint klass)
     {
-        name = default;
-
-        return _memory.TryRead(out nuint nameStart, klass + _structs["MonoClass"]["name"])
-            && _memory.TryReadString(out name, 128, StringType.Ansi, nameStart);
+        return _memory.Read<nuint>(klass + _structs["MonoClass"]["name"])
+            .AndThen(nameStart => _memory.ReadString(128, StringType.Ansi, nameStart));
     }
 
-    public override bool TryGetClassNamespace(nuint klass, [NotNullWhen(true)] out string? @namespace)
+    public override Result<string> GetClassNamespace(nuint klass)
     {
-        @namespace = default;
-
-        return _memory.TryRead(out nuint nameSpaceStart, klass + _structs["MonoClass"]["name_space"])
-            && _memory.TryReadString(out @namespace, 256, StringType.Ansi, nameSpaceStart);
+        return _memory.Read<nuint>(klass + _structs["MonoClass"]["name_space"])
+            .AndThen(nameSpaceStart => _memory.ReadString(256, StringType.Ansi, nameSpaceStart));
     }
 
-    public override bool TryGetClassParent(nuint klass, out nuint classParent)
+    public override Result<nuint> GetClassParent(nuint klass)
     {
-        return _memory.TryRead(out classParent, klass + _structs["MonoClass"]["parent"]);
+        return _memory.Read<nuint>(klass + _structs["MonoClass"]["parent"]);
     }
 
-    public override bool TryGetClassStaticDataChunk(nuint klass, out nuint staticDataChunk)
+    public override Result<nuint> GetClassStaticDataChunk(nuint klass)
     {
-        staticDataChunk = default;
-
-        return TryGetMonoClassVTable(klass, out nuint vTable)
-            && _memory.TryRead(out staticDataChunk, klass + _structs["MonoVTable"]["data"]);
+        return GetMonoClassVTable(klass)
+            .AndThen(vTable => _memory.Read<nuint>(klass + _structs["MonoVTable"]["data"]));
     }
 }

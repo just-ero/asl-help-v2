@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using AslHelp.Common;
 
 namespace AslHelp.Diagnostics.Logging;
+
 /// <summary>
 ///     The <see cref="FileLogger"/> class
 ///     provides a logger that writes to a specified file.

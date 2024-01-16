@@ -1,7 +1,6 @@
 using System;
 
 using AslHelp.Common.Results;
-using AslHelp.Memory.Native;
 
 namespace AslHelp.Memory.Ipc;
 
@@ -48,12 +47,7 @@ public partial class ProcessMemory
 
         fixed (T* pValues = values)
         {
-            if (!WinInteropWrapper.WriteMemory(_handle, deref, pValues, size))
-            {
-                return IpcError.WriteMemoryFailure_Win32Error(deref);
-            }
+            return WriteOp(deref.Unwrap(), pValues, size);
         }
-
-        return Result.Ok();
     }
 }

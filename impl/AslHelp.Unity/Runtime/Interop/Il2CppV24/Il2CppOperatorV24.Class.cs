@@ -1,63 +1,49 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
+using AslHelp.Common.Extensions;
+using AslHelp.Common.Results;
 using AslHelp.Memory;
 
 namespace AslHelp.Unity.Runtime.Interop;
 
 internal partial class Il2CppOperatorV24
 {
-    public override IEnumerable<nuint> TryGetClasses(nuint image)
+    public override Result<IEnumerable<Result<nuint>>> GetClasses(nuint image)
     {
-        if (!_memory.TryRead(out nuint typeInfos, _typeInfoDefinitions))
-        {
-            yield break;
-        }
-
-        if (!TryGetIl2CppImageTypeStart(image, out int typeStart)
-            || !TryGetIl2CppImageTypeCount(image, out uint typeCount))
-        {
-            yield break;
-        }
-
-        nuint[] types = new nuint[typeCount];
-        if (!_memory.TryReadSpan<nuint>(types, typeInfos + (_memory.PointerSize * (uint)typeStart)))
-        {
-            yield break;
-        }
-
-        foreach (nuint type in types)
-        {
-            if (type != 0)
+        return GetIl2CppImageTypeStart(image)
+            .AndThen(typeStart => GetIl2CppImageTypeCount(image)
+                .Map(typeCount => (typeStart, typeCount)))
+            .AndThen(r =>
             {
-                yield return type;
-            }
-        }
+                (int typeStart, uint typeCount) = r;
+
+                return _memory.Read<nuint>(_typeInfoDefinitions)
+                    .AndThen(typeInfos => _memory.ReadSpan<nuint>((int)typeCount, typeInfos + (_memory.PointerSize * (uint)typeStart)));
+            })
+            .AndThen(types => types.Where(t => t != 0).Select(t => t.AsOk()).AsOk());
     }
 
-    public override bool TryGetClassName(nuint klass, [NotNullWhen(true)] out string? name)
+    public override Result<string> GetClassName(nuint klass)
     {
-        name = default;
-
-        return _memory.TryRead(out nuint nameStart, klass + _structs["Il2CppClass"]["name"])
-            && _memory.TryReadString(out name, 128, StringType.Ansi, nameStart);
+        return _memory.Read<nuint>(klass + _structs["Il2CppClass"]["name"])
+            .AndThen(nameStart => _memory.ReadString(128, StringType.Ansi, nameStart));
     }
 
-    public override bool TryGetClassNamespace(nuint klass, [NotNullWhen(true)] out string? @namespace)
+    public override Result<string> GetClassNamespace(nuint klass)
     {
-        @namespace = default;
-
-        return _memory.TryRead(out nuint namespaceStart, klass + _structs["Il2CppClass"]["namespaze"])
-            && _memory.TryReadString(out @namespace, 128, StringType.Ansi, namespaceStart);
+        return _memory.Read<nuint>(klass + _structs["Il2CppClass"]["namespaze"])
+            .AndThen(namespaceStart => _memory.ReadString(128, StringType.Ansi, namespaceStart));
     }
 
-    public override bool TryGetClassParent(nuint klass, out nuint parent)
+    public override Result<nuint> GetClassParent(nuint klass)
     {
-        return _memory.TryRead(out parent, klass + _structs["Il2CppClass"]["parent"]);
+        return _memory.Read<nuint>(klass + _structs["Il2CppClass"]["parent"]);
     }
 
-    public override bool TryGetClassStaticDataChunk(nuint klass, out nuint staticDataChunk)
+    public override Result<nuint> GetClassStaticDataChunk(nuint klass)
     {
-        return _memory.TryRead(out staticDataChunk, klass + _structs["Il2CppClass"]["static_fields"]);
+        return _memory.Read<nuint>(klass + _structs["Il2CppClass"]["static_fields"]);
     }
 }

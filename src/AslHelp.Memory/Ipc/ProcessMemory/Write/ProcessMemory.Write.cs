@@ -38,15 +38,21 @@ public partial class ProcessMemory
     {
         return
             Deref(baseAddress, offsets)
-            .AndThen(deref => Write(value, deref));
+            .AndThen(deref => WriteOp(value, deref));
     }
 
-    private unsafe Result Write<T>(T value, nuint address)
+    private unsafe Result WriteOp<T>(T value, nuint address)
         where T : unmanaged
     {
-        if (!WinInteropWrapper.WriteMemory(_handle, address, &value, GetNativeSizeOf<T>()))
+        return WriteOp(address, &value, GetNativeSizeOf<T>());
+    }
+
+    private unsafe Result WriteOp<T>(nuint deref, T* data, uint dataLength)
+        where T : unmanaged
+    {
+        if (!WinInteropWrapper.WriteMemory(_handle, deref, data, dataLength))
         {
-            return IpcError.WriteMemoryFailure_Win32Error(address);
+            return IpcError.WriteMemoryFailure_Win32Error(deref);
         }
 
         return Result.Ok();

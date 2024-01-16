@@ -1,144 +1,47 @@
-using AslHelp.Common;
+using AslHelp.Common.Results;
 
 namespace AslHelp.Unity.Runtime.Interop;
 
 internal partial class MonoOperatorV1
 {
-    public override bool TryGetTypeData(nuint type, out nuint data)
+    public override Result<nuint> GetTypeData(nuint type)
     {
-        data = default;
-
-        if (!TryGetTypeElementType(type, out MonoElementType elementType))
-        {
-            return false;
-        }
-
-        switch (elementType)
-        {
-            case MonoElementType.Object:
+        return GetTypeElementType(type)
+            .AndThen<nuint>(elementType => elementType switch
             {
-                data = _defaults.ObjectClass;
-                return true;
-            }
-            case MonoElementType.Void:
-            {
-                data = _defaults.VoidClass;
-                return true;
-            }
-            case MonoElementType.Boolean:
-            {
-                data = _defaults.BooleanClass;
-                return true;
-            }
-            case MonoElementType.Char:
-            {
-                data = _defaults.CharClass;
-                return true;
-            }
-            case MonoElementType.I1:
-            {
-                data = _defaults.SByteClass;
-                return true;
-            }
-            case MonoElementType.U1:
-            {
-                data = _defaults.ByteClass;
-                return true;
-            }
-            case MonoElementType.I2:
-            {
-                data = _defaults.Int16Class;
-                return true;
-            }
-            case MonoElementType.U2:
-            {
-                data = _defaults.UInt16Class;
-                return true;
-            }
-            case MonoElementType.I4:
-            {
-                data = _defaults.Int32Class;
-                return true;
-            }
-            case MonoElementType.U4:
-            {
-                data = _defaults.UInt32Class;
-                return true;
-            }
-            case MonoElementType.I8:
-            {
-                data = _defaults.Int64Class;
-                return true;
-            }
-            case MonoElementType.U8:
-            {
-                data = _defaults.UInt64Class;
-                return true;
-            }
-            case MonoElementType.R4:
-            {
-                data = _defaults.SingleClass;
-                return true;
-            }
-            case MonoElementType.R8:
-            {
-                data = _defaults.DoubleClass;
-                return true;
-            }
-            case MonoElementType.String:
-            {
-                data = _defaults.StringClass;
-                return true;
-            }
-            case MonoElementType.I:
-            {
-                data = _defaults.IntPtrClass;
-                return true;
-            }
-            case MonoElementType.U:
-            {
-                data = _defaults.UIntPtrClass;
-                return true;
-            }
-            case MonoElementType.Array:
-            {
-                return TryGetMonoTypeData(type, out nuint typeData)
-                    && TryGetMonoArrayTypeClass(typeData, out data);
-            }
-            case MonoElementType.SzArray:
-            {
-                return TryGetMonoTypeData(type, out data);
-            }
-            case MonoElementType.Class:
-            case MonoElementType.ValueType:
-            {
-                return TryGetMonoTypeData(type, out data);
-            }
-            case MonoElementType.GenericInst:
-            {
-                return TryGetMonoTypeData(type, out nuint typeData)
-                    && TryGetMonoGenericClassClass(typeData, out data);
-            }
-            case MonoElementType.Ptr:
-            {
-                return TryGetMonoTypeData(type, out nuint typeData)
-                    && TryGetTypeData(typeData, out data);
-            }
-        }
-
-        string msg = $"Getting MonoClass for type {elementType} is not implemented.";
-        ThrowHelper.ThrowNotImplementedException(msg);
-
-        return false;
+                MonoElementType.Object => _defaults.ObjectClass,
+                MonoElementType.Void => _defaults.VoidClass,
+                MonoElementType.Boolean => _defaults.BooleanClass,
+                MonoElementType.Char => _defaults.CharClass,
+                MonoElementType.I1 => _defaults.SByteClass,
+                MonoElementType.U1 => _defaults.ByteClass,
+                MonoElementType.I2 => _defaults.Int16Class,
+                MonoElementType.U2 => _defaults.UInt16Class,
+                MonoElementType.I4 => _defaults.Int32Class,
+                MonoElementType.U4 => _defaults.UInt32Class,
+                MonoElementType.I8 => _defaults.Int64Class,
+                MonoElementType.U8 => _defaults.UInt64Class,
+                MonoElementType.R4 => _defaults.SingleClass,
+                MonoElementType.R8 => _defaults.DoubleClass,
+                MonoElementType.String => _defaults.StringClass,
+                MonoElementType.I => _defaults.IntPtrClass,
+                MonoElementType.U => _defaults.UIntPtrClass,
+                MonoElementType.Array => GetMonoTypeData(type).AndThen(GetMonoArrayTypeClass),
+                MonoElementType.SzArray => GetMonoTypeData(type),
+                MonoElementType.Class or MonoElementType.ValueType => GetMonoTypeData(type),
+                MonoElementType.GenericInst => GetMonoTypeData(type).AndThen(GetMonoGenericInstClass),
+                MonoElementType.Ptr => GetMonoTypeData(type).AndThen(GetTypeData),
+                _ => MonoOpError.ElementTypeNotSupported(elementType)
+            });
     }
 
-    public override bool TryGetTypeAttributes(nuint type, out MonoFieldAttribute attributes)
+    public override Result<MonoFieldAttribute> GetTypeAttributes(nuint type)
     {
-        return _memory.TryRead(out attributes, type + _structs["MonoType"]["attrs"]);
+        return _memory.Read<MonoFieldAttribute>(type + _structs["MonoType"]["attrs"]);
     }
 
-    public override bool TryGetTypeElementType(nuint type, out MonoElementType elementType)
+    public override Result<MonoElementType> GetTypeElementType(nuint type)
     {
-        return _memory.TryRead(out elementType, type + _structs["MonoType"]["type"]);
+        return _memory.Read<MonoElementType>(type + _structs["MonoType"]["type"]);
     }
 }

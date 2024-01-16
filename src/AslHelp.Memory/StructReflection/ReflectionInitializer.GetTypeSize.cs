@@ -5,7 +5,6 @@ using System.Text.RegularExpressions;
 using AslHelp.Common.Results;
 
 using InputField = (string TypeName, string Name, uint Alignment);
-using InputStruct = (string Name, string? Super, (string Type, string Name, uint Alignment)[] Fields);
 
 namespace AslHelp.Memory.StructReflection;
 
@@ -92,7 +91,7 @@ internal sealed partial class ReflectionInitializer
         return size != 0;
     }
 
-    private bool IsIntegerType(string type, out uint size)
+    private static bool IsIntegerType(string type, out uint size)
     {
         size = type switch
         {

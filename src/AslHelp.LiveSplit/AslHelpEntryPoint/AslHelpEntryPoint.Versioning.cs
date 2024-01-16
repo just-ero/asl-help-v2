@@ -3,7 +3,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 
-using AslHelp.Common;
 using AslHelp.Memory;
 
 namespace AslHelp.LiveSplit;

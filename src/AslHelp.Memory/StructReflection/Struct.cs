@@ -12,10 +12,10 @@ public sealed class Struct : OrderedDictionary<string, Field>
         Super = super;
     }
 
-    internal string Name { get; set; }
-    internal string? Super { get; set; }
-    internal uint Size => this[^1].Offset + this[^1].Size;
-    internal uint Alignment => this[0].Alignment;
+    public string Name { get; set; }
+    public string? Super { get; set; }
+    public uint Size => this[^1].Offset + this[^1].Size;
+    public uint Alignment => this[0].Alignment;
     public uint SelfAlignedSize => ReflectionInitializer.Align(Size, Alignment);
 
     protected override string GetKeyForItem(Field item)

@@ -1,57 +1,36 @@
 using AslHelp.Common;
+using AslHelp.Common.Results;
 
 namespace AslHelp.Unity.Runtime.Interop;
 
 internal partial class MonoOperatorV2
 {
-    protected override bool TryGetMonoClassFieldCount(nuint klass, out uint fieldCount)
+    protected override Result<uint> GetMonoClassFieldCount(nuint klass)
     {
-        fieldCount = default;
-
-        if (!TryGetMonoClassClassKind(klass, out MonoTypeKind classKind))
-        {
-            return false;
-        }
-
-        switch (classKind)
-        {
-            case MonoTypeKind.DEF:
-            case MonoTypeKind.GTD:
-                return _memory.TryRead(out fieldCount, klass + _structs["MonoClassDef"]["field_count"]);
-            case MonoTypeKind.GINST:
-                return TryGetMonoGenericClassClass(klass, out nuint genericClass)
-                    && TryGetMonoClassFieldCount(genericClass, out fieldCount);
-        }
-
-        string msg = $"Getting field count for type {nameof(MonoTypeKind)}.{classKind} is not implemented.";
-        ThrowHelper.ThrowNotImplementedException(msg);
-
-        return false;
+        return GetMonoClassClassKind(klass)
+            .AndThen(classKind => classKind switch
+            {
+                MonoTypeKind.DEF or MonoTypeKind.GTD => _memory.Read<uint>(klass + _structs["MonoClassDef"]["field_count"]),
+                MonoTypeKind.GINST => GetMonoGenericInstClass(klass)
+                    .AndThen(GetMonoClassFieldCount),
+                _ => MonoOpError.ClassKindNotSupported(classKind)
+            });
     }
 
-    protected virtual bool TryGetMonoClassClassKind(nuint klass, out MonoTypeKind classKind)
+    protected virtual Result<MonoTypeKind> GetMonoClassClassKind(nuint klass)
     {
-        classKind = default;
-
-        if (!_memory.TryRead(out uint classKindValue, klass + _structs["MonoClass"]["class_kind"]))
-        {
-            return false;
-        }
-
-        classKind = (MonoTypeKind)(classKindValue & _structs["MonoClass"]["class_kind"]);
-        return true;
+        return _memory.Read<uint>(klass + _structs["MonoClass"]["class_kind"])
+            .AndThen<MonoTypeKind>(classKindValue => (MonoTypeKind)(classKindValue & _structs["MonoClass"]["class_kind"]));
     }
 
-    protected override bool TryGetMonoGenericClassClass(nuint genericInst, out nuint klass)
+    protected override Result<nuint> GetMonoGenericInstClass(nuint genericInst)
     {
-        klass = default;
-
-        return _memory.TryRead(out nuint genericClass, genericInst + _structs["MonoClassGenericInst"]["generic_class"])
-            && _memory.TryRead(out klass, genericClass + _structs["MonoGenericClass"]["container_class"]);
+        return _memory.Read<nuint>(genericInst + _structs["MonoClassGenericInst"]["generic_class"])
+            .AndThen(genericClass => _memory.Read<nuint>(genericClass + _structs["MonoGenericClass"]["container_class"]));
     }
 
-    protected override bool TryGetMonoClassNextClassCache(nuint klass, out nuint nextClassCache)
+    protected override Result<nuint> GetMonoClassNextClassCache(nuint klass)
     {
-        return _memory.TryRead(out nextClassCache, klass + _structs["MonoClassDef"]["next_class_cache"]);
+        return _memory.Read<nuint>(klass + _structs["MonoClassDef"]["next_class_cache"]);
     }
 }

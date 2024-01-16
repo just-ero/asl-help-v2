@@ -1,43 +1,41 @@
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 
+using AslHelp.Common.Extensions;
+using AslHelp.Common.Results;
 using AslHelp.Memory;
 
 namespace AslHelp.Unity.Runtime.Interop;
 
 internal partial class Il2CppOperatorV24
 {
-    public override IEnumerable<nuint> TryGetFields(nuint klass)
+    public override Result<IEnumerable<Result<nuint>>> GetFields(nuint klass)
     {
-        if (!TryGetIl2CppClassFields(klass, out nuint fields) || fields == 0
-            || !TryGetIl2CppClassFieldCount(klass, out ushort fieldCount) || fieldCount == 0)
+        return GetIl2CppClassFields(klass)
+            .AndThen(fields => GetIl2CppClassFieldCount(klass)
+                .AndThen(fieldCount => getFields(fieldCount, fields).AsOk()));
+
+        IEnumerable<Result<nuint>> getFields(int fieldCount, nuint fields)
         {
-            Trace.WriteLine($"[asl-help] [Warn] fields: {(ulong)fields:X}");
-            yield break;
-        }
-
-        for (uint i = 0; i < fieldCount; i++)
-        {
-            yield return fields + (_structs["FieldInfo"].SelfAlignedSize * i);
+            for (uint i = 0; i < fieldCount; i++)
+            {
+                yield return _memory.Read<nuint>(fields + (_structs["FieldInfo"].SelfAlignedSize * i));
+            }
         }
     }
 
-    public override bool TryGetFieldName(nuint field, [NotNullWhen(true)] out string? name)
+    public override Result<string> GetFieldName(nuint field)
     {
-        name = default;
-
-        return _memory.TryRead(out nuint nameStart, field + _structs["FieldInfo"]["name"])
-            && _memory.TryReadString(out name, 128, StringType.Ansi, nameStart);
+        return _memory.Read<nuint>(field + _structs["FieldInfo"]["name"])
+            .AndThen(nameStart => _memory.ReadString(128, StringType.Ansi, nameStart));
     }
 
-    public override bool TryGetFieldOffset(nuint field, out int offset)
+    public override Result<int> GetFieldOffset(nuint field)
     {
-        return _memory.TryRead(out offset, field + _structs["FieldInfo"]["offset"]);
+        return _memory.Read<int>(field + _structs["FieldInfo"]["offset"]);
     }
 
-    public override bool TryGetFieldType(nuint field, out nuint type)
+    public override Result<nuint> GetFieldType(nuint field)
     {
-        return _memory.TryRead(out type, field + _structs["FieldInfo"]["type"]);
+        return _memory.Read<nuint>(field + _structs["FieldInfo"]["type"]);
     }
 }

@@ -2,7 +2,6 @@ using System;
 using System.Runtime.InteropServices;
 
 using AslHelp.Common.Results;
-using AslHelp.Memory.Native;
 
 namespace AslHelp.Memory.Ipc;
 
@@ -105,19 +104,14 @@ public partial class ProcessMemory
         Result<nuint> deref = Deref(baseAddress, offsets);
         if (deref.IsErr)
         {
-            return Result.Err(deref.Error);
+            return Result.Err(deref.UnwrapErr());
         }
 
         uint size = GetNativeSizeOf<T>() * (uint)buffer.Length;
 
         fixed (T* pBuffer = buffer)
         {
-            if (!WinInteropWrapper.ReadMemory(_handle, deref, pBuffer, size))
-            {
-                return IpcError.ReadMemoryFailure_Win32Error(deref);
-            }
-
-            return Result.Ok();
+            return ReadOp(deref.Unwrap(), pBuffer, size);
         }
     }
 }
