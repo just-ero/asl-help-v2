@@ -2,6 +2,7 @@ using System.Diagnostics;
 
 using AslHelp.Memory.Ipc;
 using AslHelp.Memory.Inspect.Initialization;
+using AslHelp.LiveSplit.Diagnostics;
 
 public partial class Basic
 {

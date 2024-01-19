@@ -78,8 +78,8 @@ public abstract class WatcherBase<T> : IWatcher<T>
 
         Deref()
             .AndThen(Read)
-            .AndThen(value => _current = value)
-            .OrElse(_ =>
+            .AndThenDo(value => _current = value)
+            .OrElseDo(_ =>
             {
                 if (UpdateOnFail)
                 {

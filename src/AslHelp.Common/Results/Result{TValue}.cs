@@ -74,7 +74,7 @@ public readonly struct Result<TValue> : IResult<TValue>
             : Result<TOther>.Err(Error);
     }
 
-    public Result<TValue> AndThen(Action<TValue> op)
+    public Result<TValue> AndThenDo(Action<TValue> op)
     {
         if (IsOk)
         {
@@ -96,6 +96,13 @@ public readonly struct Result<TValue> : IResult<TValue>
         return IsOk
             ? op(Value)
             : Result<TOther>.Err(Error);
+    }
+
+    public Result<TValue> Finally(Action op)
+    {
+        op();
+
+        return this;
     }
 
     public Result<TOther> Map<TOther>(Func<TValue, TOther> op)
@@ -141,7 +148,7 @@ public readonly struct Result<TValue> : IResult<TValue>
             : op(Error);
     }
 
-    public Result<TValue> OrElse(Action<IResultError> op)
+    public Result<TValue> OrElseDo(Action<IResultError> op)
     {
         if (IsErr)
         {

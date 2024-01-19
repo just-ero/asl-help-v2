@@ -2,8 +2,4 @@
 
   <Import Project="$([MSBuild]::GetPathOfFileAbove('$(MSBuildThisFile)', '$(MSBuildThisFileDirectory)\..'))" />
 
-  <ItemGroup>
-    <Using Alias="AslDebug" Include="AslHelp.LiveSplit.Diagnostics.AslDebug" />
-  </ItemGroup>
-
 </Project>

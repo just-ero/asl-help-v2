@@ -63,7 +63,7 @@ public readonly struct Result : IResult
             : Result<TValue>.Err(Error);
     }
 
-    public Result AndThen(Action op)
+    public Result AndThenDo(Action op)
     {
         if (IsOk)
         {
@@ -130,7 +130,7 @@ public readonly struct Result : IResult
             : op(Error);
     }
 
-    public Result OrElse(Action<IResultError> op)
+    public Result OrElseDo(Action<IResultError> op)
     {
         if (IsErr)
         {

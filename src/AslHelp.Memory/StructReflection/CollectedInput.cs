@@ -55,7 +55,7 @@ internal sealed class CollectedInput : OrderedDictionary<string, InputStruct>
             : new CollectedInput();
 
         return res
-            .AndThen(input =>
+            .AndThenDo(input =>
             {
                 if (definition.Structs is { Length: > 0 } structs)
                 {
