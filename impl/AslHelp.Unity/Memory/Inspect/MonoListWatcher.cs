@@ -1,25 +1,21 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
+using AslHelp.Common.Results;
 using AslHelp.Memory.Inspect;
 using AslHelp.Unity.Memory.Ipc;
 
 namespace AslHelp.Unity.Memory.Inspect;
 
-internal sealed class MonoListWatcher<T> : WatcherBase<List<T>>
+internal sealed class MonoListWatcher<T> : MonoWatcherBase<List<T>>
     where T : unmanaged
 {
-    private new readonly IMonoProcessMemory _memory;
-
     public MonoListWatcher(IMonoProcessMemory memory, nuint baseAddress, params int[] offsets)
-        : base(memory, baseAddress, offsets)
-    {
-        _memory = memory;
-    }
+        : base(memory, baseAddress, offsets) { }
 
-    protected override bool TryRead(nuint address, [NotNullWhen(true)] out List<T>? value)
+    protected override Result<List<T>> Read(nuint address)
     {
-        return _memory.TryReadList(out value, address);
+        return _memory.ReadList<T>(address);
     }
 
     protected override bool Equals(List<T>? old, List<T>? current)
@@ -43,5 +39,10 @@ internal sealed class MonoListWatcher<T> : WatcherBase<List<T>>
         }
 
         return true;
+    }
+
+    public override string ToString()
+    {
+        return $"{nameof(MonoListWatcher<T>)}<{typeof(T).Name}>({WatcherPathToString()})";
     }
 }

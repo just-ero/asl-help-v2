@@ -20,22 +20,25 @@ internal sealed class MonoClassLookup : KeyedCollection<string, MonoClass>
 
     public override IEnumerator<MonoClass> GetEnumerator()
     {
-        foreach (Result<nuint> klass in _mono.GetClasses(_image).Unwrap())
+        foreach (Result<nuint> klass in _mono.GetClasses(_image).UnwrapOr([]))
         {
-            yield return new(klass.Unwrap(), _mono);
+            if (klass is { Value: { } addr } && addr > 0)
+            {
+                yield return new(addr, _mono);
+            }
         }
     }
 
     protected override bool TryGetKey(MonoClass value, [NotNullWhen(true)] out string? key)
     {
-        if (value.Name is string name)
+        if (value.Name is { Value: { } name })
         {
             key = name;
             return true;
         }
         else
         {
-            key = default;
+            key = null;
             return false;
         }
     }

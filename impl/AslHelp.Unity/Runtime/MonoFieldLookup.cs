@@ -19,36 +19,34 @@ internal sealed class MonoFieldLookup : KeyedCollection<string, MonoField>
 
     public override IEnumerator<MonoField> GetEnumerator()
     {
-        foreach (nuint field in _mono.TryGetFields(_klass))
+        foreach (Common.Results.Result<nuint> field in _mono.GetFields(_klass).UnwrapOr([]))
         {
-            yield return new(field, _mono);
+            if (field is { Value: { } addr } && addr > 0)
+            {
+                yield return new(addr, _mono);
+            }
         }
     }
 
     protected override bool TryGetKey(MonoField value, [NotNullWhen(true)] out string? key)
     {
-        if (value.Name is string name)
+        if (value.Name is { Value: { } name })
         {
             key = name;
             return true;
         }
         else
         {
-            key = default;
+            key = null;
             return false;
         }
     }
 
     protected override string KeyNotFoundMessage(string key)
     {
-        if (_mono.TryGetClassName(_klass, out string? className))
-        {
-            return $"A field with the given name '{key}' was not present in class '{className}'.";
-        }
-        else
-        {
-            return $"A field with the given name '{key}' was not present in the class.";
-
-        }
+        return _mono.GetClassName(_klass)
+            .Map(name => $"A field with the given name '{key}' was not present in class '{name}'.")
+            .Or($"A field with the given name '{key}' was not present in the class.")
+            .Unwrap();
     }
 }

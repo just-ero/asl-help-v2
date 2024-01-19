@@ -1,27 +1,28 @@
 using System.Diagnostics.CodeAnalysis;
 
+using AslHelp.Common.Results;
 using AslHelp.Memory.Inspect;
 using AslHelp.Unity.Memory.Ipc;
 
 namespace AslHelp.Unity.Memory.Inspect;
 
-internal sealed class MonoStringWatcher : WatcherBase<string>
+internal sealed class MonoStringWatcher : MonoWatcherBase<string>
 {
-    private new readonly IMonoProcessMemory _memory;
-
     public MonoStringWatcher(IMonoProcessMemory memory, nuint baseAddress, params int[] offsets)
-        : base(memory, baseAddress, offsets)
-    {
-        _memory = memory;
-    }
+        : base(memory, baseAddress, offsets) { }
 
-    protected override bool TryRead(nuint address, [NotNullWhen(true)] out string? value)
+    protected override Result<string> Read(nuint address)
     {
-        return _memory.TryReadString(out value, address);
+        return _memory.ReadString(address);
     }
 
     protected override bool Equals(string? old, string? current)
     {
         return old == current;
+    }
+
+    public override string ToString()
+    {
+        return $"{nameof(MonoStringWatcher)}({WatcherPathToString()})";
     }
 }

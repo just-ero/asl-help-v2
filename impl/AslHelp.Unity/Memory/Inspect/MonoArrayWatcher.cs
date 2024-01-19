@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-
 using AslHelp.Common.Results;
 using AslHelp.Unity.Memory.Ipc;
 
@@ -11,9 +9,9 @@ internal sealed class MonoArrayWatcher<T> : MonoWatcherBase<T[]>
     public MonoArrayWatcher(IMonoProcessMemory memory, nuint baseAddress, params int[] offsets)
         : base(memory, baseAddress, offsets) { }
 
-    protected override bool TryRead(nuint address, [NotNullWhen(true)] out T[]? value)
+    protected override Result<T[]> Read(nuint address)
     {
-        return _memory.TryReadArray(out value, address);
+        return _memory.ReadArray<T>(address);
     }
 
     protected override bool Equals(T[]? old, T[]? current)
@@ -39,13 +37,8 @@ internal sealed class MonoArrayWatcher<T> : MonoWatcherBase<T[]>
         return true;
     }
 
-    protected override Result<T[]> Read(nuint address)
-    {
-        return _memory.ReadArray<T>(address);
-    }
-
     public override string ToString()
     {
-        throw new System.NotImplementedException();
+        return $"{nameof(MonoArrayWatcher<T>)}<{typeof(T).Name}>({WatcherPathToString()})";
     }
 }

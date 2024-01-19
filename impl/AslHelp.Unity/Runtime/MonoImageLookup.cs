@@ -17,9 +17,12 @@ internal sealed class MonoImageLookup : KeyedCollection<string, MonoImage>
 
     public override IEnumerator<MonoImage> GetEnumerator()
     {
-        foreach (nuint image in _mono.TryGetImages())
+        foreach (var image in _mono.GetImages().UnwrapOr([]))
         {
-            yield return new(image, _mono);
+            if (image is { Value: { } addr } && addr > 0)
+            {
+                yield return new(addr, _mono);
+            }
         }
     }
 
