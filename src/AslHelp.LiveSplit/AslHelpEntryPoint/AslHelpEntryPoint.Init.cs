@@ -106,7 +106,7 @@ public partial class AslHelpEntryPoint
 
     [MemberNotNull(nameof(Memory))]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    protected void EnsureHasMemory()
+    protected void EnsureMemoryInitialized()
     {
         if (Memory is null)
         {

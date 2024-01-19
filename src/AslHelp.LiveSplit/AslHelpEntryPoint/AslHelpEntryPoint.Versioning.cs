@@ -11,14 +11,14 @@ public partial class AslHelpEntryPoint
 {
     public uint GetMemorySize()
     {
-        EnsureHasMemory();
+        EnsureMemoryInitialized();
 
         return GetMemorySize(Memory.MainModule);
     }
 
     public uint GetMemorySize(string moduleName)
     {
-        EnsureHasMemory();
+        EnsureMemoryInitialized();
 
         return GetMemorySize(Memory.Modules[moduleName]);
     }
@@ -30,14 +30,14 @@ public partial class AslHelpEntryPoint
 
     public string GetMD5Hash()
     {
-        EnsureHasMemory();
+        EnsureMemoryInitialized();
 
         return GetMD5Hash(Memory.MainModule);
     }
 
     public string GetMD5Hash(string moduleName)
     {
-        EnsureHasMemory();
+        EnsureMemoryInitialized();
 
         return GetMD5Hash(Memory.Modules[moduleName]);
     }
@@ -50,14 +50,14 @@ public partial class AslHelpEntryPoint
 
     public string GetSHA1Hash()
     {
-        EnsureHasMemory();
+        EnsureMemoryInitialized();
 
         return GetSHA1Hash(Memory.MainModule);
     }
 
     public string GetSHA1Hash(string moduleName)
     {
-        EnsureHasMemory();
+        EnsureMemoryInitialized();
 
         return GetSHA1Hash(Memory.Modules[moduleName]);
     }
@@ -70,14 +70,14 @@ public partial class AslHelpEntryPoint
 
     public string GetSHA256Hash()
     {
-        EnsureHasMemory();
+        EnsureMemoryInitialized();
 
         return GetSHA256Hash(Memory.MainModule);
     }
 
     public string GetSHA256Hash(string moduleName)
     {
-        EnsureHasMemory();
+        EnsureMemoryInitialized();
 
         return GetSHA256Hash(Memory.Modules[moduleName]);
     }
@@ -90,14 +90,14 @@ public partial class AslHelpEntryPoint
 
     public string GetSHA512Hash()
     {
-        EnsureHasMemory();
+        EnsureMemoryInitialized();
 
         return GetSHA512Hash(Memory.MainModule);
     }
 
     public string GetSHA512Hash(string moduleName)
     {
-        EnsureHasMemory();
+        EnsureMemoryInitialized();
 
         return GetSHA512Hash(Memory.Modules[moduleName]);
     }

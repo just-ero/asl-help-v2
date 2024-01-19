@@ -8,21 +8,21 @@ public partial class AslHelpEntryPoint
 {
     public bool Reject(params uint[] moduleMemorySizes)
     {
-        EnsureHasMemory();
+        EnsureMemoryInitialized();
 
         return Reject(Memory.MainModule, moduleMemorySizes);
     }
 
     public bool Reject(string moduleName, params uint[] moduleMemorySizes)
     {
-        EnsureHasMemory();
+        EnsureMemoryInitialized();
 
         return Reject(Memory.Modules[moduleName], moduleMemorySizes);
     }
 
     public bool Reject(Module module, params uint[] moduleMemorySizes)
     {
-        EnsureHasMemory();
+        EnsureMemoryInitialized();
 
         if (moduleMemorySizes.Length == 0)
         {

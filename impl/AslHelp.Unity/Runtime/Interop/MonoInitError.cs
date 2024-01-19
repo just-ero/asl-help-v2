@@ -16,7 +16,7 @@ internal sealed record MonoInitError : ResultError
         => new("Unsupported runtime version.");
 
     // Mono
-    public static MonoInitError SymbolMonoGetCorlibNotFound
+    public static MonoInitError Symbol_MonoGetCorlib_NotFound
         => new("Symbol 'mono_get_corlib' could not be found in the target process.");
 
     public static MonoInitError MonoDefaultsNotResolved
@@ -25,7 +25,7 @@ internal sealed record MonoInitError : ResultError
     public static MonoInitError MonoDefaultsReadFailed
         => new("Failed to read 'mono_defaults' struct.");
 
-    public static MonoInitError SymbolMonoAssemblyForeachNotFound
+    public static MonoInitError Symbol_MonoAssemblyForeach_NotFound
         => new("Symbol 'mono_assembly_foreach' could not be found in the target process.");
 
     public static MonoInitError LoadedAssembliesNotResolved

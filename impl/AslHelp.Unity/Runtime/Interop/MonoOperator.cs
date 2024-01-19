@@ -26,17 +26,6 @@ public abstract class MonoOperator
 
     public KeyedCollection<string, MonoImage> Images { get; }
 
-    public static Result<MonoOperator> Create(IMonoProcessMemory memory)
-    {
-        return memory.RuntimeVersion switch
-        {
-            MonoRuntimeVersion.MonoV1 => MonoOperatorV1.Initialize(memory),
-            MonoRuntimeVersion.MonoV2 => MonoOperatorV2.Initialize(memory),
-            MonoRuntimeVersion.MonoV2_1 => MonoOperatorV2_1.Initialize(memory),
-            _ => MonoInitError.RuntimeNotSupported
-        };
-    }
-
     public abstract Result<IEnumerable<Result<nuint>>> GetImages();
     public abstract Result<string> GetImageName(nuint image);
     public abstract Result<string> GetImageFileName(nuint image);

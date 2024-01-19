@@ -36,6 +36,19 @@ public readonly struct Result : IResult
         return new(error, innerResult);
     }
 
+    public static Result Combine(params IResult[] results)
+    {
+        foreach (IResult result in results)
+        {
+            if (result is { IsErr: true, Error: { } err })
+            {
+                return Result.Err(err);
+            }
+        }
+
+        return Ok();
+    }
+
     // Operators
     public static implicit operator Result(ResultError error)
     {
