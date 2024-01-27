@@ -22,7 +22,7 @@ public partial class ProcessMemory
     {
         if (moduleName is null)
         {
-            return IpcError.ModuleName_MustNot_BeNull;
+            return IpcError.ModuleName_Is_Null;
         }
 
         return Scan(pattern, Modules[moduleName], alignment);
@@ -32,7 +32,7 @@ public partial class ProcessMemory
     {
         if (moduleName is null)
         {
-            return IpcError.ModuleName_MustNot_BeNull;
+            return IpcError.ModuleName_Is_Null;
         }
 
         return Scan(pattern, Modules[moduleName], size, alignment);
@@ -42,7 +42,7 @@ public partial class ProcessMemory
     {
         if (module is null)
         {
-            return IpcError.Module_MustNot_BeNull;
+            return IpcError.Module_Is_Null;
         }
 
         return Scan(pattern, module.Base, module.MemorySize, alignment);
@@ -52,7 +52,7 @@ public partial class ProcessMemory
     {
         if (module is null)
         {
-            return IpcError.Module_MustNot_BeNull;
+            return IpcError.Module_Is_Null;
         }
 
         return Scan(pattern, module.Base, size, alignment);
@@ -62,7 +62,7 @@ public partial class ProcessMemory
     {
         if (startAddress >= endAddress)
         {
-            return IpcError.PatternScan_RegionStart_Must_BeLessThan_End;
+            return IpcError.PatternScan_RegionStart_IsNot_LessThan_End;
         }
 
         return Scan(pattern, startAddress, (int)(endAddress - startAddress), alignment);
@@ -77,7 +77,7 @@ public partial class ProcessMemory
                 IEnumerator<nuint> e = results.GetEnumerator();
                 if (!e.MoveNext())
                 {
-                    return IpcError.PatternScanFailure_NoMatches;
+                    return IpcError.PatternScan_NotFound;
                 }
 
                 return e.Current;
@@ -93,7 +93,7 @@ public partial class ProcessMemory
                 IEnumerator<nuint> e = results.GetEnumerator();
                 if (!e.MoveNext())
                 {
-                    return IpcError.PatternScanFailure_NoMatches;
+                    return IpcError.PatternScan_NotFound;
                 }
 
                 return e.Current;
@@ -114,7 +114,7 @@ public partial class ProcessMemory
     {
         if (moduleName is null)
         {
-            return IpcError.ModuleName_MustNot_BeNull;
+            return IpcError.ModuleName_Is_Null;
         }
 
         return ScanAll(pattern, Modules[moduleName], alignment);
@@ -124,7 +124,7 @@ public partial class ProcessMemory
     {
         if (moduleName is null)
         {
-            return IpcError.ModuleName_MustNot_BeNull;
+            return IpcError.ModuleName_Is_Null;
         }
 
         return ScanAll(pattern, Modules[moduleName], size, alignment);
@@ -134,7 +134,7 @@ public partial class ProcessMemory
     {
         if (module is null)
         {
-            return IpcError.Module_MustNot_BeNull;
+            return IpcError.Module_Is_Null;
         }
 
         return ScanAll(pattern, module.Base, (int)module.MemorySize, alignment);
@@ -144,7 +144,7 @@ public partial class ProcessMemory
     {
         if (module is null)
         {
-            return IpcError.Module_MustNot_BeNull;
+            return IpcError.Module_Is_Null;
         }
 
         return ScanAll(pattern, module.Base, size, alignment);
@@ -154,7 +154,7 @@ public partial class ProcessMemory
     {
         if (startAddress >= endAddress)
         {
-            return IpcError.PatternScan_RegionStart_Must_BeLessThan_End;
+            return IpcError.PatternScan_RegionStart_IsNot_LessThan_End;
         }
 
         return ScanAll(pattern, startAddress, (int)(endAddress - startAddress), alignment);
@@ -164,7 +164,7 @@ public partial class ProcessMemory
     {
         if (size < 0)
         {
-            return IpcError.PatternScan_RegionSize_Must_BePositive;
+            return IpcError.PatternScan_RegionSize_IsNot_Positive;
         }
 
         return
@@ -176,7 +176,7 @@ public partial class ProcessMemory
     {
         if (alignment <= 0)
         {
-            return IpcError.PatternScan_Alignment_Must_BePositive;
+            return IpcError.PatternScan_Alignment_IsNot_Positive;
         }
 
         return scanAll(pattern, startAddress, memory, alignment).AsOk();

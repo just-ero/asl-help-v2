@@ -7,7 +7,7 @@ using AslHelp.Memory;
 
 namespace AslHelp.Unity.Memory.Ipc;
 
-internal partial class MonoProcessMemory
+public partial class MonoProcessMemory
 {
     public Result<string> ReadString(int baseOffset, params int[] offsets)
     {
@@ -18,7 +18,7 @@ internal partial class MonoProcessMemory
     {
         if (moduleName is null)
         {
-            return IpcError.ModuleName_MustNot_BeNull;
+            return IpcError.ModuleName_Is_Null;
         }
 
         return ReadString(Modules[moduleName], baseOffset, offsets);
@@ -28,7 +28,7 @@ internal partial class MonoProcessMemory
     {
         if (module is null)
         {
-            return IpcError.Module_MustNot_BeNull;
+            return IpcError.Module_Is_Null;
         }
 
         return ReadString(module.Base + (nuint)baseOffset, offsets);
@@ -36,10 +36,8 @@ internal partial class MonoProcessMemory
 
     public Result<string> ReadString(nuint baseAddress, params int[] offsets)
     {
-        return
-            Read<nuint>(baseAddress, offsets)
-            .AndThen(str =>
-                Read<int>(str + (PointerSize * 2U)) // String.m_stringLength
+        return Read<nuint>(baseAddress, offsets)
+            .AndThen(str => Read<int>(str + (PointerSize * 2U)) // String.m_stringLength
                 .AndThen(length =>
                 {
                     char[]? rented = null;
@@ -47,8 +45,7 @@ internal partial class MonoProcessMemory
                         ? stackalloc char[length]
                         : (rented = ArrayPool<char>.Shared.Rent(length));
 
-                    return
-                        ReadSpan(chars, str + (PointerSize * 2U) + sizeof(int)) // String.m_firstChar
+                    return ReadSpan(chars, str + (PointerSize * 2U) + sizeof(int)) // String.m_firstChar
                         .And<string>(chars.ToString())
                         .Finally(() => ArrayPool<char>.Shared.ReturnIfNotNull(rented));
                 }));

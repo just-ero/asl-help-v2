@@ -14,7 +14,7 @@ public partial class ProcessMemory
     {
         if (moduleName is null)
         {
-            return IpcError.ModuleName_MustNot_BeNull;
+            return IpcError.ModuleName_Is_Null;
         }
 
         return Deref(Modules[moduleName], baseOffset, offsets);
@@ -24,7 +24,7 @@ public partial class ProcessMemory
     {
         if (module is null)
         {
-            return IpcError.Module_MustNot_BeNull;
+            return IpcError.Module_Is_Null;
         }
 
         return Deref(module.Base + (nuint)baseOffset, offsets);
@@ -34,12 +34,12 @@ public partial class ProcessMemory
     {
         if (_disposed)
         {
-            return IpcError.ProcessMemory_MustNot_BeDisposed;
+            return IpcError.ProcessMemory_Is_Disposed;
         }
 
         if (baseAddress == 0)
         {
-            return IpcError.BaseAddress_MustNot_BeNull;
+            return IpcError.BaseAddress_Is_Null;
         }
 
         nuint result = baseAddress;
@@ -53,7 +53,7 @@ public partial class ProcessMemory
 
             if (result == 0)
             {
-                return IpcError.DerefFailure_ReadNull;
+                return IpcError.Deref_Is_Null;
             }
 
             result += (nuint)offsets[i];

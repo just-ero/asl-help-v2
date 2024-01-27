@@ -1,5 +1,8 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 
+using AslHelp.Common;
 using AslHelp.Diagnostics.Logging;
 using AslHelp.LiveSplit;
 using AslHelp.LiveSplit.Diagnostics;
@@ -25,6 +28,17 @@ public partial class Basic
         {
             AslDebug.Warn("Helper was not found as part of `vars`.");
             AslDebug.Warn("Make sure to call `OnExit` and `OnShutdown` in their respective actions manually.");
+        }
+    }
+
+    [MemberNotNull(nameof(Memory))]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void EnsureMemoryInitialized()
+    {
+        if (Memory is null)
+        {
+            const string Msg = "Attempted to access uninitialized memory.";
+            ThrowHelper.ThrowInvalidOperationException(Msg);
         }
     }
 }

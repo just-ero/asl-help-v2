@@ -33,7 +33,7 @@ internal sealed partial class ReflectionInitializer
         {
             if (!_genericDefinitions.TryGetValue(gName, out var fields))
             {
-                return ReflectionInitializationError.GenericDefinitionNotFound(gName);
+                return ReflectionInitializationError.GenericDefinition_NotFound(gName);
             }
 
             var map = gParams.Cast<Capture>()
@@ -49,7 +49,7 @@ internal sealed partial class ReflectionInitializer
         {
             if (!uint.TryParse(strLength, out uint length))
             {
-                return ReflectionInitializationError.ArrayLengthMustBeUnsignedInteger(type, strLength);
+                return ReflectionInitializationError.ArrayLength_IsNot_UnsignedInteger(type, strLength);
             }
 
             return
@@ -61,12 +61,12 @@ internal sealed partial class ReflectionInitializer
         {
             if (!IsIntegerType(bitfieldType, out size))
             {
-                return ReflectionInitializationError.BitfieldTypeMustBeInteger(bitfieldType);
+                return ReflectionInitializationError.BitfieldType_IsNot_Integer(bitfieldType);
             }
 
             if (!uint.TryParse(strBitfieldSize, out uint bitfieldSize))
             {
-                return ReflectionInitializationError.BitfieldSizeMustBeUnsignedInteger(type, strBitfieldSize);
+                return ReflectionInitializationError.BitfieldSize_IsNot_UnsignedInteger(type, strBitfieldSize);
             }
 
             return (size, size, bitfieldSize);

@@ -2,6 +2,13 @@
   "title": "asl-help.settings",
   "description": "Defines some settings that can be loaded by asl-help.",
   "type": "object",
+  "minProperties": 1,
+  "properties": {
+    "$schema": {
+      "description": "Pointer to the schema against which this document should be validated.",
+      "type": "string"
+    }
+  },
   "additionalProperties": {
     "type": "object",
     "additionalProperties": false,

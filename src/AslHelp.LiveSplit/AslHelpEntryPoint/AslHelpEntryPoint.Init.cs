@@ -42,16 +42,16 @@ public partial class AslHelpEntryPoint
 
             using (AslDebug.Indent())
             {
-                _asl = AutoSplitter.TryInitialize().Unwrap();
+                _asl = AutoSplitter.Initialize().Unwrap();
 
                 AslDebug.Info("Success.");
             }
 
-            AslDebug.Info("Generating code...");
-
-            using (AslDebug.Indent())
+            if (generateCode)
             {
-                if (generateCode)
+                AslDebug.Info("Generating code...");
+
+                using (AslDebug.Indent())
                 {
                     GenerateCode(_asl);
                 }
@@ -106,7 +106,7 @@ public partial class AslHelpEntryPoint
 
     [MemberNotNull(nameof(Memory))]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    protected void EnsureMemoryInitialized()
+    private void EnsureMemoryInitialized()
     {
         if (Memory is null)
         {

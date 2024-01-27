@@ -5,9 +5,9 @@ using AslHelp.Unity.Memory.Ipc;
 
 namespace AslHelp.Unity.Runtime.Interop.Initialization;
 
-public abstract class Il2CppInitializer
+public abstract class Il2CppInitializer : MonoInitializer
 {
-    public Result<Il2CppOperator> Initialize(IMonoProcessMemory memory, Module il2CppModule)
+    public override Result<MonoOperator> Initialize(IMonoProcessMemory memory, Module il2CppModule)
     {
         var structs = GetStructs(memory);
         var defaults = GetDefaults(memory, il2CppModule);
@@ -15,18 +15,21 @@ public abstract class Il2CppInitializer
         var typeInfoDefinitions = GetTypeInfoDefinitions(memory, il2CppModule);
 
         return Result.Combine(structs, defaults, loadedAssemblies, typeInfoDefinitions)
-            .Map(New(memory, structs.Unwrap(), defaults.Unwrap(), loadedAssemblies.Unwrap(), typeInfoDefinitions.Unwrap()));
+            .AndThen<MonoOperator>(()
+                => GetOperator(memory, structs.Unwrap(), defaults.Unwrap(), loadedAssemblies.Unwrap(), typeInfoDefinitions.Unwrap()));
     }
 
-    protected abstract Il2CppOperator New(
+    protected sealed override MonoOperator GetOperator(IMonoProcessMemory memory, Reflection structs, MonoDefaults defaults, nuint loadedAssemblies)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    protected abstract Il2CppOperator GetOperator(
         IMonoProcessMemory memory,
         Reflection structs,
         MonoDefaults defaults,
         nuint loadedAssemblies,
         nuint typeInfoDefinitions);
 
-    protected abstract Result<Reflection> GetStructs(IMonoProcessMemory memory);
-    protected abstract Result<MonoDefaults> GetDefaults(IMonoProcessMemory memory, Module monoModule);
-    protected abstract Result<nuint> GetLoadedAssemblies(IMonoProcessMemory memory, Module monoModule);
     protected abstract Result<nuint> GetTypeInfoDefinitions(IMonoProcessMemory memory, Module il2CppModule);
 }

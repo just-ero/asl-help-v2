@@ -17,18 +17,18 @@ internal sealed record LiveSplitInitializationError : ResultError
         return new(message);
     }
 
-    public static LiveSplitInitializationError TimerFormNotFound
+    public static LiveSplitInitializationError TimerForm_NotFound
         => new($"An instance of type '{nameof(TimerForm)}' could not be found within the open forms of the application.");
 
-    public static LiveSplitInitializationError LiveSplitStateInvalid
+    public static LiveSplitInitializationError LiveSplitState_Is_Null
         => new($"The '{nameof(TimerForm)}' did not contain a valid instance of '{nameof(LiveSplitState)}'.");
 
-    public static LiveSplitInitializationError ScriptAssemblyNotFound
+    public static LiveSplitInitializationError ScriptAssembly_NotFound
         => new($"The compiled assembly for the executing script could not be found.");
 
-    public static LiveSplitInitializationError ScriptComponentNotFound
+    public static LiveSplitInitializationError ScriptComponent_NotFound
         => new($"The '{nameof(ASLComponent)}' containing the executing script could not be found.");
 
-    public static LiveSplitInitializationError ScriptSettingsInvalid
+    public static LiveSplitInitializationError ScriptSettings_Is_Null
         => new($"The '{nameof(ASLScript)}' did not contain a valid instance of '{nameof(ASLSettingsBuilder)}'.");
 }

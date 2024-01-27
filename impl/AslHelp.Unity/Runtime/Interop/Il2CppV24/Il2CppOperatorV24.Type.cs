@@ -35,7 +35,7 @@ internal partial class Il2CppOperatorV24
                 MonoElementType.GenericInst => GetIl2CppTypeData(type)
                     .AndThen(genericInst => GetIl2CppGenericClassClass(genericInst)),
                 // MonoElementType.Ptr => ,
-                _ => MonoOpError.ElementTypeNotSupported(elementType)
+                _ => MonoOpError.ElementType_NotSupported(elementType)
             });
     }
 

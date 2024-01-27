@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
@@ -8,10 +6,11 @@ using System.Runtime.Serialization.Json;
 
 using AslHelp.Collections;
 using AslHelp.Common.Results;
+using AslHelp.IO;
 using AslHelp.Memory.Scanning;
 
 using InputField = (string TypeName, string Name, uint Alignment);
-using InputStruct = (string Name, string? Super, (string Type, string Name, uint Alignment)[] Fields);
+using InputStruct = (string Name, string? Super, System.Collections.Generic.IEnumerable<(string, string, uint)> Fields);
 
 namespace AslHelp.Memory.StructReflection;
 
@@ -25,57 +24,51 @@ internal sealed class CollectedInput : OrderedDictionary<string, InputStruct>
         string runtime,
         string version)
     {
-        string resourceName = $"{@namespace}.{runtime}-{version}.json";
-        using Stream? resource = containingAssembly.GetManifestResourceStream(resourceName);
-        if (resource is null)
-        {
-            return ReflectionInitializationError.EmbeddedResourceNotFound(resourceName);
-        }
-
-        JsonDefinition definition;
-
-        try
-        {
-            DataContractJsonSerializer serializer = new(typeof(JsonDefinition));
-            definition = (JsonDefinition)serializer.ReadObject(resource);
-        }
-        catch (Exception ex)
-        {
-            return ex;
-        }
-
-        if (definition.Inheritance is null && definition.Structs is null)
-        {
-            return ReflectionInitializationError.InheritanceOrStructsMustBeProvided;
-        }
-
-        Result<CollectedInput> res =
-            definition.Inheritance is { Runtime: { Length: > 0 } iRuntime, Version: { Length: > 0 } iVersion }
-            ? GetFromEmbeddedResource(containingAssembly, @namespace, iRuntime, iVersion)
-            : new CollectedInput();
-
-        return res
-            .AndThenDo(input =>
+        return EmbeddedResource.GetResourceStreamFromAssembly(containingAssembly, $"{@namespace}.{runtime}-{version}.json")
+            .AndThen<JsonDefinition>(stream =>
             {
-                if (definition.Structs is { Length: > 0 } structs)
-                {
-                    foreach (JsonStruct @struct in structs)
-                    {
-                        string name = @struct.Name;
-                        string? super = @struct.Super;
-                        InputField[] fields = @struct.Fields.Select(f => (f.Type, f.Name, f.Alignment)).ToArray();
+                DataContractJsonSerializer serializer = new(typeof(JsonDefinition));
+                JsonDefinition definition = (JsonDefinition)serializer.ReadObject(stream);
 
-                        input[name] = (name, super, fields);
-                    }
+                if (definition.Inheritance is null && definition.Structs is null)
+                {
+                    return ReflectionInitializationError.InheritanceOrStructs_NotProvided;
                 }
 
-                if (definition.Patterns is { Length: > 0 } patterns)
+                return definition;
+            })
+            .AndThen(definition =>
+            {
+                Result<CollectedInput> input = new CollectedInput();
+
+                if (definition.Inheritance is { Runtime: { Length: > 0 } iRuntime, Version: { Length: > 0 } iVersion })
                 {
-                    foreach (JsonScanPattern pattern in patterns)
-                    {
-                        input.Patterns[pattern.Name] = new(pattern.Offset, pattern.Pattern);
-                    }
+                    input = GetFromEmbeddedResource(containingAssembly, @namespace, iRuntime, iVersion);
                 }
+
+                return input
+                    .AndThenDo(input =>
+                    {
+                        if (definition.Structs is { Length: > 0 } structs)
+                        {
+                            foreach (JsonStruct @struct in structs)
+                            {
+                                string name = @struct.Name;
+                                string? super = @struct.Super;
+                                IEnumerable<InputField> fields = @struct.Fields.Select(f => (f.Type, f.Name, f.Alignment));
+
+                                input[name] = (name, super, fields);
+                            }
+                        }
+
+                        if (definition.Patterns is { Length: > 0 } patterns)
+                        {
+                            foreach (JsonScanPattern pattern in patterns)
+                            {
+                                input.Patterns[pattern.Name] = new(pattern.Offset, pattern.Pattern);
+                            }
+                        }
+                    });
             });
     }
 

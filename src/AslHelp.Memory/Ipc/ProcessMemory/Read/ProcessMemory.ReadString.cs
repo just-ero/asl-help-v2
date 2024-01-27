@@ -18,7 +18,7 @@ public partial class ProcessMemory
     {
         if (moduleName is null)
         {
-            return IpcError.ModuleName_MustNot_BeNull;
+            return IpcError.ModuleName_Is_Null;
         }
 
         return ReadString(maxLength, stringType, Modules[moduleName], baseOffset, offsets);
@@ -28,7 +28,7 @@ public partial class ProcessMemory
     {
         if (module is null)
         {
-            return IpcError.Module_MustNot_BeNull;
+            return IpcError.Module_Is_Null;
         }
 
         return ReadString(maxLength, stringType, module.Base + (nuint)baseOffset, offsets);
@@ -38,7 +38,7 @@ public partial class ProcessMemory
     {
         if (maxLength < 0)
         {
-            return IpcError.ReadString_MaxLength_MustNot_BeNegative;
+            return IpcError.ReadString_MaxLength_Is_Negative;
         }
 
         if (maxLength == 0)

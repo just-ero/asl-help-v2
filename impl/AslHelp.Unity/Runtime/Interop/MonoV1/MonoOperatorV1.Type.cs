@@ -31,7 +31,7 @@ internal partial class MonoOperatorV1
                 MonoElementType.Class or MonoElementType.ValueType => GetMonoTypeData(type),
                 MonoElementType.GenericInst => GetMonoTypeData(type).AndThen(GetMonoGenericInstClass),
                 MonoElementType.Ptr => GetMonoTypeData(type).AndThen(GetTypeData),
-                _ => MonoOpError.ElementTypeNotSupported(elementType)
+                _ => MonoOpError.ElementType_NotSupported(elementType)
             });
     }
 

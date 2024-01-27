@@ -6,7 +6,7 @@ using AslHelp.Memory;
 
 namespace AslHelp.Unity.Memory.Ipc;
 
-internal partial class MonoProcessMemory
+public partial class MonoProcessMemory
 {
     public Result<List<T>> ReadList<T>(int baseOffset, params int[] offsets)
         where T : unmanaged
@@ -19,7 +19,7 @@ internal partial class MonoProcessMemory
     {
         if (moduleName is null)
         {
-            return IpcError.ModuleName_MustNot_BeNull;
+            return IpcError.ModuleName_Is_Null;
         }
 
         return ReadList<T>(Modules[moduleName], baseOffset, offsets);
@@ -30,7 +30,7 @@ internal partial class MonoProcessMemory
     {
         if (module is null)
         {
-            return IpcError.Module_MustNot_BeNull;
+            return IpcError.Module_Is_Null;
         }
 
         return ReadList<T>(module.Base + (nuint)baseOffset, offsets);
@@ -39,17 +39,14 @@ internal partial class MonoProcessMemory
     public Result<List<T>> ReadList<T>(nuint baseAddress, params int[] offsets)
         where T : unmanaged
     {
-        return
-            Read<nuint>(baseAddress, offsets)
-            .AndThen(list =>
-                Read<int>(list + (PointerSize * 3U)) // List<T>._size
+        return Read<nuint>(baseAddress, offsets)
+            .AndThen(list => Read<int>(list + (PointerSize * 3U)) // List<T>._size
                 .AndThen(count =>
                 {
                     List<T> values = new(count);
 
-                    return
-                        ReadSpan(values.AsSpan(), list + (PointerSize * 2U), PointerSize * 4) // List<T>._items[0]
-                        .And<List<T>>(values);
+                    return ReadSpan(values.AsSpan(), list + (PointerSize * 2U), PointerSize * 4) // List<T>._items[0]
+                        .Map(values);
                 }));
     }
 }

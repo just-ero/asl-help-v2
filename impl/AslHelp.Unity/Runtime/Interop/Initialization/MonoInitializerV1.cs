@@ -11,18 +11,12 @@ namespace AslHelp.Unity.Runtime.Interop.Initialization;
 
 public class MonoInitializerV1 : MonoInitializer
 {
-    protected override MonoOperator New(IMonoProcessMemory memory, Reflection structs, MonoDefaults defaults, nuint loadedAssemblies)
+    protected override string Runtime { get; } = "mono";
+    protected override string Version { get; } = "1.0";
+
+    protected override MonoOperator GetOperator(IMonoProcessMemory memory, Reflection structs, MonoDefaults defaults, nuint loadedAssemblies)
     {
         return new MonoOperatorV1(memory, structs, defaults, loadedAssemblies);
-    }
-
-    protected override Result<Reflection> GetStructs(IMonoProcessMemory memory)
-    {
-        const string Namespace = "AslHelp.Unity.Runtime.Structs";
-        const string Runtime = "mono";
-        const string Version = "1.0";
-
-        return Reflection.Initialize(memory.Is64Bit, (Namespace, Runtime, Version));
     }
 
     protected override Result<MonoDefaults> GetDefaults(IMonoProcessMemory memory, Module monoModule)
@@ -39,7 +33,7 @@ public class MonoInitializerV1 : MonoInitializer
 
         return memory.Scan(pattern, symMonoGetCorlib.Address, 0x10)
             .AndThen(defaultsRelative => memory.ReadRelative(defaultsRelative))
-            .MapErr(_ => MonoInitError.MonoDefaultsNotResolved)
+            .MapErr(_ => MonoInitError.MonoDefaults_FailedResolve)
             .AndThen(monoDefaults =>
             {
                 // We can't read `MonoDefaults` directly because `nuint`s do not have the correct size when the target game is 32-bit.
@@ -49,7 +43,7 @@ public class MonoInitializerV1 : MonoInitializer
                 return memory.ReadSpan(defaults, monoDefaults)
                     .Map(Unsafe.As<nuint, MonoDefaults>(ref defaults[0]));
             })
-            .MapErr(_ => MonoInitError.MonoDefaultsReadFailed);
+            .MapErr(_ => MonoInitError.MonoDefaults_FailedRead);
     }
 
     protected override Result<nuint> GetLoadedAssemblies(IMonoProcessMemory memory, Module monoModule)
@@ -66,6 +60,6 @@ public class MonoInitializerV1 : MonoInitializer
 
         return memory.Scan(pattern, symMonoAssemblyForeach.Address, 0x100)
             .AndThen(loadedAssembliesRelative => memory.ReadRelative(loadedAssembliesRelative))
-            .MapErr(_ => MonoInitError.LoadedAssembliesNotResolved);
+            .MapErr(_ => MonoInitError.LoadedAssemblies_FailedResolve);
     }
 }

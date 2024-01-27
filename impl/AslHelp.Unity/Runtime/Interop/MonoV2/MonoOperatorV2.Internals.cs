@@ -13,7 +13,7 @@ internal partial class MonoOperatorV2
                 MonoTypeKind.DEF or MonoTypeKind.GTD => _memory.Read<uint>(klass + _structs["MonoClassDef"]["field_count"]),
                 MonoTypeKind.GINST => GetMonoGenericInstClass(klass)
                     .AndThen(GetMonoClassFieldCount),
-                _ => MonoOpError.ClassKindNotSupported(classKind)
+                _ => MonoOpError.ClassKind_NotSupported(classKind)
             });
     }
 

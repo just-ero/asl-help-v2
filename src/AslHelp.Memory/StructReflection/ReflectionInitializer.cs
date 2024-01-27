@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using AslHelp.Common.Results;
 
 using InputField = (string TypeName, string Name, uint Alignment);
-using InputStruct = (string Name, string? Super, (string Type, string Name, uint Alignment)[] Fields);
+using InputStruct = (string Name, string? Super, System.Collections.Generic.IEnumerable<(string, string, uint)> Fields);
 
 namespace AslHelp.Memory.StructReflection;
 
@@ -30,8 +30,7 @@ internal sealed partial class ReflectionInitializer
             reflection = reflection
                 .AndThen(r =>
                 {
-                    return
-                        GenerateStruct(inStruct.Name, inStruct.Super, inStruct.Fields)
+                    return GenerateStruct(inStruct.Name, inStruct.Super, inStruct.Fields)
                         .Map(s =>
                         {
                             _structCache[s.Name] = s;
@@ -48,7 +47,7 @@ internal sealed partial class ReflectionInitializer
     private Result<Struct> GenerateStruct(
         string name,
         string? super,
-        InputField[] fields,
+        IEnumerable<InputField> fields,
         IReadOnlyDictionary<string, string>? genericMap = default)
     {
         _pAlign = 0;

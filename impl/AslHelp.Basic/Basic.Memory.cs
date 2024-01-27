@@ -11,8 +11,6 @@ public partial class Basic
     {
         get
         {
-            EnsureInitialized();
-
             if (_memory is null)
             {
                 if (Game is Process game)

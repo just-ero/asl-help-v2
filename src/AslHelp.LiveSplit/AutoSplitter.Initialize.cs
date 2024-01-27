@@ -15,14 +15,12 @@ namespace AslHelp.LiveSplit;
 
 public sealed partial class AutoSplitter
 {
-    public static Result<AutoSplitter> TryInitialize()
+    public static Result<AutoSplitter> Initialize()
     {
-        return
-            GetTimerData()
+        return GetTimerData()
             .AndThen(state =>
             {
-                return
-                    GetScriptData(state)
+                return GetScriptData(state)
                     .Map(scriptData => (State: state, Component: scriptData.Component, Script: scriptData.Script, Methods: scriptData.Methods));
             })
             .AndThen(res =>
@@ -30,11 +28,10 @@ public sealed partial class AutoSplitter
                 ASLSettings? settings = res.Script.GetFieldValue<ASLSettings>("_settings");
                 if (settings?.Builder is not ASLSettingsBuilder builder)
                 {
-                    return LiveSplitInitializationError.ScriptSettingsInvalid;
+                    return LiveSplitInitializationError.ScriptSettings_Is_Null;
                 }
 
-                return
-                    TryParseActions(res.Component, res.Methods)
+                return ParseActions(res.Component, res.Methods)
                     .Map<AutoSplitter>(actions => new(res.State, res.Script, actions, builder));
             });
     }
@@ -43,12 +40,12 @@ public sealed partial class AutoSplitter
     {
         if (Application.OpenForms[nameof(TimerForm)] is not TimerForm timerForm)
         {
-            return LiveSplitInitializationError.TimerFormNotFound;
+            return LiveSplitInitializationError.TimerForm_NotFound;
         }
 
         if (timerForm.CurrentState is not LiveSplitState state)
         {
-            return LiveSplitInitializationError.LiveSplitStateInvalid;
+            return LiveSplitInitializationError.LiveSplitState_Is_Null;
         }
 
         return state;
@@ -61,7 +58,7 @@ public sealed partial class AutoSplitter
 
         if (scriptAssembly is null)
         {
-            return LiveSplitInitializationError.ScriptAssemblyNotFound;
+            return LiveSplitInitializationError.ScriptAssembly_NotFound;
         }
 
         IEnumerable<IComponent?> components = state.Layout.Components.Prepend(state.Run.AutoSplitter?.Component);
@@ -90,7 +87,7 @@ public sealed partial class AutoSplitter
 
         if (component is null || script is null || methods is null)
         {
-            return LiveSplitInitializationError.ScriptComponentNotFound;
+            return LiveSplitInitializationError.ScriptComponent_NotFound;
         }
 
         return (component, script, methods);

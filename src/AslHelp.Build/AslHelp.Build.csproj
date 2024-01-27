@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="$(ImplDir)\AslHelp.Basic\*.csproj" />
-    <ProjectReference Include="$(ImplDir)\AslHelp.Unity\*.csproj" />
+    <!-- <ProjectReference Include="$(ImplDir)\AslHelp.Unity\*.csproj" /> -->
   </ItemGroup>
 
   <ItemGroup>

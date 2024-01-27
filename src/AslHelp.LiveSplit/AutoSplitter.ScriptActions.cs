@@ -14,7 +14,7 @@ namespace AslHelp.LiveSplit;
 
 public partial class AutoSplitter
 {
-    private static Result<ScriptActions> TryParseActions(ASLComponent component, ASLScript.Methods methods)
+    private static Result<ScriptActions> ParseActions(ASLComponent component, ASLScript.Methods methods)
     {
         ComponentSettings settings = component.GetFieldValue<ComponentSettings>("_settings")!;
         string path = settings.ScriptPath;

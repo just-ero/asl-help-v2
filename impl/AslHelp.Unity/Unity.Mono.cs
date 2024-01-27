@@ -1,4 +1,6 @@
-using AslHelp.Common.Results;
+using System;
+
+using AslHelp.Common;
 using AslHelp.Memory;
 using AslHelp.Unity.Memory.Ipc;
 using AslHelp.Unity.Runtime.Interop;
@@ -7,89 +9,72 @@ using AslHelp.Unity.Runtime.Interop.Initialization;
 public partial class Unity
 {
     private MonoOperator? _mono;
-    public Result<MonoOperator> InitializeMono()
+
+    public MonoOperator InitializeMono()
     {
         if (_mono is not null)
         {
             return _mono;
         }
 
-        EnsureInitialized();
         EnsureMemoryInitialized();
 
-        // CS8600: Converting possible null value to non-nullable type
-        // `EnsureHasMemory` already asserted that this isn't the case.
-        IMonoProcessMemory memory = (IMonoProcessMemory)Memory!;
-
-        if (memory.Modules.TryGetValue("mono.dll", out Module? monoModule))
+        if (Memory.Modules.TryGetValue("mono.dll", out Module? monoModule))
         {
-            return InitializeMono<MonoInitializerV1>(memory, monoModule);
+            _mono = MonoOperator.Initialize<MonoInitializerV1>(Memory, monoModule).Unwrap();
+        }
+        else if (Memory.Modules.TryGetValue("mono-2.0-bdwgc.dll", out monoModule))
+        {
+            _mono = (UnityVersion.Major, UnityVersion.Minor) switch
+            {
+                (2021, >= 2) or ( > 2021, _) => MonoOperator.Initialize<MonoInitializerV2_1>(Memory, monoModule).Unwrap(),
+                _ => MonoOperator.Initialize<MonoInitializerV2>(Memory, monoModule).Unwrap()
+            };
+        }
+        else if (Memory.Modules.TryGetValue("GameAssembly.dll", out monoModule))
+        {
+            _mono = Il2CppMetadata.Version switch
+            {
+                24 => MonoOperator.Initialize<Il2CppInitializerV24>(Memory, monoModule).Unwrap(),
+                _ => throw new NotSupportedException()
+            };
+        }
+        else
+        {
+            const string Msg = "Could not find a supported Mono module.";
+            ThrowHelper.ThrowInvalidOperationException(Msg);
         }
 
-        if (memory.Modules.TryGetValue("mono-2.0-bdwgc.dll", out monoModule))
-        {
-            return InitializeMonoV2(memory, monoModule);
-        }
-
-        if (memory.Modules.TryGetValue("GameAssembly.dll", out monoModule))
-        {
-            return InitializeIl2Cpp(memory, monoModule);
-        }
-
-        return default!;
+        return _mono;
     }
 
-    public Result<MonoOperator> InitializeMonoV1(
-        string monoModuleName)
+    public MonoOperator InitializeMono(string monoModule, string runtimeVersion)
     {
         if (_mono is not null)
         {
             return _mono;
         }
 
-        EnsureInitialized();
+        if (!Enum.TryParse(runtimeVersion, out MonoRuntimeVersion version)
+            || version == MonoRuntimeVersion.Unknown)
+        {
+            string msg = $"Provided an invalid runtime version ('{runtimeVersion}').";
+            ThrowHelper.ThrowArgumentException(nameof(runtimeVersion), msg);
+        }
+
         EnsureMemoryInitialized();
 
-        // CS8600: Converting possible null value to non-nullable type
-        // `EnsureHasMemory` already asserted that this isn't the case.
-        IMonoProcessMemory memory = (IMonoProcessMemory)Memory!;
+        Module module = Memory.Modules[monoModule];
 
-        if (memory.Modules.TryGetValue(monoModuleName, out Module? monoModule))
+        _mono = version switch
         {
-            return InitializeMonoV1(memory, monoModule);
-        }
+            MonoRuntimeVersion.MonoV1 => MonoOperator.Initialize<MonoInitializerV1>(Memory, module).Unwrap(),
+            MonoRuntimeVersion.MonoV2 => MonoOperator.Initialize<MonoInitializerV2>(Memory, module).Unwrap(),
+            MonoRuntimeVersion.MonoV2_1 => MonoOperator.Initialize<MonoInitializerV2_1>(Memory, module).Unwrap(),
+            MonoRuntimeVersion.Il2CppV24 => MonoOperator.Initialize<Il2CppInitializerV24>(Memory, module).Unwrap(),
+            _ => throw new NotSupportedException()
+        };
 
-        return default!;
-    }
-
-    public Result<MonoOperator> InitializeMonoV2(
-        string monoModuleName)
-    {
-        if (_mono is not null)
-        {
-            return _mono;
-        }
-
-        EnsureInitialized();
-        EnsureMemoryInitialized();
-
-        // CS8600: Converting possible null value to non-nullable type
-        // `EnsureHasMemory` already asserted that this isn't the case.
-        IMonoProcessMemory memory = (IMonoProcessMemory)Memory!;
-
-        if (memory.Modules.TryGetValue(monoModuleName, out Module? monoModule))
-        {
-            return InitializeMonoV2(memory, monoModule);
-        }
-
-        return default!;
-    }
-
-    private Result<MonoOperator> InitializeMono<TInitializer>(
-        IMonoProcessMemory memory,
-        Module monoModule)
-        where TInitializer : MonoInitializer, new()
-    {
-        return new TInitializer().Initialize(memory, monoModule);
+        return _mono;
     }
 }

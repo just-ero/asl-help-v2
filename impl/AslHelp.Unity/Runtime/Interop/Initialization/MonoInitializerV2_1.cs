@@ -8,18 +8,11 @@ namespace AslHelp.Unity.Runtime.Interop.Initialization;
 
 public class MonoInitializerV2_1 : MonoInitializerV2
 {
-    protected override MonoOperator New(IMonoProcessMemory memory, Reflection structs, MonoDefaults defaults, nuint loadedAssemblies)
+    protected override string Version { get; } = "2.1";
+
+    protected override MonoOperator GetOperator(IMonoProcessMemory memory, Reflection structs, MonoDefaults defaults, nuint loadedAssemblies)
     {
         return new MonoOperatorV2_1(memory, structs, defaults, loadedAssemblies);
-    }
-
-    protected override Result<Reflection> GetStructs(IMonoProcessMemory memory)
-    {
-        const string Namespace = "AslHelp.Unity.Runtime.Structs";
-        const string Runtime = "mono";
-        const string Version = "2.1";
-
-        return Reflection.Initialize(memory.Is64Bit, (Namespace, Runtime, Version));
     }
 
     protected override Result<nuint> GetLoadedAssemblies(IMonoProcessMemory memory, Module monoModule)
@@ -36,6 +29,6 @@ public class MonoInitializerV2_1 : MonoInitializerV2
 
         return memory.Scan(pattern, symMonoAssemblyForeach.Address, 0x100)
             .AndThen(loadedAssembliesRelative => memory.ReadRelative(loadedAssembliesRelative))
-            .MapErr(_ => MonoInitError.LoadedAssembliesNotResolved);
+            .MapErr(_ => MonoInitError.LoadedAssemblies_FailedResolve);
     }
 }

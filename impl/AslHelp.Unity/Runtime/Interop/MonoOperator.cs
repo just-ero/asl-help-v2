@@ -1,10 +1,12 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 
 using AslHelp.Collections;
 using AslHelp.Common.Results;
+using AslHelp.Memory;
 using AslHelp.Memory.StructReflection;
 using AslHelp.Unity.Memory.Ipc;
+using AslHelp.Unity.Runtime.Interop.Initialization;
 
 namespace AslHelp.Unity.Runtime.Interop;
 
@@ -21,10 +23,19 @@ public abstract class MonoOperator
         _structs = structs;
         _defaults = defaults;
         _loadedAssemblies = assemblies;
+
         Images = new MonoImageLookup(this);
     }
 
     public KeyedCollection<string, MonoImage> Images { get; }
+
+    [SkipLocalsInit]
+    public static Result<MonoOperator> Initialize<TInitializer>(IMonoProcessMemory memory, Module monoModule)
+        where TInitializer : MonoInitializer, new()
+    {
+        var initializer = new TInitializer();
+        return initializer.Initialize(memory, monoModule);
+    }
 
     public abstract Result<IEnumerable<Result<nuint>>> GetImages();
     public abstract Result<string> GetImageName(nuint image);

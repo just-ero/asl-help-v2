@@ -1,5 +1,4 @@
 using AslHelp.Common.Results.Errors;
-using AslHelp.Memory.Native;
 
 namespace AslHelp.Unity.Memory.Ipc;
 
@@ -14,9 +13,9 @@ internal sealed record IpcError : ResultError
     }
 
     // Pre-op
-    public static IpcError ModuleName_MustNot_BeNull
+    public static IpcError ModuleName_Is_Null
         => new("The provided module name must not be null.");
 
-    public static IpcError Module_MustNot_BeNull
+    public static IpcError Module_Is_Null
         => new("The provided module must not be null.");
 }

@@ -14,8 +14,6 @@ public sealed partial class AutoSplitter
 {
     private readonly ASLScript _script;
 
-    private IDictionary<string, object>? _current;
-
     private AutoSplitter(LiveSplitState state, ASLScript script, ScriptActions actions, ASLSettingsBuilder settingsBuilder)
     {
         _script = script;
@@ -35,9 +33,6 @@ public sealed partial class AutoSplitter
     }
 
     public ScriptActions Actions { get; }
-
     public IDictionary<string, object> Vars { get; }
-    public IDictionary<string, object>? Current => _current ??= _script.State.Data;
-
     public ASLSettingsBuilder SettingsBuilder { get; }
 }

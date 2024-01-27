@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="$(SrcDir)\AslHelp.Collections\*.csproj" />
     <ProjectReference Include="$(SrcDir)\AslHelp.Common\*.csproj" />
   </ItemGroup>
 
