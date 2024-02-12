@@ -42,9 +42,7 @@ public partial class Unity
 
             EnsureMemoryInitialized();
 
-            _unityVersion = GetUnityVersionFromMetadataFile(DataDirectory)
-                .Or(GetUnityVersionFromUnityPlayer(Memory))
-                .Unwrap();
+            _unityVersion = GetUnityVersionFromMetadataFile(DataDirectory).Unwrap();
 
             return _unityVersion;
         }
@@ -121,16 +119,5 @@ public partial class Unity
         }
 
         return unityVersion;
-    }
-
-    private static Result<Version> GetUnityVersionFromUnityPlayer(IMonoProcessMemory memory)
-    {
-        string productVersion = memory.UnityPlayer.VersionInfo.ProductVersion.Replace('f', '.');
-        if (!Version.TryParse(productVersion, out Version version))
-        {
-            return UnityInitError.VersionString_Invalid;
-        }
-
-        return version;
     }
 }

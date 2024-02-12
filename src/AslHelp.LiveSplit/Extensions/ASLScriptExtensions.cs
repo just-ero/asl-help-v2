@@ -9,47 +9,51 @@ namespace AslHelp.LiveSplit.Extensions;
 
 internal static class ASLScriptExtensions
 {
-    private static object? _getScriptGame;
-    private static object? _setScriptGame;
+    private static readonly Func<ASLScript, Process?> _getScriptGame;
+    private static readonly Action<ASLScript, Process?> _setScriptGame;
+
+    static ASLScriptExtensions()
+    {
+        _getScriptGame = CreateGetScriptGameFunc();
+        _setScriptGame = CreateSetScriptGameFunc();
+    }
 
     public static Process? GetGame(this ASLScript script)
     {
-        if (_getScriptGame is not Func<ASLScript, Process?> getScriptGame)
-        {
-            DynamicMethod dm = new(nameof(getScriptGame), typeof(Process), [typeof(ASLScript)], true);
-
-            FieldInfo fiGame = typeof(ASLScript).GetField("_game", BindingFlags.Instance | BindingFlags.NonPublic);
-
-            ILGenerator il = dm.GetILGenerator();
-            il.Emit(OpCodes.Ldarg_0);
-            il.Emit(OpCodes.Ldfld, fiGame);
-            il.Emit(OpCodes.Ret);
-
-            getScriptGame = (Func<ASLScript, Process?>)dm.CreateDelegate(typeof(Func<ASLScript, Process?>));
-            _getScriptGame = getScriptGame;
-        }
-
-        return getScriptGame(script);
+        return _getScriptGame(script);
     }
 
     public static void SetGame(this ASLScript script, Process? game)
     {
-        if (_setScriptGame is not Action<ASLScript, Process?> setScriptGame)
-        {
-            DynamicMethod dm = new(nameof(setScriptGame), null, [typeof(ASLScript), typeof(Process)], true);
+        _setScriptGame(script, game);
+    }
 
-            FieldInfo fiGame = typeof(ASLScript).GetField("_game", BindingFlags.Instance | BindingFlags.NonPublic);
+    private static Func<ASLScript, Process?> CreateGetScriptGameFunc()
+    {
+        DynamicMethod dm = new(nameof(_getScriptGame), typeof(Process), [typeof(ASLScript)], true);
 
-            ILGenerator il = dm.GetILGenerator();
-            il.Emit(OpCodes.Ldarg_0);
-            il.Emit(OpCodes.Ldarg_1);
-            il.Emit(OpCodes.Stfld, fiGame);
-            il.Emit(OpCodes.Ret);
+        FieldInfo fiGame = typeof(ASLScript).GetField("_game", BindingFlags.Instance | BindingFlags.NonPublic);
 
-            setScriptGame = (Action<ASLScript, Process?>)dm.CreateDelegate(typeof(Action<ASLScript, Process?>));
-            _setScriptGame = setScriptGame;
-        }
+        ILGenerator il = dm.GetILGenerator();
+        il.Emit(OpCodes.Ldarg_0);
+        il.Emit(OpCodes.Ldfld, fiGame);
+        il.Emit(OpCodes.Ret);
 
-        setScriptGame(script, game);
+        return (Func<ASLScript, Process?>)dm.CreateDelegate(typeof(Func<ASLScript, Process?>));
+    }
+
+    private static Action<ASLScript, Process?> CreateSetScriptGameFunc()
+    {
+        DynamicMethod dm = new(nameof(_setScriptGame), null, [typeof(ASLScript), typeof(Process)], true);
+
+        FieldInfo fiGame = typeof(ASLScript).GetField("_game", BindingFlags.Instance | BindingFlags.NonPublic);
+
+        ILGenerator il = dm.GetILGenerator();
+        il.Emit(OpCodes.Ldarg_0);
+        il.Emit(OpCodes.Ldarg_1);
+        il.Emit(OpCodes.Stfld, fiGame);
+        il.Emit(OpCodes.Ret);
+
+        return (Action<ASLScript, Process?>)dm.CreateDelegate(typeof(Action<ASLScript, Process?>));
     }
 }

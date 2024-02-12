@@ -9,7 +9,7 @@ using AslHelp.Unity.Memory.Ipc;
 
 namespace AslHelp.Unity.Runtime.Interop.Initialization;
 
-public class Il2CppInitializerV24 : Il2CppInitializer
+internal class Il2CppInitializerV24 : Il2CppInitializer
 {
     protected override string Runtime { get; } = "il2cpp";
     protected override string Version { get; } = "24.0";

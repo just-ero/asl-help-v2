@@ -22,9 +22,7 @@ jobs:
       pre_release: ${{ inputs.pre_release }}
 
   create-release:
-    needs: |
-      build-asl-help
-      create-changelog
+    needs: [ build-asl-help, create-changelog ]
     runs-on: ubuntu-latest
 
     steps:

@@ -5,7 +5,7 @@
   "minProperties": 1,
   "properties": {
     "$schema": {
-      "description": "Pointer to the schema against which this document should be validated.",
+      "description": "Path to the schema against which this document should be validated.",
       "type": "string"
     }
   },

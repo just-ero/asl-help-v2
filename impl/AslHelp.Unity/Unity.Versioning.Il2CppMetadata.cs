@@ -39,13 +39,13 @@ public partial class Unity
                 .AndThen(relative => memory.ReadRelative(relative))
                 .AndThen(globalMetadataHeader => memory.Read<Il2CppMetadataHeader>(globalMetadataHeader));
 
-            if (metadata is { IsOk: true, Value: { } result })
+            if (metadata.IsOk)
             {
                 return metadata.Unwrap();
             }
         }
 
-        return UnityInitError.Il2CppMetadata_NotFound;
+        return UnityInitError.Il2CppMetadataScan_NoResults;
     }
 
     private static Result<Il2CppMetadataHeader> GetIl2CppMetadataFromFile(string data)

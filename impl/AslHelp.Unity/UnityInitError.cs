@@ -24,6 +24,6 @@ internal sealed record UnityInitError : ResultError
     public static UnityInitError VersionString_Invalid
         => new("The version string could not be parsed.");
 
-    public static UnityInitError Il2CppMetadata_NotFound
-        => new("The Il2Cpp metadata could not be found.");
+    public static UnityInitError Il2CppMetadataScan_NoResults
+        => new("The Il2Cpp metadata scan yielded no results.");
 }

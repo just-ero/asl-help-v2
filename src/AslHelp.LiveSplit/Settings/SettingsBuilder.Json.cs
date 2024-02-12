@@ -9,10 +9,10 @@ public partial class SettingsBuilder
 {
     [DataContract]
     private sealed record JsonSetting(
-        [property: DataMember] string? Label,
-        [property: DataMember] bool State,
-        [property: DataMember] string? ToolTip,
-        [property: DataMember] Dictionary<string, JsonSetting>? Children);
+        [property: DataMember(Name = "label")] string? Label,
+        [property: DataMember(Name = "state")] bool State,
+        [property: DataMember(Name = "tooltip")] string? ToolTip,
+        [property: DataMember(Name = "children")] Dictionary<string, JsonSetting>? Children);
 
     public void FromJson(string path)
     {

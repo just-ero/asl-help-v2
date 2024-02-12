@@ -31,6 +31,8 @@ public abstract partial class AslHelpEntryPoint
 
         AslDebug.Info("Disposing...");
 
+        Initialized = false;
+
         AppDomain.CurrentDomain.AssemblyResolve -= AssemblyResolve;
         AppDomain.CurrentDomain.FirstChanceException -= FirstChanceHandler;
 
@@ -46,8 +48,6 @@ public abstract partial class AslHelpEntryPoint
             OnShutdownImpl(closing);
             FreeMemory();
         }
-
-        Initialized = false;
     }
 
     protected abstract void OnShutdownImpl(bool closing);

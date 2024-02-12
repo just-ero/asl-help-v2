@@ -1,3 +1,5 @@
+using System;
+
 using AslHelp.Common.Results;
 using AslHelp.Memory;
 using AslHelp.Memory.StructReflection;
@@ -5,7 +7,7 @@ using AslHelp.Unity.Memory.Ipc;
 
 namespace AslHelp.Unity.Runtime.Interop.Initialization;
 
-public abstract class Il2CppInitializer : MonoInitializer
+internal abstract class Il2CppInitializer : MonoInitializer
 {
     public override Result<MonoOperator> Initialize(IMonoProcessMemory memory, Module il2CppModule)
     {
@@ -15,13 +17,13 @@ public abstract class Il2CppInitializer : MonoInitializer
         var typeInfoDefinitions = GetTypeInfoDefinitions(memory, il2CppModule);
 
         return Result.Combine(structs, defaults, loadedAssemblies, typeInfoDefinitions)
-            .AndThen<MonoOperator>(()
-                => GetOperator(memory, structs.Unwrap(), defaults.Unwrap(), loadedAssemblies.Unwrap(), typeInfoDefinitions.Unwrap()));
+            .AndThen<MonoOperator>(
+                () => GetOperator(memory, structs.Unwrap(), defaults.Unwrap(), loadedAssemblies.Unwrap(), typeInfoDefinitions.Unwrap()));
     }
 
     protected sealed override MonoOperator GetOperator(IMonoProcessMemory memory, Reflection structs, MonoDefaults defaults, nuint loadedAssemblies)
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     protected abstract Il2CppOperator GetOperator(

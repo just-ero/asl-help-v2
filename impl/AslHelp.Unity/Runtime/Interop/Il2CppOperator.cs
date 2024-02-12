@@ -3,7 +3,7 @@ using AslHelp.Unity.Memory.Ipc;
 
 namespace AslHelp.Unity.Runtime.Interop;
 
-public abstract class Il2CppOperator : MonoOperator
+internal abstract class Il2CppOperator : MonoOperator
 {
     protected nuint _typeInfoDefinitions;
 

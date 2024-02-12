@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
@@ -29,11 +30,19 @@ public abstract class MonoOperator
 
     public KeyedCollection<string, MonoImage> Images { get; }
 
-    [SkipLocalsInit]
-    public static Result<MonoOperator> Initialize<TInitializer>(IMonoProcessMemory memory, Module monoModule)
-        where TInitializer : MonoInitializer, new()
+    public static Result<MonoOperator> Initialize(IMonoProcessMemory memory, Module monoModule, MonoRuntimeVersion version)
     {
-        var initializer = new TInitializer();
+        MonoInitializer initializer = version switch
+        {
+            MonoRuntimeVersion.MonoV1 => new MonoInitializerV1(),
+            MonoRuntimeVersion.MonoV2 => new MonoInitializerV2(),
+            MonoRuntimeVersion.MonoV2_1 => new MonoInitializerV2_1(),
+            MonoRuntimeVersion.Il2CppV24 => new Il2CppInitializerV24(),
+            MonoRuntimeVersion.Il2CppV27 => throw new NotImplementedException("Il2Cpp 27 is not yet supported."),
+            MonoRuntimeVersion.Il2CppV29 => throw new NotImplementedException("Il2Cpp 29 is not yet supported."),
+            _ => throw new ArgumentException("Invalid Mono runtime version.", nameof(version))
+        };
+
         return initializer.Initialize(memory, monoModule);
     }
 

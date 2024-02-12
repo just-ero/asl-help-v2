@@ -6,7 +6,7 @@ using AslHelp.Unity.Memory.Ipc;
 
 namespace AslHelp.Unity.Runtime.Interop.Initialization;
 
-public class MonoInitializerV2_1 : MonoInitializerV2
+internal class MonoInitializerV2_1 : MonoInitializerV2
 {
     protected override string Version { get; } = "2.1";
 

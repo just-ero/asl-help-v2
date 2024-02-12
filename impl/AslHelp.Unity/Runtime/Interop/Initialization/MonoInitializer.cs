@@ -5,13 +5,10 @@ using AslHelp.Unity.Memory.Ipc;
 
 namespace AslHelp.Unity.Runtime.Interop.Initialization;
 
-public abstract class MonoInitializer
+internal abstract class MonoInitializer
 {
     protected abstract string Runtime { get; }
     protected abstract string Version { get; }
-
-    // [Obsolete("Use Mono", true)]
-    public MonoInitializer() { }
 
     public virtual Result<MonoOperator> Initialize(IMonoProcessMemory memory, Module monoModule)
     {
@@ -20,7 +17,8 @@ public abstract class MonoInitializer
         var loadedAssemblies = GetLoadedAssemblies(memory, monoModule);
 
         return Result.Combine(structs, defaults, loadedAssemblies)
-            .Map(GetOperator(memory, structs.Unwrap(), defaults.Unwrap(), loadedAssemblies.Unwrap()));
+            .AndThen<MonoOperator>(
+                () => GetOperator(memory, structs.Unwrap(), defaults.Unwrap(), loadedAssemblies.Unwrap()));
     }
 
     protected abstract MonoOperator GetOperator(

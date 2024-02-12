@@ -1,10 +1,8 @@
 using System;
 
 using AslHelp.Common;
-using AslHelp.Memory;
 using AslHelp.Unity.Memory.Ipc;
 using AslHelp.Unity.Runtime.Interop;
-using AslHelp.Unity.Runtime.Interop.Initialization;
 
 public partial class Unity
 {
@@ -19,24 +17,33 @@ public partial class Unity
 
         EnsureMemoryInitialized();
 
-        if (Memory.Modules.TryGetValue("mono.dll", out Module? monoModule))
+        MonoRuntimeVersion version = MonoRuntimeVersion.Unknown;
+
+        if (Memory.Modules.TryGetValue("mono.dll", out var monoModule))
         {
-            _mono = MonoOperator.Initialize<MonoInitializerV1>(Memory, monoModule).Unwrap();
+            version = MonoRuntimeVersion.MonoV1;
         }
         else if (Memory.Modules.TryGetValue("mono-2.0-bdwgc.dll", out monoModule))
         {
-            _mono = (UnityVersion.Major, UnityVersion.Minor) switch
+            version = (UnityVersion.Major, UnityVersion.Minor) switch
             {
-                (2021, >= 2) or ( > 2021, _) => MonoOperator.Initialize<MonoInitializerV2_1>(Memory, monoModule).Unwrap(),
-                _ => MonoOperator.Initialize<MonoInitializerV2>(Memory, monoModule).Unwrap()
+                (2021, >= 2) or ( > 2021, _) => MonoRuntimeVersion.MonoV2_1,
+                _ => MonoRuntimeVersion.MonoV2
             };
         }
         else if (Memory.Modules.TryGetValue("GameAssembly.dll", out monoModule))
         {
-            _mono = Il2CppMetadata.Version switch
+            if (Il2CppMetadata.Version is not 24)
             {
-                24 => MonoOperator.Initialize<Il2CppInitializerV24>(Memory, monoModule).Unwrap(),
-                _ => throw new NotSupportedException()
+                string msg = $"Unsupported Il2Cpp version ({Il2CppMetadata.Version}).";
+                ThrowHelper.ThrowNotSupportedException(msg);
+            }
+
+#pragma warning disable CS8509 // The switch expression does not handle all possible values of its input type (it is not exhaustive).
+            version = Il2CppMetadata.Version switch
+#pragma warning restore CS8509
+            {
+                24 => MonoRuntimeVersion.Il2CppV24
             };
         }
         else
@@ -44,6 +51,8 @@ public partial class Unity
             const string Msg = "Could not find a supported Mono module.";
             ThrowHelper.ThrowInvalidOperationException(Msg);
         }
+
+        _mono = MonoOperator.Initialize(Memory, monoModule, version).Unwrap();
 
         return _mono;
     }
@@ -64,16 +73,7 @@ public partial class Unity
 
         EnsureMemoryInitialized();
 
-        Module module = Memory.Modules[monoModule];
-
-        _mono = version switch
-        {
-            MonoRuntimeVersion.MonoV1 => MonoOperator.Initialize<MonoInitializerV1>(Memory, module).Unwrap(),
-            MonoRuntimeVersion.MonoV2 => MonoOperator.Initialize<MonoInitializerV2>(Memory, module).Unwrap(),
-            MonoRuntimeVersion.MonoV2_1 => MonoOperator.Initialize<MonoInitializerV2_1>(Memory, module).Unwrap(),
-            MonoRuntimeVersion.Il2CppV24 => MonoOperator.Initialize<Il2CppInitializerV24>(Memory, module).Unwrap(),
-            _ => throw new NotSupportedException()
-        };
+        _mono = MonoOperator.Initialize(Memory, Memory.Modules[monoModule], version).Unwrap();
 
         return _mono;
     }

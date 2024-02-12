@@ -9,7 +9,7 @@ using AslHelp.Unity.Memory.Ipc;
 
 namespace AslHelp.Unity.Runtime.Interop.Initialization;
 
-public class MonoInitializerV1 : MonoInitializer
+internal class MonoInitializerV1 : MonoInitializer
 {
     protected override string Runtime { get; } = "mono";
     protected override string Version { get; } = "1.0";

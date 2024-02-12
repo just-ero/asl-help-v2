@@ -1,10 +1,9 @@
-using AslHelp.Common.Results;
 using AslHelp.Memory.StructReflection;
 using AslHelp.Unity.Memory.Ipc;
 
 namespace AslHelp.Unity.Runtime.Interop.Initialization;
 
-public class MonoInitializerV2 : MonoInitializerV1
+internal class MonoInitializerV2 : MonoInitializerV1
 {
     protected override string Version { get; } = "2.0";
 

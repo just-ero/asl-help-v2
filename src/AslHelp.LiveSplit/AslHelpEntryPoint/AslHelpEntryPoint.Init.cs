@@ -1,7 +1,5 @@
 using System;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.ExceptionServices;
@@ -27,8 +25,9 @@ public partial class AslHelpEntryPoint
     {
         if (Initialized)
         {
-            const string Msg = "asl-help is already initialized.";
-            ThrowHelper.ThrowInvalidOperationException(Msg);
+            AslDebug.Warn("asl-help is already initialized.");
+
+            return this;
         }
 
         AslDebug.Info("Initializing asl-help...");
@@ -89,6 +88,8 @@ public partial class AslHelpEntryPoint
         }
 
         GenerateCodeImpl(helperName, asl);
+
+        AslDebug.Info("Done.");
     }
 
     protected abstract void GenerateCodeImpl(string? helperName, AutoSplitter asl);
