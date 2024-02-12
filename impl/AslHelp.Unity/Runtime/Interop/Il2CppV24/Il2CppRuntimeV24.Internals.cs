@@ -2,7 +2,7 @@ using AslHelp.Common.Results;
 
 namespace AslHelp.Unity.Runtime.Interop;
 
-internal partial class Il2CppOperatorV24
+internal partial class Il2CppRuntimeV24
 {
     protected virtual Result<nuint> GetIl2CppAssemblyImage(nuint assembly)
     {

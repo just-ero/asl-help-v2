@@ -1,8 +1,9 @@
+using AslHelp.Common;
 using AslHelp.Common.Results;
 
 namespace AslHelp.Unity.Runtime.Interop;
 
-internal partial class MonoOperatorV1
+internal partial class Il2CppRuntimeV24
 {
     public override Result<nuint> GetTypeData(nuint type)
     {
@@ -26,22 +27,25 @@ internal partial class MonoOperatorV1
                 MonoElementType.String => _defaults.StringClass,
                 MonoElementType.I => _defaults.IntPtrClass,
                 MonoElementType.U => _defaults.UIntPtrClass,
-                MonoElementType.Array => GetMonoTypeData(type).AndThen(GetMonoArrayTypeClass),
-                MonoElementType.SzArray => GetMonoTypeData(type),
-                MonoElementType.Class or MonoElementType.ValueType => GetMonoTypeData(type),
-                MonoElementType.GenericInst => GetMonoTypeData(type).AndThen(GetMonoGenericInstClass),
-                MonoElementType.Ptr => GetMonoTypeData(type).AndThen(GetTypeData),
+                // MonoElementType.Array => ,
+                // MonoElementType.SzArray => ,
+                MonoElementType.Class or MonoElementType.ValueType => GetIl2CppTypeData(type)
+                    .AndThen(klassIndex => _memory.Read<nuint>(_typeInfoDefinitions)
+                        .AndThen(typeInfoDefinitionsTable => _memory.Read<nuint>(typeInfoDefinitionsTable + (_memory.PointerSize * (uint)klassIndex)))),
+                MonoElementType.GenericInst => GetIl2CppTypeData(type)
+                    .AndThen(genericInst => GetIl2CppGenericClassClass(genericInst)),
+                // MonoElementType.Ptr => ,
                 _ => MonoOpError.ElementType_NotSupported(elementType)
             });
     }
 
     public override Result<MonoFieldAttribute> GetTypeAttributes(nuint type)
     {
-        return _memory.Read<MonoFieldAttribute>(type + _structs["MonoType"]["attrs"]);
+        return _memory.Read<MonoFieldAttribute>(type + _structs["Il2CppType"]["attrs"]);
     }
 
     public override Result<MonoElementType> GetTypeElementType(nuint type)
     {
-        return _memory.Read<MonoElementType>(type + _structs["MonoType"]["type"]);
+        return _memory.Read<MonoElementType>(type + _structs["Il2CppType"]["type"]);
     }
 }

@@ -14,9 +14,9 @@ internal class MonoInitializerV1 : MonoInitializer
     protected override string Runtime { get; } = "mono";
     protected override string Version { get; } = "1.0";
 
-    protected override MonoOperator GetOperator(IMonoProcessMemory memory, Reflection structs, MonoDefaults defaults, nuint loadedAssemblies)
+    protected override MonoRuntime GetOperator(IMonoProcessMemory memory, Reflection structs, MonoDefaults defaults, nuint loadedAssemblies)
     {
-        return new MonoOperatorV1(memory, structs, defaults, loadedAssemblies);
+        return new MonoRuntimeV1(memory, structs, defaults, loadedAssemblies);
     }
 
     protected override Result<MonoDefaults> GetDefaults(IMonoProcessMemory memory, Module monoModule)

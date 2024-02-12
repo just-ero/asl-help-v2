@@ -7,7 +7,7 @@ using AslHelp.Memory;
 
 namespace AslHelp.Unity.Runtime.Interop;
 
-internal partial class Il2CppOperatorV24
+internal partial class Il2CppRuntimeV24
 {
     public override Result<IEnumerable<Result<nuint>>> GetClasses(nuint image)
     {

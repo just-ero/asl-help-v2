@@ -14,14 +14,14 @@ internal class Il2CppInitializerV24 : Il2CppInitializer
     protected override string Runtime { get; } = "il2cpp";
     protected override string Version { get; } = "24.0";
 
-    protected override Il2CppOperator GetOperator(
+    protected override Il2CppRuntime GetOperator(
         IMonoProcessMemory memory,
         Reflection structs,
         MonoDefaults defaults,
         nuint loadedAssemblies,
         nuint typeInfoDefinitions)
     {
-        return new Il2CppOperatorV24(memory, structs, defaults, loadedAssemblies, typeInfoDefinitions);
+        return new Il2CppRuntimeV24(memory, structs, defaults, loadedAssemblies, typeInfoDefinitions);
     }
 
     protected override Result<MonoDefaults> GetDefaults(IMonoProcessMemory memory, Module il2CppModule)

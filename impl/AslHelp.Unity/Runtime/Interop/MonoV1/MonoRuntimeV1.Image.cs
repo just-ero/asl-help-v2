@@ -6,7 +6,7 @@ using AslHelp.Memory;
 
 namespace AslHelp.Unity.Runtime.Interop;
 
-internal partial class MonoOperatorV1
+internal partial class MonoRuntimeV1
 {
     public override Result<IEnumerable<Result<nuint>>> GetImages()
     {

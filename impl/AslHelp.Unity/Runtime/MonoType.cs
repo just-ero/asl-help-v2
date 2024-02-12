@@ -8,9 +8,9 @@ namespace AslHelp.Unity.Runtime;
 
 public sealed class MonoType(
     nuint address,
-    MonoOperator mono)
+    MonoRuntime mono)
 {
-    private readonly MonoOperator _mono = mono;
+    private readonly MonoRuntime _mono = mono;
 
     public nuint Address { get; } = address;
 

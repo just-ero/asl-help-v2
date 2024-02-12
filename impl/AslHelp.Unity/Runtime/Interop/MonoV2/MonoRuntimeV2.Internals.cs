@@ -3,7 +3,7 @@ using AslHelp.Common.Results;
 
 namespace AslHelp.Unity.Runtime.Interop;
 
-internal partial class MonoOperatorV2
+internal partial class MonoRuntimeV2
 {
     protected override Result<uint> GetMonoClassFieldCount(nuint klass)
     {

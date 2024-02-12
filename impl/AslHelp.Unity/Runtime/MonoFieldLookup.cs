@@ -9,9 +9,9 @@ namespace AslHelp.Unity.Runtime;
 internal sealed class MonoFieldLookup : KeyedCollection<string, MonoField>
 {
     private readonly nuint _klass;
-    private readonly MonoOperator _mono;
+    private readonly MonoRuntime _mono;
 
-    public MonoFieldLookup(nuint klass, MonoOperator mono)
+    public MonoFieldLookup(nuint klass, MonoRuntime mono)
     {
         _klass = klass;
         _mono = mono;

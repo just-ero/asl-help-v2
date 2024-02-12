@@ -10,9 +10,9 @@ internal class MonoInitializerV2_1 : MonoInitializerV2
 {
     protected override string Version { get; } = "2.1";
 
-    protected override MonoOperator GetOperator(IMonoProcessMemory memory, Reflection structs, MonoDefaults defaults, nuint loadedAssemblies)
+    protected override MonoRuntime GetOperator(IMonoProcessMemory memory, Reflection structs, MonoDefaults defaults, nuint loadedAssemblies)
     {
-        return new MonoOperatorV2_1(memory, structs, defaults, loadedAssemblies);
+        return new MonoRuntimeV2_1(memory, structs, defaults, loadedAssemblies);
     }
 
     protected override Result<nuint> GetLoadedAssemblies(IMonoProcessMemory memory, Module monoModule)

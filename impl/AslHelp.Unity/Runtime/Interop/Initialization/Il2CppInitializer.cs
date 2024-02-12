@@ -9,7 +9,7 @@ namespace AslHelp.Unity.Runtime.Interop.Initialization;
 
 internal abstract class Il2CppInitializer : MonoInitializer
 {
-    public override Result<MonoOperator> Initialize(IMonoProcessMemory memory, Module il2CppModule)
+    public override Result<MonoRuntime> Initialize(IMonoProcessMemory memory, Module il2CppModule)
     {
         var structs = GetStructs(memory);
         var defaults = GetDefaults(memory, il2CppModule);
@@ -17,16 +17,16 @@ internal abstract class Il2CppInitializer : MonoInitializer
         var typeInfoDefinitions = GetTypeInfoDefinitions(memory, il2CppModule);
 
         return Result.Combine(structs, defaults, loadedAssemblies, typeInfoDefinitions)
-            .AndThen<MonoOperator>(
+            .AndThen<MonoRuntime>(
                 () => GetOperator(memory, structs.Unwrap(), defaults.Unwrap(), loadedAssemblies.Unwrap(), typeInfoDefinitions.Unwrap()));
     }
 
-    protected sealed override MonoOperator GetOperator(IMonoProcessMemory memory, Reflection structs, MonoDefaults defaults, nuint loadedAssemblies)
+    protected sealed override MonoRuntime GetOperator(IMonoProcessMemory memory, Reflection structs, MonoDefaults defaults, nuint loadedAssemblies)
     {
         throw new NotImplementedException();
     }
 
-    protected abstract Il2CppOperator GetOperator(
+    protected abstract Il2CppRuntime GetOperator(
         IMonoProcessMemory memory,
         Reflection structs,
         MonoDefaults defaults,

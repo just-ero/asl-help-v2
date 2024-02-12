@@ -2,7 +2,7 @@ using AslHelp.Common.Results;
 
 namespace AslHelp.Unity.Runtime.Interop;
 
-internal partial class MonoOperatorV2_1
+internal partial class MonoRuntimeV2_1
 {
     protected override Result<MonoTypeKind> GetMonoClassClassKind(nuint klass)
     {

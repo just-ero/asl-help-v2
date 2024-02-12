@@ -2,7 +2,7 @@ using AslHelp.Common.Results;
 
 namespace AslHelp.Unity.Runtime.Interop;
 
-internal partial class MonoOperatorV1
+internal partial class MonoRuntimeV1
 {
     protected virtual Result<nuint> GetGListData(nuint gList)
     {

@@ -3,8 +3,8 @@ using AslHelp.Unity.Memory.Ipc;
 
 namespace AslHelp.Unity.Runtime.Interop;
 
-internal partial class MonoOperatorV1 : MonoOperator
+internal partial class MonoRuntimeV1 : MonoRuntime
 {
-    public MonoOperatorV1(IMonoProcessMemory memory, Reflection structs, MonoDefaults defaults, nuint assemblies)
+    public MonoRuntimeV1(IMonoProcessMemory memory, Reflection structs, MonoDefaults defaults, nuint assemblies)
         : base(memory, structs, defaults, assemblies) { }
 }

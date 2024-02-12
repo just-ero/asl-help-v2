@@ -3,9 +3,9 @@ using AslHelp.Unity.Memory.Ipc;
 
 namespace AslHelp.Unity.Runtime.Interop;
 
-internal partial class Il2CppOperatorV24 : Il2CppOperator
+internal partial class Il2CppRuntimeV24 : Il2CppRuntime
 {
-    public Il2CppOperatorV24(
+    public Il2CppRuntimeV24(
         IMonoProcessMemory memory,
         Reflection structs,
         MonoDefaults monoDefaults,

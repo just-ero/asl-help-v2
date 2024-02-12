@@ -11,14 +11,14 @@ using AslHelp.Unity.Runtime.Interop.Initialization;
 
 namespace AslHelp.Unity.Runtime.Interop;
 
-public abstract class MonoOperator
+public abstract class MonoRuntime
 {
     protected readonly IMonoProcessMemory _memory;
     protected readonly Reflection _structs;
     protected readonly MonoDefaults _defaults;
     protected readonly nuint _loadedAssemblies;
 
-    protected MonoOperator(IMonoProcessMemory memory, Reflection structs, MonoDefaults defaults, nuint assemblies)
+    protected MonoRuntime(IMonoProcessMemory memory, Reflection structs, MonoDefaults defaults, nuint assemblies)
     {
         _memory = memory;
         _structs = structs;
@@ -30,7 +30,7 @@ public abstract class MonoOperator
 
     public KeyedCollection<string, MonoImage> Images { get; }
 
-    public static Result<MonoOperator> Initialize(IMonoProcessMemory memory, Module monoModule, MonoRuntimeVersion version)
+    public static Result<MonoRuntime> Initialize(IMonoProcessMemory memory, Module monoModule, MonoRuntimeVersion version)
     {
         MonoInitializer initializer = version switch
         {

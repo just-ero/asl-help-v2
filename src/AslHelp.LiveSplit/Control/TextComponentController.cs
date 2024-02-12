@@ -47,7 +47,6 @@ public sealed class TextComponentController
                 return;
             }
 
-            value.Tag = key;
             _textCache[key] = value;
         }
     }

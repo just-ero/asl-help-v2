@@ -10,18 +10,18 @@ internal abstract class MonoInitializer
     protected abstract string Runtime { get; }
     protected abstract string Version { get; }
 
-    public virtual Result<MonoOperator> Initialize(IMonoProcessMemory memory, Module monoModule)
+    public virtual Result<MonoRuntime> Initialize(IMonoProcessMemory memory, Module monoModule)
     {
         var structs = GetStructs(memory);
         var defaults = GetDefaults(memory, monoModule);
         var loadedAssemblies = GetLoadedAssemblies(memory, monoModule);
 
         return Result.Combine(structs, defaults, loadedAssemblies)
-            .AndThen<MonoOperator>(
+            .AndThen<MonoRuntime>(
                 () => GetOperator(memory, structs.Unwrap(), defaults.Unwrap(), loadedAssemblies.Unwrap()));
     }
 
-    protected abstract MonoOperator GetOperator(
+    protected abstract MonoRuntime GetOperator(
         IMonoProcessMemory memory,
         Reflection structs,
         MonoDefaults defaults,

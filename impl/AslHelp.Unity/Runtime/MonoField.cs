@@ -5,9 +5,9 @@ namespace AslHelp.Unity.Runtime;
 
 public sealed class MonoField
 {
-    private readonly MonoOperator _mono;
+    private readonly MonoRuntime _mono;
 
-    internal MonoField(nuint address, MonoOperator mono)
+    internal MonoField(nuint address, MonoRuntime mono)
     {
         Address = address;
         _mono = mono;

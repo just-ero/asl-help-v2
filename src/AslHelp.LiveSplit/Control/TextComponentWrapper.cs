@@ -20,12 +20,6 @@ public sealed class TextComponentWrapper
 
     public ILayoutComponent LayoutComponent { get; }
 
-    public object? Tag
-    {
-        get => _settings.Tag;
-        set => _settings.Tag = value;
-    }
-
     public dynamic Text1
     {
         get => _settings.Text1;

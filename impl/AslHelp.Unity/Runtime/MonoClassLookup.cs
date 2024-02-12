@@ -10,9 +10,9 @@ namespace AslHelp.Unity.Runtime;
 internal sealed class MonoClassLookup : KeyedCollection<string, MonoClass>
 {
     private readonly nuint _image;
-    private readonly MonoOperator _mono;
+    private readonly MonoRuntime _mono;
 
-    public MonoClassLookup(nuint image, MonoOperator mono)
+    public MonoClassLookup(nuint image, MonoRuntime mono)
     {
         _image = image;
         _mono = mono;

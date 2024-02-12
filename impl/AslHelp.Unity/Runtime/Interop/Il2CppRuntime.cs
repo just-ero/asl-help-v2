@@ -3,11 +3,11 @@ using AslHelp.Unity.Memory.Ipc;
 
 namespace AslHelp.Unity.Runtime.Interop;
 
-internal abstract class Il2CppOperator : MonoOperator
+internal abstract class Il2CppRuntime : MonoRuntime
 {
     protected nuint _typeInfoDefinitions;
 
-    protected Il2CppOperator(
+    protected Il2CppRuntime(
         IMonoProcessMemory memory,
         Reflection structs,
         MonoDefaults il2CppDefaults,

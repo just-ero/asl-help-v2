@@ -6,9 +6,9 @@ using AslHelp.Unity.Runtime.Interop;
 
 public partial class Unity
 {
-    private MonoOperator? _mono;
+    private MonoRuntime? _mono;
 
-    public MonoOperator InitializeMono()
+    public MonoRuntime InitializeMono()
     {
         if (_mono is not null)
         {
@@ -52,12 +52,12 @@ public partial class Unity
             ThrowHelper.ThrowInvalidOperationException(Msg);
         }
 
-        _mono = MonoOperator.Initialize(Memory, monoModule, version).Unwrap();
+        _mono = MonoRuntime.Initialize(Memory, monoModule, version).Unwrap();
 
         return _mono;
     }
 
-    public MonoOperator InitializeMono(string monoModule, string runtimeVersion)
+    public MonoRuntime InitializeMono(string monoModule, string runtimeVersion)
     {
         if (_mono is not null)
         {
@@ -73,7 +73,7 @@ public partial class Unity
 
         EnsureMemoryInitialized();
 
-        _mono = MonoOperator.Initialize(Memory, Memory.Modules[monoModule], version).Unwrap();
+        _mono = MonoRuntime.Initialize(Memory, Memory.Modules[monoModule], version).Unwrap();
 
         return _mono;
     }
