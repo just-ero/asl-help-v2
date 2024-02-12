@@ -2,10 +2,11 @@ using AslHelp.Common.Results;
 using AslHelp.Memory;
 using AslHelp.Memory.StructReflection;
 using AslHelp.Unity.Memory.Ipc;
+using AslHelp.Unity.Runtime.Interop;
 
-namespace AslHelp.Unity.Runtime.Interop.Initialization;
+namespace AslHelp.Unity.Runtime.Initialization;
 
-internal abstract class MonoInitializer
+internal abstract class MonoRuntimeInitializer
 {
     protected abstract string Runtime { get; }
     protected abstract string Version { get; }

@@ -6,10 +6,11 @@ using AslHelp.Memory;
 using AslHelp.Memory.Scanning;
 using AslHelp.Memory.StructReflection;
 using AslHelp.Unity.Memory.Ipc;
+using AslHelp.Unity.Runtime.Interop;
 
-namespace AslHelp.Unity.Runtime.Interop.Initialization;
+namespace AslHelp.Unity.Runtime.Initialization;
 
-internal class Il2CppInitializerV24 : Il2CppInitializer
+internal class Il2CppRuntimeInitializerV24 : Il2CppRuntimeInitializer
 {
     protected override string Runtime { get; } = "il2cpp";
     protected override string Version { get; } = "24.0";

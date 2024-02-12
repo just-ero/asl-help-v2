@@ -7,7 +7,7 @@ using AslHelp.Common.Results;
 using AslHelp.Memory;
 using AslHelp.Memory.StructReflection;
 using AslHelp.Unity.Memory.Ipc;
-using AslHelp.Unity.Runtime.Interop.Initialization;
+using AslHelp.Unity.Runtime.Initialization;
 
 namespace AslHelp.Unity.Runtime.Interop;
 
@@ -32,12 +32,12 @@ public abstract class MonoRuntime
 
     public static Result<MonoRuntime> Initialize(IMonoProcessMemory memory, Module monoModule, MonoRuntimeVersion version)
     {
-        MonoInitializer initializer = version switch
+        MonoRuntimeInitializer initializer = version switch
         {
-            MonoRuntimeVersion.MonoV1 => new MonoInitializerV1(),
-            MonoRuntimeVersion.MonoV2 => new MonoInitializerV2(),
-            MonoRuntimeVersion.MonoV2_1 => new MonoInitializerV2_1(),
-            MonoRuntimeVersion.Il2CppV24 => new Il2CppInitializerV24(),
+            MonoRuntimeVersion.MonoV1 => new MonoRuntimeInitializerV1(),
+            MonoRuntimeVersion.MonoV2 => new MonoRuntimeInitializerV2(),
+            MonoRuntimeVersion.MonoV2_1 => new MonoRuntimeInitializerV2_1(),
+            MonoRuntimeVersion.Il2CppV24 => new Il2CppRuntimeInitializerV24(),
             MonoRuntimeVersion.Il2CppV27 => throw new NotImplementedException("Il2Cpp 27 is not yet supported."),
             MonoRuntimeVersion.Il2CppV29 => throw new NotImplementedException("Il2Cpp 29 is not yet supported."),
             _ => throw new ArgumentException("Invalid Mono runtime version.", nameof(version))

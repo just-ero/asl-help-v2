@@ -6,10 +6,11 @@ using AslHelp.Memory;
 using AslHelp.Memory.Scanning;
 using AslHelp.Memory.StructReflection;
 using AslHelp.Unity.Memory.Ipc;
+using AslHelp.Unity.Runtime.Interop;
 
-namespace AslHelp.Unity.Runtime.Interop.Initialization;
+namespace AslHelp.Unity.Runtime.Initialization;
 
-internal class MonoInitializerV1 : MonoInitializer
+internal class MonoRuntimeInitializerV1 : MonoRuntimeInitializer
 {
     protected override string Runtime { get; } = "mono";
     protected override string Version { get; } = "1.0";

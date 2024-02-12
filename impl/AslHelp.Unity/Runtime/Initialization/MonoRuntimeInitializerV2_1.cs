@@ -3,10 +3,11 @@ using AslHelp.Memory;
 using AslHelp.Memory.Scanning;
 using AslHelp.Memory.StructReflection;
 using AslHelp.Unity.Memory.Ipc;
+using AslHelp.Unity.Runtime.Interop;
 
-namespace AslHelp.Unity.Runtime.Interop.Initialization;
+namespace AslHelp.Unity.Runtime.Initialization;
 
-internal class MonoInitializerV2_1 : MonoInitializerV2
+internal class MonoRuntimeInitializerV2_1 : MonoRuntimeInitializerV2
 {
     protected override string Version { get; } = "2.1";
 

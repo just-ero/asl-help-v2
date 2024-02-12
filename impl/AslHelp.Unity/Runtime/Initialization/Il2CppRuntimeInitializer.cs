@@ -4,10 +4,11 @@ using AslHelp.Common.Results;
 using AslHelp.Memory;
 using AslHelp.Memory.StructReflection;
 using AslHelp.Unity.Memory.Ipc;
+using AslHelp.Unity.Runtime.Interop;
 
-namespace AslHelp.Unity.Runtime.Interop.Initialization;
+namespace AslHelp.Unity.Runtime.Initialization;
 
-internal abstract class Il2CppInitializer : MonoInitializer
+internal abstract class Il2CppRuntimeInitializer : MonoRuntimeInitializer
 {
     public override Result<MonoRuntime> Initialize(IMonoProcessMemory memory, Module il2CppModule)
     {
