@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 using AslHelp.Collections;
 using AslHelp.Common.Results;
@@ -40,7 +39,7 @@ public abstract class MonoRuntime
             MonoRuntimeVersion.Il2CppV24 => new Il2CppRuntimeInitializerV24(),
             MonoRuntimeVersion.Il2CppV27 => throw new NotImplementedException("Il2Cpp 27 is not yet supported."),
             MonoRuntimeVersion.Il2CppV29 => throw new NotImplementedException("Il2Cpp 29 is not yet supported."),
-            _ => throw new ArgumentException("Invalid Mono runtime version.", nameof(version))
+            _ => throw new ArgumentException($"Invalid Mono runtime version ({version}).", nameof(version))
         };
 
         return initializer.Initialize(memory, monoModule);

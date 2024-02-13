@@ -35,8 +35,6 @@ public partial class Basic
     {
         get
         {
-            EnsureInitialized();
-
             if (_watchers is null)
             {
                 if (Memory is IProcessMemory memory)
@@ -58,7 +56,7 @@ public partial class Basic
     {
         _memory?.Dispose();
 
-        _game = null;
+        _game = default;
         _memory = default;
         _watchers = default;
     }
