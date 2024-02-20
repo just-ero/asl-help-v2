@@ -33,6 +33,6 @@ public sealed partial class AutoSplitter
     }
 
     public ScriptActions Actions { get; }
-    public IDictionary<string, object> Vars { get; }
+    public IDictionary<string, object?> Vars { get; }
     public ASLSettingsBuilder SettingsBuilder { get; }
 }

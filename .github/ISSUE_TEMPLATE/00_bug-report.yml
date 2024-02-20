@@ -18,7 +18,7 @@ body:
         # - Emu
         # - GameMaker
         # - RE Engine
-        - Unity
+        # - Unity
         # - Unreal
     validations:
       required: true
@@ -44,7 +44,9 @@ body:
       value: |
         startup
         {
-          Assembly.Load(File.ReadAllBytes("Components/asl-help")).CreateInstance("Basic");
+          vars.AslHelp = Assembly.Load(File.ReadAllBytes("Components/asl-help")).CreateInstance("Basic");
+          vars.AslHelp.Init(
+            generateCode: true);
         }
 
         // ...
