@@ -2,7 +2,7 @@ using AslHelp.Memory.Ipc;
 
 namespace AslHelp.Memory.Watch.Initialization;
 
-public sealed class WatcherFactory
+public sealed class WatcherFactory : IWatcherFactory
 {
     private readonly IProcessMemory _memory;
 
