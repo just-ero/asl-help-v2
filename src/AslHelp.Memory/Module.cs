@@ -80,7 +80,7 @@ public sealed class Module
     ///     Gets all debug symbols for the <see cref="Module"/>.
     /// </summary>
     /// <value>
-    ///     A <see cref="Dictionary{TKey, TValue}"/> mapping the debug symbol's name to a corresponding <see cref="DebugSymbol"/>.
+    ///     A <see cref="Dictionary{TKey, TValue}"/> mapping the debug symbol's name to a corresponding <see cref="DebugSymbol"/> instance.
     /// </value>
     /// <remarks>
     ///     The symbols are cached upon the first call to this property due to the non-trivial overhead.
@@ -122,7 +122,7 @@ public sealed class Module
     public FileVersionInfo VersionInfo => FileVersionInfo.GetVersionInfo(FileName);
 
     /// <summary>
-    ///     Converts the value of this instance to a <see cref="string"/>.
+    ///     Converts the value of this instance to its <see cref="string"/> representation.
     /// </summary>
     /// <returns>
     ///     The name of the <see cref="Module"/>.

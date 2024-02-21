@@ -1,9 +1,0 @@
-<Project>
-
-  <Import Project="../Directory.Build.props" />
-
-  <ItemGroup>
-    <Using Alias="Debug" Include="AslHelp.LiveSplit.Diagnostics.Debug" />
-  </ItemGroup>
-
-</Project>

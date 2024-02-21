@@ -1,0 +1,22 @@
+{
+  "metadata": [
+    {
+      "outputFormat": "markdown",
+      "output": "./docs",
+      "src": [
+        {
+          "src": "./src",
+          "files": [
+            "**/*.csproj"
+          ]
+        },
+        {
+          "src": "./impl",
+          "files": [
+            "**/*.csproj"
+          ]
+        }
+      ]
+    }
+  ]
+}
