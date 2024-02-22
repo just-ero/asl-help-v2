@@ -23,82 +23,30 @@ public sealed class MonoType
 
 #### Extension Methods
 
-[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
-[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
-[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
+[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetMethod.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.IsType.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
+[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
+[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
 
 ## Constructors
 
-### <a id="AslHelp_Unity_Runtime_MonoType__ctor_System_UIntPtr_AslHelp_Unity_Runtime_Interop_MonoOperator_"></a> MonoType\(nuint, MonoOperator\)
-
-```csharp
-public MonoType(nuint address, MonoOperator mono)
-```
-
-#### Parameters
-
-`address` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`mono` [MonoOperator](AslHelp.Unity.Runtime.Interop.MonoOperator.md)
+ [MonoType\(nuint, MonoOperator\)](AslHelp.Unity.Runtime.MonoType.\-ctor.md\#AslHelp\_Unity\_Runtime\_MonoType\_\_ctor\_System\_UIntPtr\_AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_)
 
 ## Properties
 
-### <a id="AslHelp_Unity_Runtime_MonoType_Address"></a> Address
+ [Address](AslHelp.Unity.Runtime.MonoType.Address.md\#AslHelp\_Unity\_Runtime\_MonoType\_Address)
 
-```csharp
-public nuint Address { get; }
-```
+ [Attributes](AslHelp.Unity.Runtime.MonoType.Attributes.md\#AslHelp\_Unity\_Runtime\_MonoType\_Attributes)
 
-#### Property Value
+ [Class](AslHelp.Unity.Runtime.MonoType.Class.md\#AslHelp\_Unity\_Runtime\_MonoType\_Class)
 
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-### <a id="AslHelp_Unity_Runtime_MonoType_Attributes"></a> Attributes
-
-```csharp
-public MonoFieldAttribute? Attributes { get; }
-```
-
-#### Property Value
-
- [MonoFieldAttribute](AslHelp.Unity.Runtime.Interop.MonoFieldAttribute.md)?
-
-### <a id="AslHelp_Unity_Runtime_MonoType_Class"></a> Class
-
-```csharp
-public MonoClass? Class { get; }
-```
-
-#### Property Value
-
- [MonoClass](AslHelp.Unity.Runtime.MonoClass.md)?
-
-### <a id="AslHelp_Unity_Runtime_MonoType_ElementType"></a> ElementType
-
-```csharp
-public MonoElementType? ElementType { get; }
-```
-
-#### Property Value
-
- [MonoElementType](AslHelp.Unity.Runtime.Interop.MonoElementType.md)?
+ [ElementType](AslHelp.Unity.Runtime.MonoType.ElementType.md\#AslHelp\_Unity\_Runtime\_MonoType\_ElementType)
 
 ## Methods
 
-### <a id="AslHelp_Unity_Runtime_MonoType_ToString"></a> ToString\(\)
+ [ToString\(\)](AslHelp.Unity.Runtime.MonoType.ToString.md\#AslHelp\_Unity\_Runtime\_MonoType\_ToString)
 
 Returns a string that represents the current object.
-
-```csharp
-public override string ToString()
-```
-
-#### Returns
-
- [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-A string that represents the current object.
 

@@ -27,45 +27,20 @@ public static class CharExtensions
 
 #### Extension Methods
 
-[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
-[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
-[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
+[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetMethod.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.IsType.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
+[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
+[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
 
 ## Fields
 
-### <a id="AslHelp_Common_Extensions_CharExtensions_InvalidHexValue"></a> InvalidHexValue
-
-```csharp
-public const byte InvalidHexValue = 255
-```
-
-#### Field Value
-
- [byte](https://learn.microsoft.com/dotnet/api/system.byte)
+ [InvalidHexValue](AslHelp.Common.Extensions.CharExtensions.InvalidHexValue.md\#AslHelp\_Common\_Extensions\_CharExtensions\_InvalidHexValue)
 
 ## Methods
 
-### <a id="AslHelp_Common_Extensions_CharExtensions_ToHexValue_System_Char_"></a> ToHexValue\(char\)
+ [ToHexValue\(char\)](AslHelp.Common.Extensions.CharExtensions.ToHexValue.md\#AslHelp\_Common\_Extensions\_CharExtensions\_ToHexValue\_System\_Char\_)
 
 Converts a hexadecimal character to its decimal value.
-
-```csharp
-public static byte ToHexValue(this char c)
-```
-
-#### Parameters
-
-`c` [char](https://learn.microsoft.com/dotnet/api/system.char)
-
-The hexadecimal character to convert.
-
-#### Returns
-
- [byte](https://learn.microsoft.com/dotnet/api/system.byte)
-
-The decimal value of <code class="paramref">c</code> if it is a valid hexadecimal character;
-otherwise, <code>0xFF</code>.
 

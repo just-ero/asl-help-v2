@@ -9,78 +9,26 @@ public interface IWatcher
 
 #### Extension Methods
 
-[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
-[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
-[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
+[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetMethod.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.IsType.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
+[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
+[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
 
 ## Properties
 
-### <a id="AslHelp_Memory_Watch_IWatcher_Changed"></a> Changed
+ [Changed](AslHelp.Memory.Watch.IWatcher.Changed.md\#AslHelp\_Memory\_Watch\_IWatcher\_Changed)
 
-```csharp
-bool Changed { get; }
-```
+ [Current](AslHelp.Memory.Watch.IWatcher.Current.md\#AslHelp\_Memory\_Watch\_IWatcher\_Current)
 
-#### Property Value
+ [Enabled](AslHelp.Memory.Watch.IWatcher.Enabled.md\#AslHelp\_Memory\_Watch\_IWatcher\_Enabled)
 
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
+ [Old](AslHelp.Memory.Watch.IWatcher.Old.md\#AslHelp\_Memory\_Watch\_IWatcher\_Old)
 
-### <a id="AslHelp_Memory_Watch_IWatcher_Current"></a> Current
-
-```csharp
-object? Current { get; set; }
-```
-
-#### Property Value
-
- [object](https://learn.microsoft.com/dotnet/api/system.object)?
-
-### <a id="AslHelp_Memory_Watch_IWatcher_Enabled"></a> Enabled
-
-```csharp
-bool Enabled { get; set; }
-```
-
-#### Property Value
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Memory_Watch_IWatcher_Old"></a> Old
-
-```csharp
-object? Old { get; set; }
-```
-
-#### Property Value
-
- [object](https://learn.microsoft.com/dotnet/api/system.object)?
-
-### <a id="AslHelp_Memory_Watch_IWatcher_UpdateOnFail"></a> UpdateOnFail
-
-```csharp
-bool UpdateOnFail { get; set; }
-```
-
-#### Property Value
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
+ [UpdateOnFail](AslHelp.Memory.Watch.IWatcher.UpdateOnFail.md\#AslHelp\_Memory\_Watch\_IWatcher\_UpdateOnFail)
 
 ## Methods
 
-### <a id="AslHelp_Memory_Watch_IWatcher_TryDeref_System_UIntPtr__"></a> TryDeref\(out nuint\)
-
-```csharp
-bool TryDeref(out nuint result)
-```
-
-#### Parameters
-
-`result` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
+ [TryDeref\(out nuint\)](AslHelp.Memory.Watch.IWatcher.TryDeref.md\#AslHelp\_Memory\_Watch\_IWatcher\_TryDeref\_System\_UIntPtr\_\_)
 

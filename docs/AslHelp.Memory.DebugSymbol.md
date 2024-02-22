@@ -22,70 +22,26 @@ public readonly record struct DebugSymbol : IEquatable<DebugSymbol>
 
 #### Extension Methods
 
-[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
-[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
-[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
+[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetMethod.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.IsType.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
+[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
+[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
 
 ## Constructors
 
-### <a id="AslHelp_Memory_DebugSymbol__ctor_System_String_System_UIntPtr_System_UInt32_"></a> DebugSymbol\(string, nuint, uint\)
-
-```csharp
-public DebugSymbol(string name, nuint address, uint size)
-```
-
-#### Parameters
-
-`name` [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-`address` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`size` [uint](https://learn.microsoft.com/dotnet/api/system.uint32)
+ [DebugSymbol\(string, nuint, uint\)](AslHelp.Memory.DebugSymbol.\-ctor.md\#AslHelp\_Memory\_DebugSymbol\_\_ctor\_System\_String\_System\_UIntPtr\_System\_UInt32\_)
 
 ## Properties
 
-### <a id="AslHelp_Memory_DebugSymbol_Address"></a> Address
+ [Address](AslHelp.Memory.DebugSymbol.Address.md\#AslHelp\_Memory\_DebugSymbol\_Address)
 
-```csharp
-public nuint Address { get; }
-```
+ [Name](AslHelp.Memory.DebugSymbol.Name.md\#AslHelp\_Memory\_DebugSymbol\_Name)
 
-#### Property Value
-
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-### <a id="AslHelp_Memory_DebugSymbol_Name"></a> Name
-
-```csharp
-public string Name { get; }
-```
-
-#### Property Value
-
- [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-### <a id="AslHelp_Memory_DebugSymbol_Size"></a> Size
-
-```csharp
-public uint Size { get; }
-```
-
-#### Property Value
-
- [uint](https://learn.microsoft.com/dotnet/api/system.uint32)
+ [Size](AslHelp.Memory.DebugSymbol.Size.md\#AslHelp\_Memory\_DebugSymbol\_Size)
 
 ## Methods
 
-### <a id="AslHelp_Memory_DebugSymbol_ToString"></a> ToString\(\)
-
-```csharp
-public override string ToString()
-```
-
-#### Returns
-
- [string](https://learn.microsoft.com/dotnet/api/system.string)
+ [ToString\(\)](AslHelp.Memory.DebugSymbol.ToString.md\#AslHelp\_Memory\_DebugSymbol\_ToString)
 

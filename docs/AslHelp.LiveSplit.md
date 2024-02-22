@@ -18,3 +18,5 @@
 
  [AutoSplitter.ScriptActions](AslHelp.LiveSplit.AutoSplitter.ScriptActions.md)
 
+ [AutoSplitter.ScriptActions](AslHelp.LiveSplit.AutoSplitter.ScriptActions.md)
+

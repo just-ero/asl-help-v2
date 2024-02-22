@@ -25,64 +25,24 @@ public static class Debug
 
 #### Extension Methods
 
-[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
-[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
-[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
+[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetMethod.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.IsType.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
+[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
+[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
 
 ## Properties
 
-### <a id="AslHelp_LiveSplit_Diagnostics_Debug_StackTraceMethodNames"></a> StackTraceMethodNames
-
-```csharp
-public static IEnumerable<string> StackTraceMethodNames { get; }
-```
-
-#### Property Value
-
- [IEnumerable](https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable\-1)<[string](https://learn.microsoft.com/dotnet/api/system.string)\>
+ [StackTraceMethodNames](AslHelp.LiveSplit.Diagnostics.Debug.StackTraceMethodNames.md\#AslHelp\_LiveSplit\_Diagnostics\_Debug\_StackTraceMethodNames)
 
 ## Methods
 
-### <a id="AslHelp_LiveSplit_Diagnostics_Debug_Error_System_Object_"></a> Error\(object?\)
+ [Error\(object?\)](AslHelp.LiveSplit.Diagnostics.Debug.Error.md\#AslHelp\_LiveSplit\_Diagnostics\_Debug\_Error\_System\_Object\_)
 
-```csharp
-public static void Error(object? output)
-```
+ [Indent\(\)](AslHelp.LiveSplit.Diagnostics.Debug.Indent.md\#AslHelp\_LiveSplit\_Diagnostics\_Debug\_Indent)
 
-#### Parameters
+ [Info\(object?\)](AslHelp.LiveSplit.Diagnostics.Debug.Info.md\#AslHelp\_LiveSplit\_Diagnostics\_Debug\_Info\_System\_Object\_)
 
-`output` [object](https://learn.microsoft.com/dotnet/api/system.object)?
-
-### <a id="AslHelp_LiveSplit_Diagnostics_Debug_Indent"></a> Indent\(\)
-
-```csharp
-public static IDisposable Indent()
-```
-
-#### Returns
-
- [IDisposable](https://learn.microsoft.com/dotnet/api/system.idisposable)
-
-### <a id="AslHelp_LiveSplit_Diagnostics_Debug_Info_System_Object_"></a> Info\(object?\)
-
-```csharp
-public static void Info(object? output)
-```
-
-#### Parameters
-
-`output` [object](https://learn.microsoft.com/dotnet/api/system.object)?
-
-### <a id="AslHelp_LiveSplit_Diagnostics_Debug_Warn_System_Object_"></a> Warn\(object?\)
-
-```csharp
-public static void Warn(object? output)
-```
-
-#### Parameters
-
-`output` [object](https://learn.microsoft.com/dotnet/api/system.object)?
+ [Warn\(object?\)](AslHelp.LiveSplit.Diagnostics.Debug.Warn.md\#AslHelp\_LiveSplit\_Diagnostics\_Debug\_Warn\_System\_Object\_)
 

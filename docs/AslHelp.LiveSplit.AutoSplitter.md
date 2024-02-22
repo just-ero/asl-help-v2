@@ -24,84 +24,28 @@ public sealed class AutoSplitter
 
 #### Extension Methods
 
-[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
-[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
-[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
+[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetMethod.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.IsType.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
+[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
+[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
 
 ## Properties
 
-### <a id="AslHelp_LiveSplit_AutoSplitter_Actions"></a> Actions
+ [Actions](AslHelp.LiveSplit.AutoSplitter.Actions.md\#AslHelp\_LiveSplit\_AutoSplitter\_Actions)
 
-```csharp
-public AutoSplitter.ScriptActions Actions { get; }
-```
+ [Current](AslHelp.LiveSplit.AutoSplitter.Current.md\#AslHelp\_LiveSplit\_AutoSplitter\_Current)
 
-#### Property Value
+ [Game](AslHelp.LiveSplit.AutoSplitter.Game.md\#AslHelp\_LiveSplit\_AutoSplitter\_Game)
 
- [AutoSplitter](AslHelp.LiveSplit.AutoSplitter.md).[ScriptActions](AslHelp.LiveSplit.AutoSplitter.ScriptActions.md)
+ [SettingsBuilder](AslHelp.LiveSplit.AutoSplitter.SettingsBuilder.md\#AslHelp\_LiveSplit\_AutoSplitter\_SettingsBuilder)
 
-### <a id="AslHelp_LiveSplit_AutoSplitter_Current"></a> Current
+ [State](AslHelp.LiveSplit.AutoSplitter.State.md\#AslHelp\_LiveSplit\_AutoSplitter\_State)
 
-```csharp
-public IDictionary<string, object>? Current { get; }
-```
-
-#### Property Value
-
- [IDictionary](https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary\-2)<[string](https://learn.microsoft.com/dotnet/api/system.string), [object](https://learn.microsoft.com/dotnet/api/system.object)\>?
-
-### <a id="AslHelp_LiveSplit_AutoSplitter_Game"></a> Game
-
-```csharp
-public Process? Game { get; set; }
-```
-
-#### Property Value
-
- [Process](https://learn.microsoft.com/dotnet/api/system.diagnostics.process)?
-
-### <a id="AslHelp_LiveSplit_AutoSplitter_SettingsBuilder"></a> SettingsBuilder
-
-```csharp
-public ASLSettingsBuilder SettingsBuilder { get; }
-```
-
-#### Property Value
-
- ASLSettingsBuilder
-
-### <a id="AslHelp_LiveSplit_AutoSplitter_State"></a> State
-
-```csharp
-public LiveSplitState State { get; }
-```
-
-#### Property Value
-
- LiveSplitState
-
-### <a id="AslHelp_LiveSplit_AutoSplitter_Vars"></a> Vars
-
-```csharp
-public IDictionary<string, object> Vars { get; }
-```
-
-#### Property Value
-
- [IDictionary](https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary\-2)<[string](https://learn.microsoft.com/dotnet/api/system.string), [object](https://learn.microsoft.com/dotnet/api/system.object)\>
+ [Vars](AslHelp.LiveSplit.AutoSplitter.Vars.md\#AslHelp\_LiveSplit\_AutoSplitter\_Vars)
 
 ## Methods
 
-### <a id="AslHelp_LiveSplit_AutoSplitter_TryInitialize"></a> TryInitialize\(\)
-
-```csharp
-public static Result<AutoSplitter> TryInitialize()
-```
-
-#### Returns
-
- Result<[AutoSplitter](AslHelp.LiveSplit.AutoSplitter.md)\>
+ [TryInitialize\(\)](AslHelp.LiveSplit.AutoSplitter.TryInitialize.md\#AslHelp\_LiveSplit\_AutoSplitter\_TryInitialize)
 

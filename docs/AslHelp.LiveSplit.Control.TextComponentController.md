@@ -23,52 +23,24 @@ public sealed class TextComponentController
 
 #### Extension Methods
 
-[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
-[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
-[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
+[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetMethod.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.IsType.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
+[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
+[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
 
 ## Constructors
 
-### <a id="AslHelp_LiveSplit_Control_TextComponentController__ctor_LiveSplit_Model_LiveSplitState_"></a> TextComponentController\(LiveSplitState\)
-
-```csharp
-public TextComponentController(LiveSplitState state)
-```
-
-#### Parameters
-
-`state` LiveSplitState
+ [TextComponentController\(LiveSplitState\)](AslHelp.LiveSplit.Control.TextComponentController.\-ctor.md\#AslHelp\_LiveSplit\_Control\_TextComponentController\_\_ctor\_LiveSplit\_Model\_LiveSplitState\_)
 
 ## Properties
 
-### <a id="AslHelp_LiveSplit_Control_TextComponentController_Item_System_String_"></a> this\[string\]
-
-```csharp
-public TextComponentWrapper this[string key] { get; set; }
-```
-
-#### Property Value
-
- [TextComponentWrapper](AslHelp.LiveSplit.Control.TextComponentWrapper.md)
+ [this\[string\]](AslHelp.LiveSplit.Control.TextComponentController.Item.md\#AslHelp\_LiveSplit\_Control\_TextComponentController\_Item\_System\_String\_)
 
 ## Methods
 
-### <a id="AslHelp_LiveSplit_Control_TextComponentController_Remove_System_String_"></a> Remove\(string\)
+ [Remove\(string\)](AslHelp.LiveSplit.Control.TextComponentController.Remove.md\#AslHelp\_LiveSplit\_Control\_TextComponentController\_Remove\_System\_String\_)
 
-```csharp
-public void Remove(string id)
-```
-
-#### Parameters
-
-`id` [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-### <a id="AslHelp_LiveSplit_Control_TextComponentController_RemoveAll"></a> RemoveAll\(\)
-
-```csharp
-public void RemoveAll()
-```
+ [RemoveAll\(\)](AslHelp.LiveSplit.Control.TextComponentController.RemoveAll.md\#AslHelp\_LiveSplit\_Control\_TextComponentController\_RemoveAll)
 

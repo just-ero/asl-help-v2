@@ -27,36 +27,18 @@ public static class ArrayPoolExtensions
 
 #### Extension Methods
 
-[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
-[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
-[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
+[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetMethod.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.IsType.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
+[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
+[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
 
 ## Methods
 
-### <a id="AslHelp_Collections_Extensions_ArrayPoolExtensions_ReturnIfNotNull__1_System_Buffers_ArrayPool___0____0___"></a> ReturnIfNotNull<T\>\(ArrayPool<T\>, T\[\]?\)
+ [ReturnIfNotNull<T\>\(ArrayPool<T\>, T\[\]?\)](AslHelp.Collections.Extensions.ArrayPoolExtensions.ReturnIfNotNull.md\#AslHelp\_Collections\_Extensions\_ArrayPoolExtensions\_ReturnIfNotNull\_\_1\_System\_Buffers\_ArrayPool\_\_\_0\_\_\_\_0\_\_\_)
 
 If <code class="paramref">array</code> is not <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 returns it to the pool that it was previously obtained from using the <xref href="System.Buffers.ArrayPool%601.Rent(System.Int32)" data-throw-if-not-resolved="false"></xref>
 method on the same <xref href="System.Buffers.ArrayPool%601" data-throw-if-not-resolved="false"></xref> instance.
-
-```csharp
-public static void ReturnIfNotNull<T>(this ArrayPool<T> pool, T[]? array)
-```
-
-#### Parameters
-
-`pool` [ArrayPool](https://learn.microsoft.com/dotnet/api/system.buffers.arraypool\-1)<T\>
-
-`array` T\[\]?
-
-The buffer to return to the pool.
-
-#### Type Parameters
-
-`T` 
-
-The type of the objects that are in the resource pool.
 

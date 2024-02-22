@@ -23,94 +23,30 @@ public sealed class TimerController
 
 #### Extension Methods
 
-[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
-[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
-[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
+[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetMethod.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.IsType.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
+[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
+[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
 
 ## Constructors
 
-### <a id="AslHelp_LiveSplit_Control_TimerController__ctor_LiveSplit_Model_LiveSplitState_"></a> TimerController\(LiveSplitState\)
-
-```csharp
-public TimerController(LiveSplitState state)
-```
-
-#### Parameters
-
-`state` LiveSplitState
+ [TimerController\(LiveSplitState\)](AslHelp.LiveSplit.Control.TimerController.\-ctor.md\#AslHelp\_LiveSplit\_Control\_TimerController\_\_ctor\_LiveSplit\_Model\_LiveSplitState\_)
 
 ## Methods
 
-### <a id="AslHelp_LiveSplit_Control_TimerController_Pause_System_Func_System_Boolean__"></a> Pause\(Func<bool\>?\)
+ [Pause\(Func<bool\>?\)](AslHelp.LiveSplit.Control.TimerController.Pause.md\#AslHelp\_LiveSplit\_Control\_TimerController\_Pause\_System\_Func\_System\_Boolean\_\_)
 
-```csharp
-public void Pause(Func<bool>? func = null)
-```
+ [Reset\(Func<bool\>?\)](AslHelp.LiveSplit.Control.TimerController.Reset.md\#AslHelp\_LiveSplit\_Control\_TimerController\_Reset\_System\_Func\_System\_Boolean\_\_)
 
-#### Parameters
+ [Skip\(Func<bool\>?\)](AslHelp.LiveSplit.Control.TimerController.Skip.md\#AslHelp\_LiveSplit\_Control\_TimerController\_Skip\_System\_Func\_System\_Boolean\_\_)
 
-`func` [Func](https://learn.microsoft.com/dotnet/api/system.func\-1)<[bool](https://learn.microsoft.com/dotnet/api/system.boolean)\>?
+ [Split\(Func<bool\>?\)](AslHelp.LiveSplit.Control.TimerController.Split.md\#AslHelp\_LiveSplit\_Control\_TimerController\_Split\_System\_Func\_System\_Boolean\_\_)
 
-### <a id="AslHelp_LiveSplit_Control_TimerController_Reset_System_Func_System_Boolean__"></a> Reset\(Func<bool\>?\)
+ [Start\(Func<bool\>?\)](AslHelp.LiveSplit.Control.TimerController.Start.md\#AslHelp\_LiveSplit\_Control\_TimerController\_Start\_System\_Func\_System\_Boolean\_\_)
 
-```csharp
-public void Reset(Func<bool>? func = null)
-```
+ [Undo\(Func<bool\>?\)](AslHelp.LiveSplit.Control.TimerController.Undo.md\#AslHelp\_LiveSplit\_Control\_TimerController\_Undo\_System\_Func\_System\_Boolean\_\_)
 
-#### Parameters
-
-`func` [Func](https://learn.microsoft.com/dotnet/api/system.func\-1)<[bool](https://learn.microsoft.com/dotnet/api/system.boolean)\>?
-
-### <a id="AslHelp_LiveSplit_Control_TimerController_Skip_System_Func_System_Boolean__"></a> Skip\(Func<bool\>?\)
-
-```csharp
-public void Skip(Func<bool>? func = null)
-```
-
-#### Parameters
-
-`func` [Func](https://learn.microsoft.com/dotnet/api/system.func\-1)<[bool](https://learn.microsoft.com/dotnet/api/system.boolean)\>?
-
-### <a id="AslHelp_LiveSplit_Control_TimerController_Split_System_Func_System_Boolean__"></a> Split\(Func<bool\>?\)
-
-```csharp
-public void Split(Func<bool>? func = null)
-```
-
-#### Parameters
-
-`func` [Func](https://learn.microsoft.com/dotnet/api/system.func\-1)<[bool](https://learn.microsoft.com/dotnet/api/system.boolean)\>?
-
-### <a id="AslHelp_LiveSplit_Control_TimerController_Start_System_Func_System_Boolean__"></a> Start\(Func<bool\>?\)
-
-```csharp
-public void Start(Func<bool>? func = null)
-```
-
-#### Parameters
-
-`func` [Func](https://learn.microsoft.com/dotnet/api/system.func\-1)<[bool](https://learn.microsoft.com/dotnet/api/system.boolean)\>?
-
-### <a id="AslHelp_LiveSplit_Control_TimerController_Undo_System_Func_System_Boolean__"></a> Undo\(Func<bool\>?\)
-
-```csharp
-public void Undo(Func<bool>? func = null)
-```
-
-#### Parameters
-
-`func` [Func](https://learn.microsoft.com/dotnet/api/system.func\-1)<[bool](https://learn.microsoft.com/dotnet/api/system.boolean)\>?
-
-### <a id="AslHelp_LiveSplit_Control_TimerController_Unpause_System_Func_System_Boolean__"></a> Unpause\(Func<bool\>?\)
-
-```csharp
-public void Unpause(Func<bool>? func = null)
-```
-
-#### Parameters
-
-`func` [Func](https://learn.microsoft.com/dotnet/api/system.func\-1)<[bool](https://learn.microsoft.com/dotnet/api/system.boolean)\>?
+ [Unpause\(Func<bool\>?\)](AslHelp.LiveSplit.Control.TimerController.Unpause.md\#AslHelp\_LiveSplit\_Control\_TimerController\_Unpause\_System\_Func\_System\_Boolean\_\_)
 

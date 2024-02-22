@@ -16,106 +16,30 @@ public interface IProcessMemory : IMemoryReader, IMemoryWriter, IMemoryScanner, 
 
 #### Extension Methods
 
-[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
-[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
-[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
+[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetMethod.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.IsType.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
+[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
+[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
 
 ## Properties
 
-### <a id="AslHelp_Memory_Ipc_IProcessMemory_Is64Bit"></a> Is64Bit
+ [Is64Bit](AslHelp.Memory.Ipc.IProcessMemory.Is64Bit.md\#AslHelp\_Memory\_Ipc\_IProcessMemory\_Is64Bit)
 
-```csharp
-bool Is64Bit { get; }
-```
+ [MainModule](AslHelp.Memory.Ipc.IProcessMemory.MainModule.md\#AslHelp\_Memory\_Ipc\_IProcessMemory\_MainModule)
 
-#### Property Value
+ [Modules](AslHelp.Memory.Ipc.IProcessMemory.Modules.md\#AslHelp\_Memory\_Ipc\_IProcessMemory\_Modules)
 
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
+ [PointerSize](AslHelp.Memory.Ipc.IProcessMemory.PointerSize.md\#AslHelp\_Memory\_Ipc\_IProcessMemory\_PointerSize)
 
-### <a id="AslHelp_Memory_Ipc_IProcessMemory_MainModule"></a> MainModule
+ [Process](AslHelp.Memory.Ipc.IProcessMemory.Process.md\#AslHelp\_Memory\_Ipc\_IProcessMemory\_Process)
 
-```csharp
-Module MainModule { get; }
-```
-
-#### Property Value
-
- [Module](AslHelp.Memory.Module.md)
-
-### <a id="AslHelp_Memory_Ipc_IProcessMemory_Modules"></a> Modules
-
-```csharp
-IReadOnlyKeyedCollection<string, Module> Modules { get; }
-```
-
-#### Property Value
-
- [IReadOnlyKeyedCollection](AslHelp.Collections.IReadOnlyKeyedCollection\-2.md)<[string](https://learn.microsoft.com/dotnet/api/system.string), [Module](AslHelp.Memory.Module.md)\>
-
-### <a id="AslHelp_Memory_Ipc_IProcessMemory_PointerSize"></a> PointerSize
-
-```csharp
-byte PointerSize { get; }
-```
-
-#### Property Value
-
- [byte](https://learn.microsoft.com/dotnet/api/system.byte)
-
-### <a id="AslHelp_Memory_Ipc_IProcessMemory_Process"></a> Process
-
-```csharp
-Process Process { get; }
-```
-
-#### Property Value
-
- [Process](https://learn.microsoft.com/dotnet/api/system.diagnostics.process)
-
-### <a id="AslHelp_Memory_Ipc_IProcessMemory_Tick"></a> Tick
-
-```csharp
-uint Tick { get; set; }
-```
-
-#### Property Value
-
- [uint](https://learn.microsoft.com/dotnet/api/system.uint32)
+ [Tick](AslHelp.Memory.Ipc.IProcessMemory.Tick.md\#AslHelp\_Memory\_Ipc\_IProcessMemory\_Tick)
 
 ## Methods
 
-### <a id="AslHelp_Memory_Ipc_IProcessMemory_GetMemoryPages_System_Boolean_"></a> GetMemoryPages\(bool\)
+ [GetMemoryPages\(bool\)](AslHelp.Memory.Ipc.IProcessMemory.GetMemoryPages.md\#AslHelp\_Memory\_Ipc\_IProcessMemory\_GetMemoryPages\_System\_Boolean\_)
 
-```csharp
-IEnumerable<MemoryPage> GetMemoryPages(bool allPages = false)
-```
-
-#### Parameters
-
-`allPages` [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-#### Returns
-
- [IEnumerable](https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable\-1)<[MemoryPage](AslHelp.Memory.MemoryPage.md)\>
-
-### <a id="AslHelp_Memory_Ipc_IProcessMemory_TryReadRelative_System_UIntPtr__System_UIntPtr_System_UInt32_"></a> TryReadRelative\(out nuint, nuint, uint\)
-
-```csharp
-bool TryReadRelative(out nuint result, nuint relativeAddress, uint instructionSize = 4)
-```
-
-#### Parameters
-
-`result` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`relativeAddress` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`instructionSize` [uint](https://learn.microsoft.com/dotnet/api/system.uint32)
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
+ [TryReadRelative\(out nuint, nuint, uint\)](AslHelp.Memory.Ipc.IProcessMemory.TryReadRelative.md\#AslHelp\_Memory\_Ipc\_IProcessMemory\_TryReadRelative\_System\_UIntPtr\_\_System\_UIntPtr\_System\_UInt32\_)
 

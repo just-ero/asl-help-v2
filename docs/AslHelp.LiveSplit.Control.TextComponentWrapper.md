@@ -23,74 +23,26 @@ public sealed class TextComponentWrapper
 
 #### Extension Methods
 
-[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
-[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
-[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
+[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetMethod.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.IsType.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
+[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
+[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
 
 ## Constructors
 
-### <a id="AslHelp_LiveSplit_Control_TextComponentWrapper__ctor_LiveSplit_Model_LiveSplitState_"></a> TextComponentWrapper\(LiveSplitState\)
+ [TextComponentWrapper\(LiveSplitState\)](AslHelp.LiveSplit.Control.TextComponentWrapper.\-ctor.md\#AslHelp\_LiveSplit\_Control\_TextComponentWrapper\_\_ctor\_LiveSplit\_Model\_LiveSplitState\_)
 
-```csharp
-public TextComponentWrapper(LiveSplitState state)
-```
-
-#### Parameters
-
-`state` LiveSplitState
-
-### <a id="AslHelp_LiveSplit_Control_TextComponentWrapper__ctor_LiveSplit_UI_Components_ILayoutComponent_"></a> TextComponentWrapper\(ILayoutComponent\)
-
-```csharp
-public TextComponentWrapper(ILayoutComponent component)
-```
-
-#### Parameters
-
-`component` ILayoutComponent
+ [TextComponentWrapper\(ILayoutComponent\)](AslHelp.LiveSplit.Control.TextComponentWrapper.\-ctor.md\#AslHelp\_LiveSplit\_Control\_TextComponentWrapper\_\_ctor\_LiveSplit\_UI\_Components\_ILayoutComponent\_)
 
 ## Properties
 
-### <a id="AslHelp_LiveSplit_Control_TextComponentWrapper_LayoutComponent"></a> LayoutComponent
+ [LayoutComponent](AslHelp.LiveSplit.Control.TextComponentWrapper.LayoutComponent.md\#AslHelp\_LiveSplit\_Control\_TextComponentWrapper\_LayoutComponent)
 
-```csharp
-public ILayoutComponent LayoutComponent { get; }
-```
+ [Tag](AslHelp.LiveSplit.Control.TextComponentWrapper.Tag.md\#AslHelp\_LiveSplit\_Control\_TextComponentWrapper\_Tag)
 
-#### Property Value
+ [Text1](AslHelp.LiveSplit.Control.TextComponentWrapper.Text1.md\#AslHelp\_LiveSplit\_Control\_TextComponentWrapper\_Text1)
 
- ILayoutComponent
-
-### <a id="AslHelp_LiveSplit_Control_TextComponentWrapper_Tag"></a> Tag
-
-```csharp
-public object? Tag { get; set; }
-```
-
-#### Property Value
-
- [object](https://learn.microsoft.com/dotnet/api/system.object)?
-
-### <a id="AslHelp_LiveSplit_Control_TextComponentWrapper_Text1"></a> Text1
-
-```csharp
-public dynamic Text1 { get; set; }
-```
-
-#### Property Value
-
- dynamic
-
-### <a id="AslHelp_LiveSplit_Control_TextComponentWrapper_Text2"></a> Text2
-
-```csharp
-public dynamic Text2 { get; set; }
-```
-
-#### Property Value
-
- dynamic
+ [Text2](AslHelp.LiveSplit.Control.TextComponentWrapper.Text2.md\#AslHelp\_LiveSplit\_Control\_TextComponentWrapper\_Text2)
 

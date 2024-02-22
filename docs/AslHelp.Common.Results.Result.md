@@ -22,346 +22,64 @@ public readonly struct Result : IResult
 
 #### Extension Methods
 
-[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
-[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
-[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
+[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetMethod.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.IsType.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
+[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
+[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
 
 ## Properties
 
-### <a id="AslHelp_Common_Results_Result_Error"></a> Error
+ [Error](AslHelp.Common.Results.Result.Error.md\#AslHelp\_Common\_Results\_Result\_Error)
 
-```csharp
-public IResultError? Error { get; }
-```
+ [IsErr](AslHelp.Common.Results.Result.IsErr.md\#AslHelp\_Common\_Results\_Result\_IsErr)
 
-#### Property Value
-
- [IResultError](AslHelp.Common.Results.Errors.IResultError.md)?
-
-### <a id="AslHelp_Common_Results_Result_IsErr"></a> IsErr
-
-```csharp
-public bool IsErr { get; }
-```
-
-#### Property Value
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Common_Results_Result_IsOk"></a> IsOk
-
-```csharp
-public bool IsOk { get; }
-```
-
-#### Property Value
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
+ [IsOk](AslHelp.Common.Results.Result.IsOk.md\#AslHelp\_Common\_Results\_Result\_IsOk)
 
 ## Methods
 
-### <a id="AslHelp_Common_Results_Result_And_AslHelp_Common_Results_Result_"></a> And\(Result\)
+ [And\(Result\)](AslHelp.Common.Results.Result.And.md\#AslHelp\_Common\_Results\_Result\_And\_AslHelp\_Common\_Results\_Result\_)
 
-```csharp
-public Result And(Result res)
-```
+ [And<TValue\>\(Result<TValue\>\)](AslHelp.Common.Results.Result.And.md\#AslHelp\_Common\_Results\_Result\_And\_\_1\_AslHelp\_Common\_Results\_Result\_\_\_0\_\_)
 
-#### Parameters
+ [AndThen\(Action\)](AslHelp.Common.Results.Result.AndThen.md\#AslHelp\_Common\_Results\_Result\_AndThen\_System\_Action\_)
 
-`res` [Result](AslHelp.Common.Results.Result.md)
+ [AndThen\(Func<Result\>\)](AslHelp.Common.Results.Result.AndThen.md\#AslHelp\_Common\_Results\_Result\_AndThen\_System\_Func\_AslHelp\_Common\_Results\_Result\_\_)
 
-#### Returns
+ [AndThen<TValue\>\(Func<Result<TValue\>\>\)](AslHelp.Common.Results.Result.AndThen.md\#AslHelp\_Common\_Results\_Result\_AndThen\_\_1\_System\_Func\_AslHelp\_Common\_Results\_Result\_\_\_0\_\_\_)
 
- [Result](AslHelp.Common.Results.Result.md)
+ [Err\(IResultError\)](AslHelp.Common.Results.Result.Err.md\#AslHelp\_Common\_Results\_Result\_Err\_AslHelp\_Common\_Results\_Errors\_IResultError\_)
 
-### <a id="AslHelp_Common_Results_Result_And__1_AslHelp_Common_Results_Result___0__"></a> And<TValue\>\(Result<TValue\>\)
+ [ExpectErr\(string\)](AslHelp.Common.Results.Result.ExpectErr.md\#AslHelp\_Common\_Results\_Result\_ExpectErr\_System\_String\_)
 
-```csharp
-public Result<TValue> And<TValue>(Result<TValue> res)
-```
+ [ExpectOk\(string\)](AslHelp.Common.Results.Result.ExpectOk.md\#AslHelp\_Common\_Results\_Result\_ExpectOk\_System\_String\_)
 
-#### Parameters
+ [IsErrAnd\(Func<IResultError, bool\>\)](AslHelp.Common.Results.Result.IsErrAnd.md\#AslHelp\_Common\_Results\_Result\_IsErrAnd\_System\_Func\_AslHelp\_Common\_Results\_Errors\_IResultError\_System\_Boolean\_\_)
 
-`res` [Result](AslHelp.Common.Results.Result\-1.md)<TValue\>
+ [IsOkAnd\(Func<bool\>\)](AslHelp.Common.Results.Result.IsOkAnd.md\#AslHelp\_Common\_Results\_Result\_IsOkAnd\_System\_Func\_System\_Boolean\_\_)
 
-#### Returns
+ [Map<TValue\>\(TValue\)](AslHelp.Common.Results.Result.Map.md\#AslHelp\_Common\_Results\_Result\_Map\_\_1\_\_\_0\_)
 
- [Result](AslHelp.Common.Results.Result\-1.md)<TValue\>
+ [MapErr<TError\>\(Func<IResultError, TError\>\)](AslHelp.Common.Results.Result.MapErr.md\#AslHelp\_Common\_Results\_Result\_MapErr\_\_1\_System\_Func\_AslHelp\_Common\_Results\_Errors\_IResultError\_\_\_0\_\_)
 
-#### Type Parameters
+ [MapOrElse<TValue\>\(TValue, Func<IResultError, TValue\>\)](AslHelp.Common.Results.Result.MapOrElse.md\#AslHelp\_Common\_Results\_Result\_MapOrElse\_\_1\_\_\_0\_System\_Func\_AslHelp\_Common\_Results\_Errors\_IResultError\_\_\_0\_\_)
 
-`TValue` 
+ [Ok\(\)](AslHelp.Common.Results.Result.Ok.md\#AslHelp\_Common\_Results\_Result\_Ok)
 
-### <a id="AslHelp_Common_Results_Result_AndThen_System_Action_"></a> AndThen\(Action\)
+ [Or\(Result\)](AslHelp.Common.Results.Result.Or.md\#AslHelp\_Common\_Results\_Result\_Or\_AslHelp\_Common\_Results\_Result\_)
 
-```csharp
-public Result AndThen(Action op)
-```
+ [OrElse\(Func<IResultError, Result\>\)](AslHelp.Common.Results.Result.OrElse.md\#AslHelp\_Common\_Results\_Result\_OrElse\_System\_Func\_AslHelp\_Common\_Results\_Errors\_IResultError\_AslHelp\_Common\_Results\_Result\_\_)
 
-#### Parameters
+ [OrElse\(Action<IResultError\>\)](AslHelp.Common.Results.Result.OrElse.md\#AslHelp\_Common\_Results\_Result\_OrElse\_System\_Action\_AslHelp\_Common\_Results\_Errors\_IResultError\_\_)
 
-`op` [Action](https://learn.microsoft.com/dotnet/api/system.action)
+ [ToString\(\)](AslHelp.Common.Results.Result.ToString.md\#AslHelp\_Common\_Results\_Result\_ToString)
 
-#### Returns
-
- [Result](AslHelp.Common.Results.Result.md)
-
-### <a id="AslHelp_Common_Results_Result_AndThen_System_Func_AslHelp_Common_Results_Result__"></a> AndThen\(Func<Result\>\)
-
-```csharp
-public Result AndThen(Func<Result> op)
-```
-
-#### Parameters
-
-`op` [Func](https://learn.microsoft.com/dotnet/api/system.func\-1)<[Result](AslHelp.Common.Results.Result.md)\>
-
-#### Returns
-
- [Result](AslHelp.Common.Results.Result.md)
-
-### <a id="AslHelp_Common_Results_Result_AndThen__1_System_Func_AslHelp_Common_Results_Result___0___"></a> AndThen<TValue\>\(Func<Result<TValue\>\>\)
-
-```csharp
-public Result<TValue> AndThen<TValue>(Func<Result<TValue>> op)
-```
-
-#### Parameters
-
-`op` [Func](https://learn.microsoft.com/dotnet/api/system.func\-1)<[Result](AslHelp.Common.Results.Result\-1.md)<TValue\>\>
-
-#### Returns
-
- [Result](AslHelp.Common.Results.Result\-1.md)<TValue\>
-
-#### Type Parameters
-
-`TValue` 
-
-### <a id="AslHelp_Common_Results_Result_Err_AslHelp_Common_Results_Errors_IResultError_"></a> Err\(IResultError\)
-
-```csharp
-public static Result Err(IResultError error)
-```
-
-#### Parameters
-
-`error` [IResultError](AslHelp.Common.Results.Errors.IResultError.md)
-
-#### Returns
-
- [Result](AslHelp.Common.Results.Result.md)
-
-### <a id="AslHelp_Common_Results_Result_ExpectErr_System_String_"></a> ExpectErr\(string\)
-
-```csharp
-public IResultError ExpectErr(string message)
-```
-
-#### Parameters
-
-`message` [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-#### Returns
-
- [IResultError](AslHelp.Common.Results.Errors.IResultError.md)
-
-### <a id="AslHelp_Common_Results_Result_ExpectOk_System_String_"></a> ExpectOk\(string\)
-
-```csharp
-public void ExpectOk(string message)
-```
-
-#### Parameters
-
-`message` [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-### <a id="AslHelp_Common_Results_Result_IsErrAnd_System_Func_AslHelp_Common_Results_Errors_IResultError_System_Boolean__"></a> IsErrAnd\(Func<IResultError, bool\>\)
-
-```csharp
-public bool IsErrAnd(Func<IResultError, bool> op)
-```
-
-#### Parameters
-
-`op` [Func](https://learn.microsoft.com/dotnet/api/system.func\-2)<[IResultError](AslHelp.Common.Results.Errors.IResultError.md), [bool](https://learn.microsoft.com/dotnet/api/system.boolean)\>
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Common_Results_Result_IsOkAnd_System_Func_System_Boolean__"></a> IsOkAnd\(Func<bool\>\)
-
-```csharp
-public bool IsOkAnd(Func<bool> op)
-```
-
-#### Parameters
-
-`op` [Func](https://learn.microsoft.com/dotnet/api/system.func\-1)<[bool](https://learn.microsoft.com/dotnet/api/system.boolean)\>
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Common_Results_Result_Map__1___0_"></a> Map<TValue\>\(TValue\)
-
-```csharp
-public Result<TValue> Map<TValue>(TValue value)
-```
-
-#### Parameters
-
-`value` TValue
-
-#### Returns
-
- [Result](AslHelp.Common.Results.Result\-1.md)<TValue\>
-
-#### Type Parameters
-
-`TValue` 
-
-### <a id="AslHelp_Common_Results_Result_MapErr__1_System_Func_AslHelp_Common_Results_Errors_IResultError___0__"></a> MapErr<TError\>\(Func<IResultError, TError\>\)
-
-```csharp
-public Result MapErr<TError>(Func<IResultError, TError> op) where TError : IResultError
-```
-
-#### Parameters
-
-`op` [Func](https://learn.microsoft.com/dotnet/api/system.func\-2)<[IResultError](AslHelp.Common.Results.Errors.IResultError.md), TError\>
-
-#### Returns
-
- [Result](AslHelp.Common.Results.Result.md)
-
-#### Type Parameters
-
-`TError` 
-
-### <a id="AslHelp_Common_Results_Result_MapOrElse__1___0_System_Func_AslHelp_Common_Results_Errors_IResultError___0__"></a> MapOrElse<TValue\>\(TValue, Func<IResultError, TValue\>\)
-
-```csharp
-public TValue MapOrElse<TValue>(TValue @default, Func<IResultError, TValue> err)
-```
-
-#### Parameters
-
-`default` TValue
-
-`err` [Func](https://learn.microsoft.com/dotnet/api/system.func\-2)<[IResultError](AslHelp.Common.Results.Errors.IResultError.md), TValue\>
-
-#### Returns
-
- TValue
-
-#### Type Parameters
-
-`TValue` 
-
-### <a id="AslHelp_Common_Results_Result_Ok"></a> Ok\(\)
-
-```csharp
-public static Result Ok()
-```
-
-#### Returns
-
- [Result](AslHelp.Common.Results.Result.md)
-
-### <a id="AslHelp_Common_Results_Result_Or_AslHelp_Common_Results_Result_"></a> Or\(Result\)
-
-```csharp
-public Result Or(Result res)
-```
-
-#### Parameters
-
-`res` [Result](AslHelp.Common.Results.Result.md)
-
-#### Returns
-
- [Result](AslHelp.Common.Results.Result.md)
-
-### <a id="AslHelp_Common_Results_Result_OrElse_System_Func_AslHelp_Common_Results_Errors_IResultError_AslHelp_Common_Results_Result__"></a> OrElse\(Func<IResultError, Result\>\)
-
-```csharp
-public Result OrElse(Func<IResultError, Result> op)
-```
-
-#### Parameters
-
-`op` [Func](https://learn.microsoft.com/dotnet/api/system.func\-2)<[IResultError](AslHelp.Common.Results.Errors.IResultError.md), [Result](AslHelp.Common.Results.Result.md)\>
-
-#### Returns
-
- [Result](AslHelp.Common.Results.Result.md)
-
-### <a id="AslHelp_Common_Results_Result_OrElse_System_Action_AslHelp_Common_Results_Errors_IResultError__"></a> OrElse\(Action<IResultError\>\)
-
-```csharp
-public Result OrElse(Action<IResultError> op)
-```
-
-#### Parameters
-
-`op` [Action](https://learn.microsoft.com/dotnet/api/system.action\-1)<[IResultError](AslHelp.Common.Results.Errors.IResultError.md)\>
-
-#### Returns
-
- [Result](AslHelp.Common.Results.Result.md)
-
-### <a id="AslHelp_Common_Results_Result_ToString"></a> ToString\(\)
-
-```csharp
-public override string ToString()
-```
-
-#### Returns
-
- [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-### <a id="AslHelp_Common_Results_Result_UnwrapErr"></a> UnwrapErr\(\)
-
-```csharp
-public IResultError UnwrapErr()
-```
-
-#### Returns
-
- [IResultError](AslHelp.Common.Results.Errors.IResultError.md)
+ [UnwrapErr\(\)](AslHelp.Common.Results.Result.UnwrapErr.md\#AslHelp\_Common\_Results\_Result\_UnwrapErr)
 
 ## Operators
 
-### <a id="AslHelp_Common_Results_Result_op_Implicit_AslHelp_Common_Results_Errors_ResultError__AslHelp_Common_Results_Result"></a> implicit operator Result\(ResultError\)
+ [implicit operator Result\(ResultError\)](AslHelp.Common.Results.Result.op\_Implicit.md\#AslHelp\_Common\_Results\_Result\_op\_Implicit\_AslHelp\_Common\_Results\_Errors\_ResultError\_\_AslHelp\_Common\_Results\_Result)
 
-```csharp
-public static implicit operator Result(ResultError error)
-```
-
-#### Parameters
-
-`error` [ResultError](AslHelp.Common.Results.Errors.ResultError.md)
-
-#### Returns
-
- [Result](AslHelp.Common.Results.Result.md)
-
-### <a id="AslHelp_Common_Results_Result_op_Implicit_System_Exception__AslHelp_Common_Results_Result"></a> implicit operator Result\(Exception\)
-
-```csharp
-public static implicit operator Result(Exception exception)
-```
-
-#### Parameters
-
-`exception` [Exception](https://learn.microsoft.com/dotnet/api/system.exception)
-
-#### Returns
-
- [Result](AslHelp.Common.Results.Result.md)
+ [implicit operator Result\(Exception\)](AslHelp.Common.Results.Result.op\_Implicit.md\#AslHelp\_Common\_Results\_Result\_op\_Implicit\_System\_Exception\_\_AslHelp\_Common\_Results\_Result)
 

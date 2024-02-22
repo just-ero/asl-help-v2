@@ -24,328 +24,62 @@ public abstract class MonoOperator
 
 #### Extension Methods
 
-[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
-[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
-[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
+[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetMethod.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.IsType.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
+[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
+[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
 
 ## Constructors
 
-### <a id="AslHelp_Unity_Runtime_Interop_MonoOperator__ctor_AslHelp_Unity_Memory_Ipc_IMonoProcessMemory_AslHelp_Memory_StructReflection_Reflection_AslHelp_Unity_Runtime_Interop_MonoDefaults_System_UIntPtr_"></a> MonoOperator\(IMonoProcessMemory, Reflection, MonoDefaults, nuint\)
-
-```csharp
-protected MonoOperator(IMonoProcessMemory memory, Reflection structs, MonoDefaults defaults, nuint assemblies)
-```
-
-#### Parameters
-
-`memory` [IMonoProcessMemory](AslHelp.Unity.Memory.Ipc.IMonoProcessMemory.md)
-
-`structs` Reflection
-
-`defaults` [MonoDefaults](AslHelp.Unity.Runtime.Interop.MonoDefaults.md)
-
-`assemblies` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
+ [MonoOperator\(IMonoProcessMemory, Reflection, MonoDefaults, nuint\)](AslHelp.Unity.Runtime.Interop.MonoOperator.\-ctor.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_\_ctor\_AslHelp\_Unity\_Memory\_Ipc\_IMonoProcessMemory\_AslHelp\_Memory\_StructReflection\_Reflection\_AslHelp\_Unity\_Runtime\_Interop\_MonoDefaults\_System\_UIntPtr\_)
 
 ## Fields
 
-### <a id="AslHelp_Unity_Runtime_Interop_MonoOperator__defaults"></a> \_defaults
+ [\_defaults](AslHelp.Unity.Runtime.Interop.MonoOperator.\_defaults.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_\_defaults)
 
-```csharp
-protected readonly MonoDefaults _defaults
-```
+ [\_loadedAssemblies](AslHelp.Unity.Runtime.Interop.MonoOperator.\_loadedAssemblies.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_\_loadedAssemblies)
 
-#### Field Value
+ [\_memory](AslHelp.Unity.Runtime.Interop.MonoOperator.\_memory.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_\_memory)
 
- [MonoDefaults](AslHelp.Unity.Runtime.Interop.MonoDefaults.md)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoOperator__loadedAssemblies"></a> \_loadedAssemblies
-
-```csharp
-protected readonly nuint _loadedAssemblies
-```
-
-#### Field Value
-
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoOperator__memory"></a> \_memory
-
-```csharp
-protected readonly IMonoProcessMemory _memory
-```
-
-#### Field Value
-
- [IMonoProcessMemory](AslHelp.Unity.Memory.Ipc.IMonoProcessMemory.md)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoOperator__structs"></a> \_structs
-
-```csharp
-protected readonly Reflection _structs
-```
-
-#### Field Value
-
- Reflection
+ [\_structs](AslHelp.Unity.Runtime.Interop.MonoOperator.\_structs.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_\_structs)
 
 ## Properties
 
-### <a id="AslHelp_Unity_Runtime_Interop_MonoOperator_Images"></a> Images
-
-```csharp
-public KeyedCollection<string, MonoImage> Images { get; }
-```
-
-#### Property Value
-
- KeyedCollection<[string](https://learn.microsoft.com/dotnet/api/system.string), [MonoImage](AslHelp.Unity.Runtime.MonoImage.md)\>
+ [Images](AslHelp.Unity.Runtime.Interop.MonoOperator.Images.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_Images)
 
 ## Methods
 
-### <a id="AslHelp_Unity_Runtime_Interop_MonoOperator_Create_AslHelp_Unity_Memory_Ipc_IMonoProcessMemory_"></a> Create\(IMonoProcessMemory\)
+ [Create\(IMonoProcessMemory\)](AslHelp.Unity.Runtime.Interop.MonoOperator.Create.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_Create\_AslHelp\_Unity\_Memory\_Ipc\_IMonoProcessMemory\_)
 
-```csharp
-public static Result<MonoOperator> Create(IMonoProcessMemory memory)
-```
+ [TryGetClassName\(nuint, out string?\)](AslHelp.Unity.Runtime.Interop.MonoOperator.TryGetClassName.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_TryGetClassName\_System\_UIntPtr\_System\_String\_\_)
 
-#### Parameters
+ [TryGetClassNamespace\(nuint, out string?\)](AslHelp.Unity.Runtime.Interop.MonoOperator.TryGetClassNamespace.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_TryGetClassNamespace\_System\_UIntPtr\_System\_String\_\_)
 
-`memory` [IMonoProcessMemory](AslHelp.Unity.Memory.Ipc.IMonoProcessMemory.md)
+ [TryGetClassParent\(nuint, out nuint\)](AslHelp.Unity.Runtime.Interop.MonoOperator.TryGetClassParent.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_TryGetClassParent\_System\_UIntPtr\_System\_UIntPtr\_\_)
 
-#### Returns
+ [TryGetClassStaticDataChunk\(nuint, out nuint\)](AslHelp.Unity.Runtime.Interop.MonoOperator.TryGetClassStaticDataChunk.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_TryGetClassStaticDataChunk\_System\_UIntPtr\_System\_UIntPtr\_\_)
 
- Result<[MonoOperator](AslHelp.Unity.Runtime.Interop.MonoOperator.md)\>
+ [TryGetClasses\(nuint\)](AslHelp.Unity.Runtime.Interop.MonoOperator.TryGetClasses.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_TryGetClasses\_System\_UIntPtr\_)
 
-### <a id="AslHelp_Unity_Runtime_Interop_MonoOperator_TryGetClassName_System_UIntPtr_System_String__"></a> TryGetClassName\(nuint, out string?\)
+ [TryGetFieldName\(nuint, out string?\)](AslHelp.Unity.Runtime.Interop.MonoOperator.TryGetFieldName.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_TryGetFieldName\_System\_UIntPtr\_System\_String\_\_)
 
-```csharp
-public abstract bool TryGetClassName(nuint klass, out string? name)
-```
+ [TryGetFieldOffset\(nuint, out int\)](AslHelp.Unity.Runtime.Interop.MonoOperator.TryGetFieldOffset.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_TryGetFieldOffset\_System\_UIntPtr\_System\_Int32\_\_)
 
-#### Parameters
+ [TryGetFieldType\(nuint, out nuint\)](AslHelp.Unity.Runtime.Interop.MonoOperator.TryGetFieldType.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_TryGetFieldType\_System\_UIntPtr\_System\_UIntPtr\_\_)
 
-`klass` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
+ [TryGetFields\(nuint\)](AslHelp.Unity.Runtime.Interop.MonoOperator.TryGetFields.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_TryGetFields\_System\_UIntPtr\_)
 
-`name` [string](https://learn.microsoft.com/dotnet/api/system.string)?
+ [TryGetImageFileName\(nuint, out string?\)](AslHelp.Unity.Runtime.Interop.MonoOperator.TryGetImageFileName.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_TryGetImageFileName\_System\_UIntPtr\_System\_String\_\_)
 
-#### Returns
+ [TryGetImageName\(nuint, out string?\)](AslHelp.Unity.Runtime.Interop.MonoOperator.TryGetImageName.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_TryGetImageName\_System\_UIntPtr\_System\_String\_\_)
 
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
+ [TryGetImages\(\)](AslHelp.Unity.Runtime.Interop.MonoOperator.TryGetImages.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_TryGetImages)
 
-### <a id="AslHelp_Unity_Runtime_Interop_MonoOperator_TryGetClassNamespace_System_UIntPtr_System_String__"></a> TryGetClassNamespace\(nuint, out string?\)
+ [TryGetTypeAttributes\(nuint, out MonoFieldAttribute\)](AslHelp.Unity.Runtime.Interop.MonoOperator.TryGetTypeAttributes.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_TryGetTypeAttributes\_System\_UIntPtr\_AslHelp\_Unity\_Runtime\_Interop\_MonoFieldAttribute\_\_)
 
-```csharp
-public abstract bool TryGetClassNamespace(nuint klass, out string? @namespace)
-```
+ [TryGetTypeData\(nuint, out nuint\)](AslHelp.Unity.Runtime.Interop.MonoOperator.TryGetTypeData.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_TryGetTypeData\_System\_UIntPtr\_System\_UIntPtr\_\_)
 
-#### Parameters
-
-`klass` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`namespace` [string](https://learn.microsoft.com/dotnet/api/system.string)?
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoOperator_TryGetClassParent_System_UIntPtr_System_UIntPtr__"></a> TryGetClassParent\(nuint, out nuint\)
-
-```csharp
-public abstract bool TryGetClassParent(nuint klass, out nuint parent)
-```
-
-#### Parameters
-
-`klass` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`parent` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoOperator_TryGetClassStaticDataChunk_System_UIntPtr_System_UIntPtr__"></a> TryGetClassStaticDataChunk\(nuint, out nuint\)
-
-```csharp
-public abstract bool TryGetClassStaticDataChunk(nuint klass, out nuint staticDataChunk)
-```
-
-#### Parameters
-
-`klass` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`staticDataChunk` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoOperator_TryGetClasses_System_UIntPtr_"></a> TryGetClasses\(nuint\)
-
-```csharp
-public abstract IEnumerable<nuint> TryGetClasses(nuint image)
-```
-
-#### Parameters
-
-`image` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-#### Returns
-
- [IEnumerable](https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable\-1)<[nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)\>
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoOperator_TryGetFieldName_System_UIntPtr_System_String__"></a> TryGetFieldName\(nuint, out string?\)
-
-```csharp
-public abstract bool TryGetFieldName(nuint field, out string? name)
-```
-
-#### Parameters
-
-`field` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`name` [string](https://learn.microsoft.com/dotnet/api/system.string)?
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoOperator_TryGetFieldOffset_System_UIntPtr_System_Int32__"></a> TryGetFieldOffset\(nuint, out int\)
-
-```csharp
-public abstract bool TryGetFieldOffset(nuint field, out int offset)
-```
-
-#### Parameters
-
-`field` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`offset` [int](https://learn.microsoft.com/dotnet/api/system.int32)
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoOperator_TryGetFieldType_System_UIntPtr_System_UIntPtr__"></a> TryGetFieldType\(nuint, out nuint\)
-
-```csharp
-public abstract bool TryGetFieldType(nuint field, out nuint type)
-```
-
-#### Parameters
-
-`field` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`type` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoOperator_TryGetFields_System_UIntPtr_"></a> TryGetFields\(nuint\)
-
-```csharp
-public abstract IEnumerable<nuint> TryGetFields(nuint klass)
-```
-
-#### Parameters
-
-`klass` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-#### Returns
-
- [IEnumerable](https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable\-1)<[nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)\>
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoOperator_TryGetImageFileName_System_UIntPtr_System_String__"></a> TryGetImageFileName\(nuint, out string?\)
-
-```csharp
-public abstract bool TryGetImageFileName(nuint image, out string? fileName)
-```
-
-#### Parameters
-
-`image` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`fileName` [string](https://learn.microsoft.com/dotnet/api/system.string)?
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoOperator_TryGetImageName_System_UIntPtr_System_String__"></a> TryGetImageName\(nuint, out string?\)
-
-```csharp
-public abstract bool TryGetImageName(nuint image, out string? name)
-```
-
-#### Parameters
-
-`image` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`name` [string](https://learn.microsoft.com/dotnet/api/system.string)?
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoOperator_TryGetImages"></a> TryGetImages\(\)
-
-```csharp
-public abstract IEnumerable<nuint> TryGetImages()
-```
-
-#### Returns
-
- [IEnumerable](https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable\-1)<[nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)\>
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoOperator_TryGetTypeAttributes_System_UIntPtr_AslHelp_Unity_Runtime_Interop_MonoFieldAttribute__"></a> TryGetTypeAttributes\(nuint, out MonoFieldAttribute\)
-
-```csharp
-public abstract bool TryGetTypeAttributes(nuint type, out MonoFieldAttribute attributes)
-```
-
-#### Parameters
-
-`type` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`attributes` [MonoFieldAttribute](AslHelp.Unity.Runtime.Interop.MonoFieldAttribute.md)
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoOperator_TryGetTypeData_System_UIntPtr_System_UIntPtr__"></a> TryGetTypeData\(nuint, out nuint\)
-
-```csharp
-public abstract bool TryGetTypeData(nuint type, out nuint data)
-```
-
-#### Parameters
-
-`type` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`data` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoOperator_TryGetTypeElementType_System_UIntPtr_AslHelp_Unity_Runtime_Interop_MonoElementType__"></a> TryGetTypeElementType\(nuint, out MonoElementType\)
-
-```csharp
-public abstract bool TryGetTypeElementType(nuint type, out MonoElementType elementType)
-```
-
-#### Parameters
-
-`type` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`elementType` [MonoElementType](AslHelp.Unity.Runtime.Interop.MonoElementType.md)
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
+ [TryGetTypeElementType\(nuint, out MonoElementType\)](AslHelp.Unity.Runtime.Interop.MonoOperator.TryGetTypeElementType.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoOperator\_TryGetTypeElementType\_System\_UIntPtr\_AslHelp\_Unity\_Runtime\_Interop\_MonoElementType\_\_)
 

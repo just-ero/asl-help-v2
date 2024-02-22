@@ -33,138 +33,38 @@ public abstract class WatcherBase<T> : IWatcher<T>, IWatcher
 
 #### Extension Methods
 
-[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
-[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
-[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
+[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetMethod.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.IsType.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
+[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
+[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
 
 ## Constructors
 
-### <a id="AslHelp_Memory_Watch_WatcherBase_1__ctor_AslHelp_Memory_Ipc_IProcessMemory_System_UIntPtr_System_Int32___"></a> WatcherBase\(IProcessMemory, nuint, params int\[\]\)
-
-```csharp
-protected WatcherBase(IProcessMemory memory, nuint baseAddress, params int[] offsets)
-```
-
-#### Parameters
-
-`memory` [IProcessMemory](AslHelp.Memory.Ipc.IProcessMemory.md)
-
-`baseAddress` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`offsets` [int](https://learn.microsoft.com/dotnet/api/system.int32)\[\]
+ [WatcherBase\(IProcessMemory, nuint, params int\[\]\)](AslHelp.Memory.Watch.WatcherBase\-1.\-ctor.md\#AslHelp\_Memory\_Watch\_WatcherBase\_1\_\_ctor\_AslHelp\_Memory\_Ipc\_IProcessMemory\_System\_UIntPtr\_System\_Int32\_\_\_)
 
 ## Fields
 
-### <a id="AslHelp_Memory_Watch_WatcherBase_1__memory"></a> \_memory
-
-```csharp
-protected readonly IProcessMemory _memory
-```
-
-#### Field Value
-
- [IProcessMemory](AslHelp.Memory.Ipc.IProcessMemory.md)
+ [\_memory](AslHelp.Memory.Watch.WatcherBase\-1.\_memory.md\#AslHelp\_Memory\_Watch\_WatcherBase\_1\_\_memory)
 
 ## Properties
 
-### <a id="AslHelp_Memory_Watch_WatcherBase_1_Changed"></a> Changed
+ [Changed](AslHelp.Memory.Watch.WatcherBase\-1.Changed.md\#AslHelp\_Memory\_Watch\_WatcherBase\_1\_Changed)
 
-```csharp
-public bool Changed { get; }
-```
+ [Current](AslHelp.Memory.Watch.WatcherBase\-1.Current.md\#AslHelp\_Memory\_Watch\_WatcherBase\_1\_Current)
 
-#### Property Value
+ [Enabled](AslHelp.Memory.Watch.WatcherBase\-1.Enabled.md\#AslHelp\_Memory\_Watch\_WatcherBase\_1\_Enabled)
 
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
+ [Old](AslHelp.Memory.Watch.WatcherBase\-1.Old.md\#AslHelp\_Memory\_Watch\_WatcherBase\_1\_Old)
 
-### <a id="AslHelp_Memory_Watch_WatcherBase_1_Current"></a> Current
-
-```csharp
-public T? Current { get; set; }
-```
-
-#### Property Value
-
- T?
-
-### <a id="AslHelp_Memory_Watch_WatcherBase_1_Enabled"></a> Enabled
-
-```csharp
-public bool Enabled { get; set; }
-```
-
-#### Property Value
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Memory_Watch_WatcherBase_1_Old"></a> Old
-
-```csharp
-public T? Old { get; set; }
-```
-
-#### Property Value
-
- T?
-
-### <a id="AslHelp_Memory_Watch_WatcherBase_1_UpdateOnFail"></a> UpdateOnFail
-
-```csharp
-public bool UpdateOnFail { get; set; }
-```
-
-#### Property Value
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
+ [UpdateOnFail](AslHelp.Memory.Watch.WatcherBase\-1.UpdateOnFail.md\#AslHelp\_Memory\_Watch\_WatcherBase\_1\_UpdateOnFail)
 
 ## Methods
 
-### <a id="AslHelp_Memory_Watch_WatcherBase_1_Equals__0__0_"></a> Equals\(T?, T?\)
+ [Equals\(T?, T?\)](AslHelp.Memory.Watch.WatcherBase\-1.Equals.md\#AslHelp\_Memory\_Watch\_WatcherBase\_1\_Equals\_\_0\_\_0\_)
 
-```csharp
-protected abstract bool Equals(T? old, T? current)
-```
+ [TryDeref\(out nuint\)](AslHelp.Memory.Watch.WatcherBase\-1.TryDeref.md\#AslHelp\_Memory\_Watch\_WatcherBase\_1\_TryDeref\_System\_UIntPtr\_\_)
 
-#### Parameters
-
-`old` T?
-
-`current` T?
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Memory_Watch_WatcherBase_1_TryDeref_System_UIntPtr__"></a> TryDeref\(out nuint\)
-
-```csharp
-public virtual bool TryDeref(out nuint result)
-```
-
-#### Parameters
-
-`result` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Memory_Watch_WatcherBase_1_TryRead_System_UIntPtr__0__"></a> TryRead\(nuint, out T?\)
-
-```csharp
-protected abstract bool TryRead(nuint address, out T? value)
-```
-
-#### Parameters
-
-`address` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`value` T?
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
+ [TryRead\(nuint, out T?\)](AslHelp.Memory.Watch.WatcherBase\-1.TryRead.md\#AslHelp\_Memory\_Watch\_WatcherBase\_1\_TryRead\_System\_UIntPtr\_\_0\_\_)
 

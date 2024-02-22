@@ -25,474 +25,98 @@ public abstract class AslHelpEntryPoint
 
 #### Extension Methods
 
-[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
-[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
-[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
+[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetMethod.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.IsType.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
+[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
+[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
 
 ## Fields
 
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint__asl"></a> \_asl
-
-```csharp
-protected AutoSplitter? _asl
-```
-
-#### Field Value
-
- [AutoSplitter](AslHelp.LiveSplit.AutoSplitter.md)?
+ [\_asl](AslHelp.LiveSplit.AslHelpEntryPoint.\_asl.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_\_asl)
 
 ## Properties
 
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_Game"></a> Game
+ [Game](AslHelp.LiveSplit.AslHelpEntryPoint.Game.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_Game)
 
-```csharp
-public abstract Process? Game { get; set; }
-```
+ [GameName](AslHelp.LiveSplit.AslHelpEntryPoint.GameName.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_GameName)
 
-#### Property Value
+ [Initialized](AslHelp.LiveSplit.AslHelpEntryPoint.Initialized.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_Initialized)
 
- [Process](https://learn.microsoft.com/dotnet/api/system.diagnostics.process)?
+ [Logger](AslHelp.LiveSplit.AslHelpEntryPoint.Logger.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_Logger)
 
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_GameName"></a> GameName
+ [Memory](AslHelp.LiveSplit.AslHelpEntryPoint.Memory.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_Memory)
 
-```csharp
-public string GameName { get; }
-```
+ [Settings](AslHelp.LiveSplit.AslHelpEntryPoint.Settings.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_Settings)
 
-#### Property Value
+ [Texts](AslHelp.LiveSplit.AslHelpEntryPoint.Texts.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_Texts)
 
- [string](https://learn.microsoft.com/dotnet/api/system.string)
+ [Timer](AslHelp.LiveSplit.AslHelpEntryPoint.Timer.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_Timer)
 
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_Initialized"></a> Initialized
-
-```csharp
-public bool Initialized { get; }
-```
-
-#### Property Value
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_Logger"></a> Logger
-
-```csharp
-public abstract ILogger Logger { get; }
-```
-
-#### Property Value
-
- ILogger
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_Memory"></a> Memory
-
-```csharp
-public abstract IProcessMemory? Memory { get; }
-```
-
-#### Property Value
-
- IProcessMemory?
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_Settings"></a> Settings
-
-```csharp
-public SettingsBuilder? Settings { get; }
-```
-
-#### Property Value
-
- [SettingsBuilder](AslHelp.LiveSplit.Settings.SettingsBuilder.md)?
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_Texts"></a> Texts
-
-```csharp
-public TextComponentController? Texts { get; }
-```
-
-#### Property Value
-
- [TextComponentController](AslHelp.LiveSplit.Control.TextComponentController.md)?
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_Timer"></a> Timer
-
-```csharp
-public TimerController? Timer { get; }
-```
-
-#### Property Value
-
- [TimerController](AslHelp.LiveSplit.Control.TimerController.md)?
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_Watchers"></a> Watchers
-
-```csharp
-public abstract WatcherFactory? Watchers { get; }
-```
-
-#### Property Value
-
- WatcherFactory?
+ [Watchers](AslHelp.LiveSplit.AslHelpEntryPoint.Watchers.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_Watchers)
 
 ## Methods
 
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_AlertGameTime_System_String_"></a> AlertGameTime\(string?\)
+ [AlertGameTime\(string?\)](AslHelp.LiveSplit.AslHelpEntryPoint.AlertGameTime.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_AlertGameTime\_System\_String\_)
 
-```csharp
-public AslHelpEntryPoint AlertGameTime(string? message = null)
-```
+ [AlertLoadless\(string?\)](AslHelp.LiveSplit.AslHelpEntryPoint.AlertLoadless.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_AlertLoadless\_System\_String\_)
 
-#### Parameters
+ [AlertRealTime\(string?\)](AslHelp.LiveSplit.AslHelpEntryPoint.AlertRealTime.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_AlertRealTime\_System\_String\_)
 
-`message` [string](https://learn.microsoft.com/dotnet/api/system.string)?
+ [DisposeProcessInstanceData\(\)](AslHelp.LiveSplit.AslHelpEntryPoint.DisposeProcessInstanceData.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_DisposeProcessInstanceData)
 
-#### Returns
+ [EnsureHasMemory\(\)](AslHelp.LiveSplit.AslHelpEntryPoint.EnsureHasMemory.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_EnsureHasMemory)
 
- [AslHelpEntryPoint](AslHelp.LiveSplit.AslHelpEntryPoint.md)
+ [EnsureInitialized\(\)](AslHelp.LiveSplit.AslHelpEntryPoint.EnsureInitialized.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_EnsureInitialized)
 
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_AlertLoadless_System_String_"></a> AlertLoadless\(string?\)
+ [GenerateCodeImpl\(string?, AutoSplitter\)](AslHelp.LiveSplit.AslHelpEntryPoint.GenerateCodeImpl.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_GenerateCodeImpl\_System\_String\_AslHelp\_LiveSplit\_AutoSplitter\_)
 
-```csharp
-public AslHelpEntryPoint AlertLoadless(string? message = null)
-```
+ [GetMD5Hash\(\)](AslHelp.LiveSplit.AslHelpEntryPoint.GetMD5Hash.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_GetMD5Hash)
 
-#### Parameters
+ [GetMD5Hash\(string\)](AslHelp.LiveSplit.AslHelpEntryPoint.GetMD5Hash.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_GetMD5Hash\_System\_String\_)
 
-`message` [string](https://learn.microsoft.com/dotnet/api/system.string)?
+ [GetMD5Hash\(Module\)](AslHelp.LiveSplit.AslHelpEntryPoint.GetMD5Hash.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_GetMD5Hash\_AslHelp\_Memory\_Module\_)
 
-#### Returns
+ [GetMemorySize\(\)](AslHelp.LiveSplit.AslHelpEntryPoint.GetMemorySize.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_GetMemorySize)
 
- [AslHelpEntryPoint](AslHelp.LiveSplit.AslHelpEntryPoint.md)
+ [GetMemorySize\(string\)](AslHelp.LiveSplit.AslHelpEntryPoint.GetMemorySize.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_GetMemorySize\_System\_String\_)
 
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_AlertRealTime_System_String_"></a> AlertRealTime\(string?\)
+ [GetMemorySize\(Module\)](AslHelp.LiveSplit.AslHelpEntryPoint.GetMemorySize.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_GetMemorySize\_AslHelp\_Memory\_Module\_)
 
-```csharp
-public AslHelpEntryPoint AlertRealTime(string? message = null)
-```
+ [GetSHA1Hash\(\)](AslHelp.LiveSplit.AslHelpEntryPoint.GetSHA1Hash.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_GetSHA1Hash)
 
-#### Parameters
+ [GetSHA1Hash\(string\)](AslHelp.LiveSplit.AslHelpEntryPoint.GetSHA1Hash.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_GetSHA1Hash\_System\_String\_)
 
-`message` [string](https://learn.microsoft.com/dotnet/api/system.string)?
+ [GetSHA1Hash\(Module\)](AslHelp.LiveSplit.AslHelpEntryPoint.GetSHA1Hash.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_GetSHA1Hash\_AslHelp\_Memory\_Module\_)
 
-#### Returns
+ [GetSHA256Hash\(\)](AslHelp.LiveSplit.AslHelpEntryPoint.GetSHA256Hash.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_GetSHA256Hash)
 
- [AslHelpEntryPoint](AslHelp.LiveSplit.AslHelpEntryPoint.md)
+ [GetSHA256Hash\(string\)](AslHelp.LiveSplit.AslHelpEntryPoint.GetSHA256Hash.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_GetSHA256Hash\_System\_String\_)
 
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_DisposeProcessInstanceData"></a> DisposeProcessInstanceData\(\)
+ [GetSHA256Hash\(Module\)](AslHelp.LiveSplit.AslHelpEntryPoint.GetSHA256Hash.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_GetSHA256Hash\_AslHelp\_Memory\_Module\_)
 
-```csharp
-protected abstract void DisposeProcessInstanceData()
-```
+ [GetSHA512Hash\(\)](AslHelp.LiveSplit.AslHelpEntryPoint.GetSHA512Hash.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_GetSHA512Hash)
 
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_EnsureHasMemory"></a> EnsureHasMemory\(\)
+ [GetSHA512Hash\(string\)](AslHelp.LiveSplit.AslHelpEntryPoint.GetSHA512Hash.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_GetSHA512Hash\_System\_String\_)
 
-```csharp
-protected void EnsureHasMemory()
-```
+ [GetSHA512Hash\(Module\)](AslHelp.LiveSplit.AslHelpEntryPoint.GetSHA512Hash.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_GetSHA512Hash\_AslHelp\_Memory\_Module\_)
 
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_EnsureInitialized"></a> EnsureInitialized\(\)
+ [Init\(string?, bool\)](AslHelp.LiveSplit.AslHelpEntryPoint.Init.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_Init\_System\_String\_System\_Boolean\_)
 
-```csharp
-protected void EnsureInitialized()
-```
+ [InitImpl\(\)](AslHelp.LiveSplit.AslHelpEntryPoint.InitImpl.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_InitImpl)
 
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_GenerateCodeImpl_System_String_AslHelp_LiveSplit_AutoSplitter_"></a> GenerateCodeImpl\(string?, AutoSplitter\)
+ [OnExit\(\)](AslHelp.LiveSplit.AslHelpEntryPoint.OnExit.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_OnExit)
 
-```csharp
-protected abstract void GenerateCodeImpl(string? helperName, AutoSplitter asl)
-```
+ [OnExitImpl\(\)](AslHelp.LiveSplit.AslHelpEntryPoint.OnExitImpl.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_OnExitImpl)
 
-#### Parameters
+ [OnShutdown\(\)](AslHelp.LiveSplit.AslHelpEntryPoint.OnShutdown.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_OnShutdown)
 
-`helperName` [string](https://learn.microsoft.com/dotnet/api/system.string)?
+ [OnShutdownImpl\(bool\)](AslHelp.LiveSplit.AslHelpEntryPoint.OnShutdownImpl.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_OnShutdownImpl\_System\_Boolean\_)
 
-`asl` [AutoSplitter](AslHelp.LiveSplit.AutoSplitter.md)
+ [Reject\(params uint\[\]\)](AslHelp.LiveSplit.AslHelpEntryPoint.Reject.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_Reject\_System\_UInt32\_\_\_)
 
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_GetMD5Hash"></a> GetMD5Hash\(\)
+ [Reject\(string, params uint\[\]\)](AslHelp.LiveSplit.AslHelpEntryPoint.Reject.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_Reject\_System\_String\_System\_UInt32\_\_\_)
 
-```csharp
-public string GetMD5Hash()
-```
-
-#### Returns
-
- [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_GetMD5Hash_System_String_"></a> GetMD5Hash\(string\)
-
-```csharp
-public string GetMD5Hash(string moduleName)
-```
-
-#### Parameters
-
-`moduleName` [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-#### Returns
-
- [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_GetMD5Hash_AslHelp_Memory_Module_"></a> GetMD5Hash\(Module\)
-
-```csharp
-public string GetMD5Hash(Module module)
-```
-
-#### Parameters
-
-`module` Module
-
-#### Returns
-
- [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_GetMemorySize"></a> GetMemorySize\(\)
-
-```csharp
-public uint GetMemorySize()
-```
-
-#### Returns
-
- [uint](https://learn.microsoft.com/dotnet/api/system.uint32)
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_GetMemorySize_System_String_"></a> GetMemorySize\(string\)
-
-```csharp
-public uint GetMemorySize(string moduleName)
-```
-
-#### Parameters
-
-`moduleName` [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-#### Returns
-
- [uint](https://learn.microsoft.com/dotnet/api/system.uint32)
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_GetMemorySize_AslHelp_Memory_Module_"></a> GetMemorySize\(Module\)
-
-```csharp
-public uint GetMemorySize(Module module)
-```
-
-#### Parameters
-
-`module` Module
-
-#### Returns
-
- [uint](https://learn.microsoft.com/dotnet/api/system.uint32)
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_GetSHA1Hash"></a> GetSHA1Hash\(\)
-
-```csharp
-public string GetSHA1Hash()
-```
-
-#### Returns
-
- [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_GetSHA1Hash_System_String_"></a> GetSHA1Hash\(string\)
-
-```csharp
-public string GetSHA1Hash(string moduleName)
-```
-
-#### Parameters
-
-`moduleName` [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-#### Returns
-
- [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_GetSHA1Hash_AslHelp_Memory_Module_"></a> GetSHA1Hash\(Module\)
-
-```csharp
-public string GetSHA1Hash(Module module)
-```
-
-#### Parameters
-
-`module` Module
-
-#### Returns
-
- [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_GetSHA256Hash"></a> GetSHA256Hash\(\)
-
-```csharp
-public string GetSHA256Hash()
-```
-
-#### Returns
-
- [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_GetSHA256Hash_System_String_"></a> GetSHA256Hash\(string\)
-
-```csharp
-public string GetSHA256Hash(string moduleName)
-```
-
-#### Parameters
-
-`moduleName` [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-#### Returns
-
- [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_GetSHA256Hash_AslHelp_Memory_Module_"></a> GetSHA256Hash\(Module\)
-
-```csharp
-public string GetSHA256Hash(Module module)
-```
-
-#### Parameters
-
-`module` Module
-
-#### Returns
-
- [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_GetSHA512Hash"></a> GetSHA512Hash\(\)
-
-```csharp
-public string GetSHA512Hash()
-```
-
-#### Returns
-
- [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_GetSHA512Hash_System_String_"></a> GetSHA512Hash\(string\)
-
-```csharp
-public string GetSHA512Hash(string moduleName)
-```
-
-#### Parameters
-
-`moduleName` [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-#### Returns
-
- [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_GetSHA512Hash_AslHelp_Memory_Module_"></a> GetSHA512Hash\(Module\)
-
-```csharp
-public string GetSHA512Hash(Module module)
-```
-
-#### Parameters
-
-`module` Module
-
-#### Returns
-
- [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_Init_System_String_System_Boolean_"></a> Init\(string?, bool\)
-
-```csharp
-public AslHelpEntryPoint Init(string? gameName = null, bool generateCode = false)
-```
-
-#### Parameters
-
-`gameName` [string](https://learn.microsoft.com/dotnet/api/system.string)?
-
-`generateCode` [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-#### Returns
-
- [AslHelpEntryPoint](AslHelp.LiveSplit.AslHelpEntryPoint.md)
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_InitImpl"></a> InitImpl\(\)
-
-```csharp
-protected abstract void InitImpl()
-```
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_OnExit"></a> OnExit\(\)
-
-```csharp
-public void OnExit()
-```
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_OnExitImpl"></a> OnExitImpl\(\)
-
-```csharp
-protected abstract void OnExitImpl()
-```
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_OnShutdown"></a> OnShutdown\(\)
-
-```csharp
-public void OnShutdown()
-```
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_OnShutdownImpl_System_Boolean_"></a> OnShutdownImpl\(bool\)
-
-```csharp
-protected abstract void OnShutdownImpl(bool closing)
-```
-
-#### Parameters
-
-`closing` [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_Reject_System_UInt32___"></a> Reject\(params uint\[\]\)
-
-```csharp
-public bool Reject(params uint[] moduleMemorySizes)
-```
-
-#### Parameters
-
-`moduleMemorySizes` [uint](https://learn.microsoft.com/dotnet/api/system.uint32)\[\]
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_Reject_System_String_System_UInt32___"></a> Reject\(string, params uint\[\]\)
-
-```csharp
-public bool Reject(string moduleName, params uint[] moduleMemorySizes)
-```
-
-#### Parameters
-
-`moduleName` [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-`moduleMemorySizes` [uint](https://learn.microsoft.com/dotnet/api/system.uint32)\[\]
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_LiveSplit_AslHelpEntryPoint_Reject_AslHelp_Memory_Module_System_UInt32___"></a> Reject\(Module, params uint\[\]\)
-
-```csharp
-public bool Reject(Module module, params uint[] moduleMemorySizes)
-```
-
-#### Parameters
-
-`module` Module
-
-`moduleMemorySizes` [uint](https://learn.microsoft.com/dotnet/api/system.uint32)\[\]
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
+ [Reject\(Module, params uint\[\]\)](AslHelp.LiveSplit.AslHelpEntryPoint.Reject.md\#AslHelp\_LiveSplit\_AslHelpEntryPoint\_Reject\_AslHelp\_Memory\_Module\_System\_UInt32\_\_\_)
 

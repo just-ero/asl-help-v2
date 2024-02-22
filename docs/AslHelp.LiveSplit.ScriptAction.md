@@ -24,94 +24,30 @@ public sealed class ScriptAction
 
 #### Extension Methods
 
-[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
-[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
-[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
+[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetMethod.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.IsType.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
+[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
+[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
 
 ## Constructors
 
-### <a id="AslHelp_LiveSplit_ScriptAction__ctor_LiveSplit_ASL_ASLScript_Methods_System_String_System_String_System_Int32_"></a> ScriptAction\(Methods, string, string, int\)
+ [ScriptAction\(Methods, string, string, int\)](AslHelp.LiveSplit.ScriptAction.\-ctor.md\#AslHelp\_LiveSplit\_ScriptAction\_\_ctor\_LiveSplit\_ASL\_ASLScript\_Methods\_System\_String\_System\_String\_System\_Int32\_)
 
-```csharp
-public ScriptAction(ASLScript.Methods methods, string body, string name, int line)
-```
-
-#### Parameters
-
-`methods` ASLScript.Methods
-
-`body` [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-`name` [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-`line` [int](https://learn.microsoft.com/dotnet/api/system.int32)
-
-### <a id="AslHelp_LiveSplit_ScriptAction__ctor_LiveSplit_ASL_ASLScript_Methods_System_String_"></a> ScriptAction\(Methods, string\)
-
-```csharp
-public ScriptAction(ASLScript.Methods methods, string name)
-```
-
-#### Parameters
-
-`methods` ASLScript.Methods
-
-`name` [string](https://learn.microsoft.com/dotnet/api/system.string)
+ [ScriptAction\(Methods, string\)](AslHelp.LiveSplit.ScriptAction.\-ctor.md\#AslHelp\_LiveSplit\_ScriptAction\_\_ctor\_LiveSplit\_ASL\_ASLScript\_Methods\_System\_String\_)
 
 ## Properties
 
-### <a id="AslHelp_LiveSplit_ScriptAction_Body"></a> Body
+ [Body](AslHelp.LiveSplit.ScriptAction.Body.md\#AslHelp\_LiveSplit\_ScriptAction\_Body)
 
-```csharp
-public string Body { get; }
-```
+ [Line](AslHelp.LiveSplit.ScriptAction.Line.md\#AslHelp\_LiveSplit\_ScriptAction\_Line)
 
-#### Property Value
-
- [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-### <a id="AslHelp_LiveSplit_ScriptAction_Line"></a> Line
-
-```csharp
-public int Line { get; }
-```
-
-#### Property Value
-
- [int](https://learn.microsoft.com/dotnet/api/system.int32)
-
-### <a id="AslHelp_LiveSplit_ScriptAction_Name"></a> Name
-
-```csharp
-public string Name { get; }
-```
-
-#### Property Value
-
- [string](https://learn.microsoft.com/dotnet/api/system.string)
+ [Name](AslHelp.LiveSplit.ScriptAction.Name.md\#AslHelp\_LiveSplit\_ScriptAction\_Name)
 
 ## Methods
 
-### <a id="AslHelp_LiveSplit_ScriptAction_Append_System_String_"></a> Append\(string\)
+ [Append\(string\)](AslHelp.LiveSplit.ScriptAction.Append.md\#AslHelp\_LiveSplit\_ScriptAction\_Append\_System\_String\_)
 
-```csharp
-public void Append(string code)
-```
-
-#### Parameters
-
-`code` [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-### <a id="AslHelp_LiveSplit_ScriptAction_Prepend_System_String_"></a> Prepend\(string\)
-
-```csharp
-public void Prepend(string code)
-```
-
-#### Parameters
-
-`code` [string](https://learn.microsoft.com/dotnet/api/system.string)
+ [Prepend\(string\)](AslHelp.LiveSplit.ScriptAction.Prepend.md\#AslHelp\_LiveSplit\_ScriptAction\_Prepend\_System\_String\_)
 

@@ -32,462 +32,74 @@ public class ProcessMemory : IProcessMemory, IMemoryReader, IMemoryWriter, IMemo
 
 #### Extension Methods
 
-[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
-[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
-[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
+[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetMethod.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.IsType.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
+[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
+[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
 
 ## Constructors
 
-### <a id="AslHelp_Memory_Ipc_ProcessMemory__ctor_System_Diagnostics_Process_"></a> ProcessMemory\(Process\)
-
-```csharp
-public ProcessMemory(Process process)
-```
-
-#### Parameters
-
-`process` [Process](https://learn.microsoft.com/dotnet/api/system.diagnostics.process)
+ [ProcessMemory\(Process\)](AslHelp.Memory.Ipc.ProcessMemory.\-ctor.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_\_ctor\_System\_Diagnostics\_Process\_)
 
 ## Fields
 
-### <a id="AslHelp_Memory_Ipc_ProcessMemory__handle"></a> \_handle
-
-```csharp
-protected readonly nuint _handle
-```
-
-#### Field Value
-
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
+ [\_handle](AslHelp.Memory.Ipc.ProcessMemory.\_handle.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_\_handle)
 
 ## Properties
 
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_Is64Bit"></a> Is64Bit
+ [Is64Bit](AslHelp.Memory.Ipc.ProcessMemory.Is64Bit.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_Is64Bit)
 
-```csharp
-public bool Is64Bit { get; }
-```
+ [MainModule](AslHelp.Memory.Ipc.ProcessMemory.MainModule.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_MainModule)
 
-#### Property Value
+ [Modules](AslHelp.Memory.Ipc.ProcessMemory.Modules.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_Modules)
 
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
+ [PointerSize](AslHelp.Memory.Ipc.ProcessMemory.PointerSize.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_PointerSize)
 
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_MainModule"></a> MainModule
+ [Process](AslHelp.Memory.Ipc.ProcessMemory.Process.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_Process)
 
-```csharp
-public Module MainModule { get; }
-```
-
-#### Property Value
-
- [Module](AslHelp.Memory.Module.md)
-
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_Modules"></a> Modules
-
-```csharp
-public IReadOnlyKeyedCollection<string, Module> Modules { get; }
-```
-
-#### Property Value
-
- [IReadOnlyKeyedCollection](AslHelp.Collections.IReadOnlyKeyedCollection\-2.md)<[string](https://learn.microsoft.com/dotnet/api/system.string), [Module](AslHelp.Memory.Module.md)\>
-
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_PointerSize"></a> PointerSize
-
-```csharp
-public byte PointerSize { get; }
-```
-
-#### Property Value
-
- [byte](https://learn.microsoft.com/dotnet/api/system.byte)
-
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_Process"></a> Process
-
-```csharp
-public Process Process { get; }
-```
-
-#### Property Value
-
- [Process](https://learn.microsoft.com/dotnet/api/system.diagnostics.process)
-
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_Tick"></a> Tick
-
-```csharp
-public uint Tick { get; set; }
-```
-
-#### Property Value
-
- [uint](https://learn.microsoft.com/dotnet/api/system.uint32)
+ [Tick](AslHelp.Memory.Ipc.ProcessMemory.Tick.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_Tick)
 
 ## Methods
 
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_Deref_System_UInt32_System_Int32___"></a> Deref\(uint, params int\[\]\)
+ [Deref\(uint, params int\[\]\)](AslHelp.Memory.Ipc.ProcessMemory.Deref.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_Deref\_System\_UInt32\_System\_Int32\_\_\_)
 
-```csharp
-public nuint Deref(uint baseOffset, params int[] offsets)
-```
+ [Deref\(string, uint, params int\[\]\)](AslHelp.Memory.Ipc.ProcessMemory.Deref.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_Deref\_System\_String\_System\_UInt32\_System\_Int32\_\_\_)
 
-#### Parameters
+ [Deref\(Module, uint, params int\[\]\)](AslHelp.Memory.Ipc.ProcessMemory.Deref.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_Deref\_AslHelp\_Memory\_Module\_System\_UInt32\_System\_Int32\_\_\_)
 
-`baseOffset` [uint](https://learn.microsoft.com/dotnet/api/system.uint32)
+ [Deref\(nuint, params int\[\]\)](AslHelp.Memory.Ipc.ProcessMemory.Deref.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_Deref\_System\_UIntPtr\_System\_Int32\_\_\_)
 
-`offsets` [int](https://learn.microsoft.com/dotnet/api/system.int32)\[\]
+ [Dispose\(\)](AslHelp.Memory.Ipc.ProcessMemory.Dispose.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_Dispose)
 
-#### Returns
+ [GetMemoryPages\(bool\)](AslHelp.Memory.Ipc.ProcessMemory.GetMemoryPages.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_GetMemoryPages\_System\_Boolean\_)
 
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
+ [Scan\(ScanPattern, nuint, nuint\)](AslHelp.Memory.Ipc.ProcessMemory.Scan.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_Scan\_AslHelp\_Memory\_Scanning\_ScanPattern\_System\_UIntPtr\_System\_UIntPtr\_)
 
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_Deref_System_String_System_UInt32_System_Int32___"></a> Deref\(string, uint, params int\[\]\)
+ [Scan\(ScanPattern, nuint, int\)](AslHelp.Memory.Ipc.ProcessMemory.Scan.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_Scan\_AslHelp\_Memory\_Scanning\_ScanPattern\_System\_UIntPtr\_System\_Int32\_)
 
-```csharp
-public nuint Deref(string moduleName, uint baseOffset, params int[] offsets)
-```
+ [ScanAll\(ScanPattern, nuint, nuint\)](AslHelp.Memory.Ipc.ProcessMemory.ScanAll.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_ScanAll\_AslHelp\_Memory\_Scanning\_ScanPattern\_System\_UIntPtr\_System\_UIntPtr\_)
 
-#### Parameters
+ [ScanAll\(ScanPattern, nuint, int\)](AslHelp.Memory.Ipc.ProcessMemory.ScanAll.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_ScanAll\_AslHelp\_Memory\_Scanning\_ScanPattern\_System\_UIntPtr\_System\_Int32\_)
 
-`moduleName` [string](https://learn.microsoft.com/dotnet/api/system.string)
+ [TryDeref\(out nuint, uint, params int\[\]\)](AslHelp.Memory.Ipc.ProcessMemory.TryDeref.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_TryDeref\_System\_UIntPtr\_\_System\_UInt32\_System\_Int32\_\_\_)
 
-`baseOffset` [uint](https://learn.microsoft.com/dotnet/api/system.uint32)
+ [TryDeref\(out nuint, string?, uint, params int\[\]\)](AslHelp.Memory.Ipc.ProcessMemory.TryDeref.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_TryDeref\_System\_UIntPtr\_\_System\_String\_System\_UInt32\_System\_Int32\_\_\_)
 
-`offsets` [int](https://learn.microsoft.com/dotnet/api/system.int32)\[\]
+ [TryDeref\(out nuint, Module?, uint, params int\[\]\)](AslHelp.Memory.Ipc.ProcessMemory.TryDeref.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_TryDeref\_System\_UIntPtr\_\_AslHelp\_Memory\_Module\_System\_UInt32\_System\_Int32\_\_\_)
 
-#### Returns
+ [TryDeref\(out nuint, nuint, params int\[\]\)](AslHelp.Memory.Ipc.ProcessMemory.TryDeref.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_TryDeref\_System\_UIntPtr\_\_System\_UIntPtr\_System\_Int32\_\_\_)
 
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
+ [TryRead<T\>\(out T, nuint, params int\[\]\)](AslHelp.Memory.Ipc.ProcessMemory.TryRead.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_TryRead\_\_1\_\_\_0\_\_System\_UIntPtr\_System\_Int32\_\_\_)
 
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_Deref_AslHelp_Memory_Module_System_UInt32_System_Int32___"></a> Deref\(Module, uint, params int\[\]\)
+ [TryReadRelative\(out nuint, nuint, uint\)](AslHelp.Memory.Ipc.ProcessMemory.TryReadRelative.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_TryReadRelative\_System\_UIntPtr\_\_System\_UIntPtr\_System\_UInt32\_)
 
-```csharp
-public nuint Deref(Module module, uint baseOffset, params int[] offsets)
-```
+ [TryReadSpan<T\>\(Span<T\>, nuint, params int\[\]\)](AslHelp.Memory.Ipc.ProcessMemory.TryReadSpan.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_TryReadSpan\_\_1\_System\_Span\_\_\_0\_\_System\_UIntPtr\_System\_Int32\_\_\_)
 
-#### Parameters
+ [TryReadString\(out string?, int, StringType, nuint, params int\[\]\)](AslHelp.Memory.Ipc.ProcessMemory.TryReadString.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_TryReadString\_System\_String\_\_System\_Int32\_AslHelp\_Memory\_StringType\_System\_UIntPtr\_System\_Int32\_\_\_)
 
-`module` [Module](AslHelp.Memory.Module.md)
+ [Write<T\>\(T, nuint, params int\[\]\)](AslHelp.Memory.Ipc.ProcessMemory.Write.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_Write\_\_1\_\_\_0\_System\_UIntPtr\_System\_Int32\_\_\_)
 
-`baseOffset` [uint](https://learn.microsoft.com/dotnet/api/system.uint32)
-
-`offsets` [int](https://learn.microsoft.com/dotnet/api/system.int32)\[\]
-
-#### Returns
-
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_Deref_System_UIntPtr_System_Int32___"></a> Deref\(nuint, params int\[\]\)
-
-```csharp
-public nuint Deref(nuint baseAddress, params int[] offsets)
-```
-
-#### Parameters
-
-`baseAddress` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`offsets` [int](https://learn.microsoft.com/dotnet/api/system.int32)\[\]
-
-#### Returns
-
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_Dispose"></a> Dispose\(\)
-
-```csharp
-public void Dispose()
-```
-
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_GetMemoryPages_System_Boolean_"></a> GetMemoryPages\(bool\)
-
-```csharp
-public IEnumerable<MemoryPage> GetMemoryPages(bool allPages = false)
-```
-
-#### Parameters
-
-`allPages` [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-#### Returns
-
- [IEnumerable](https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable\-1)<[MemoryPage](AslHelp.Memory.MemoryPage.md)\>
-
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_Scan_AslHelp_Memory_Scanning_ScanPattern_System_UIntPtr_System_UIntPtr_"></a> Scan\(ScanPattern, nuint, nuint\)
-
-```csharp
-public nuint Scan(ScanPattern pattern, nuint startAddress, nuint endAddress)
-```
-
-#### Parameters
-
-`pattern` [ScanPattern](AslHelp.Memory.Scanning.ScanPattern.md)
-
-`startAddress` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`endAddress` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-#### Returns
-
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_Scan_AslHelp_Memory_Scanning_ScanPattern_System_UIntPtr_System_Int32_"></a> Scan\(ScanPattern, nuint, int\)
-
-```csharp
-public nuint Scan(ScanPattern pattern, nuint startAddress, int size)
-```
-
-#### Parameters
-
-`pattern` [ScanPattern](AslHelp.Memory.Scanning.ScanPattern.md)
-
-`startAddress` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`size` [int](https://learn.microsoft.com/dotnet/api/system.int32)
-
-#### Returns
-
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_ScanAll_AslHelp_Memory_Scanning_ScanPattern_System_UIntPtr_System_UIntPtr_"></a> ScanAll\(ScanPattern, nuint, nuint\)
-
-```csharp
-public IEnumerable<nuint> ScanAll(ScanPattern pattern, nuint startAddress, nuint endAddress)
-```
-
-#### Parameters
-
-`pattern` [ScanPattern](AslHelp.Memory.Scanning.ScanPattern.md)
-
-`startAddress` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`endAddress` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-#### Returns
-
- [IEnumerable](https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable\-1)<[nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)\>
-
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_ScanAll_AslHelp_Memory_Scanning_ScanPattern_System_UIntPtr_System_Int32_"></a> ScanAll\(ScanPattern, nuint, int\)
-
-```csharp
-public IEnumerable<nuint> ScanAll(ScanPattern pattern, nuint startAddress, int size)
-```
-
-#### Parameters
-
-`pattern` [ScanPattern](AslHelp.Memory.Scanning.ScanPattern.md)
-
-`startAddress` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`size` [int](https://learn.microsoft.com/dotnet/api/system.int32)
-
-#### Returns
-
- [IEnumerable](https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable\-1)<[nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)\>
-
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_TryDeref_System_UIntPtr__System_UInt32_System_Int32___"></a> TryDeref\(out nuint, uint, params int\[\]\)
-
-```csharp
-public bool TryDeref(out nuint result, uint baseOffset, params int[] offsets)
-```
-
-#### Parameters
-
-`result` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`baseOffset` [uint](https://learn.microsoft.com/dotnet/api/system.uint32)
-
-`offsets` [int](https://learn.microsoft.com/dotnet/api/system.int32)\[\]
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_TryDeref_System_UIntPtr__System_String_System_UInt32_System_Int32___"></a> TryDeref\(out nuint, string?, uint, params int\[\]\)
-
-```csharp
-public bool TryDeref(out nuint result, string? moduleName, uint baseOffset, params int[] offsets)
-```
-
-#### Parameters
-
-`result` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`moduleName` [string](https://learn.microsoft.com/dotnet/api/system.string)?
-
-`baseOffset` [uint](https://learn.microsoft.com/dotnet/api/system.uint32)
-
-`offsets` [int](https://learn.microsoft.com/dotnet/api/system.int32)\[\]
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_TryDeref_System_UIntPtr__AslHelp_Memory_Module_System_UInt32_System_Int32___"></a> TryDeref\(out nuint, Module?, uint, params int\[\]\)
-
-```csharp
-public bool TryDeref(out nuint result, Module? module, uint baseOffset, params int[] offsets)
-```
-
-#### Parameters
-
-`result` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`module` [Module](AslHelp.Memory.Module.md)?
-
-`baseOffset` [uint](https://learn.microsoft.com/dotnet/api/system.uint32)
-
-`offsets` [int](https://learn.microsoft.com/dotnet/api/system.int32)\[\]
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_TryDeref_System_UIntPtr__System_UIntPtr_System_Int32___"></a> TryDeref\(out nuint, nuint, params int\[\]\)
-
-```csharp
-public bool TryDeref(out nuint result, nuint baseAddress, params int[] offsets)
-```
-
-#### Parameters
-
-`result` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`baseAddress` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`offsets` [int](https://learn.microsoft.com/dotnet/api/system.int32)\[\]
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_TryRead__1___0__System_UIntPtr_System_Int32___"></a> TryRead<T\>\(out T, nuint, params int\[\]\)
-
-```csharp
-public bool TryRead<T>(out T result, nuint baseAddress, params int[] offsets) where T : unmanaged
-```
-
-#### Parameters
-
-`result` T
-
-`baseAddress` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`offsets` [int](https://learn.microsoft.com/dotnet/api/system.int32)\[\]
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-#### Type Parameters
-
-`T` 
-
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_TryReadRelative_System_UIntPtr__System_UIntPtr_System_UInt32_"></a> TryReadRelative\(out nuint, nuint, uint\)
-
-```csharp
-public bool TryReadRelative(out nuint result, nuint relativeAddress, uint instructionSize = 4)
-```
-
-#### Parameters
-
-`result` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`relativeAddress` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`instructionSize` [uint](https://learn.microsoft.com/dotnet/api/system.uint32)
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_TryReadSpan__1_System_Span___0__System_UIntPtr_System_Int32___"></a> TryReadSpan<T\>\(Span<T\>, nuint, params int\[\]\)
-
-```csharp
-public bool TryReadSpan<T>(Span<T> buffer, nuint baseAddress, params int[] offsets) where T : unmanaged
-```
-
-#### Parameters
-
-`buffer` [Span](https://learn.microsoft.com/dotnet/api/system.span\-1)<T\>
-
-`baseAddress` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`offsets` [int](https://learn.microsoft.com/dotnet/api/system.int32)\[\]
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-#### Type Parameters
-
-`T` 
-
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_TryReadString_System_String__System_Int32_AslHelp_Memory_StringType_System_UIntPtr_System_Int32___"></a> TryReadString\(out string?, int, StringType, nuint, params int\[\]\)
-
-```csharp
-public bool TryReadString(out string? result, int maxLength, StringType stringType, nuint baseAddress, params int[] offsets)
-```
-
-#### Parameters
-
-`result` [string](https://learn.microsoft.com/dotnet/api/system.string)?
-
-`maxLength` [int](https://learn.microsoft.com/dotnet/api/system.int32)
-
-`stringType` [StringType](AslHelp.Memory.StringType.md)
-
-`baseAddress` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`offsets` [int](https://learn.microsoft.com/dotnet/api/system.int32)\[\]
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_Write__1___0_System_UIntPtr_System_Int32___"></a> Write<T\>\(T, nuint, params int\[\]\)
-
-```csharp
-public bool Write<T>(T value, nuint baseAddress, params int[] offsets) where T : unmanaged
-```
-
-#### Parameters
-
-`value` T
-
-`baseAddress` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`offsets` [int](https://learn.microsoft.com/dotnet/api/system.int32)\[\]
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-#### Type Parameters
-
-`T` 
-
-### <a id="AslHelp_Memory_Ipc_ProcessMemory_WriteSpan__1_System_ReadOnlySpan___0__System_UIntPtr_System_Int32___"></a> WriteSpan<T\>\(ReadOnlySpan<T\>, nuint, params int\[\]\)
-
-```csharp
-public bool WriteSpan<T>(ReadOnlySpan<T> values, nuint baseAddress, params int[] offsets) where T : unmanaged
-```
-
-#### Parameters
-
-`values` [ReadOnlySpan](https://learn.microsoft.com/dotnet/api/system.readonlyspan\-1)<T\>
-
-`baseAddress` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`offsets` [int](https://learn.microsoft.com/dotnet/api/system.int32)\[\]
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-#### Type Parameters
-
-`T` 
+ [WriteSpan<T\>\(ReadOnlySpan<T\>, nuint, params int\[\]\)](AslHelp.Memory.Ipc.ProcessMemory.WriteSpan.md\#AslHelp\_Memory\_Ipc\_ProcessMemory\_WriteSpan\_\_1\_System\_ReadOnlySpan\_\_\_0\_\_System\_UIntPtr\_System\_Int32\_\_\_)
 

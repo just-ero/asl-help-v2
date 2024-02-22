@@ -1,6 +1,10 @@
 {
+  "build": {
+    "template": "default"
+  },
   "metadata": [
     {
+      "memberLayout": "separatePages",
       "outputFormat": "markdown",
       "output": "./docs",
       "src": [

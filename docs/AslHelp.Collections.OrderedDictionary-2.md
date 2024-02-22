@@ -44,308 +44,66 @@ public abstract class OrderedDictionary<TKey, TValue> : IDictionary<TKey, TValue
 
 #### Extension Methods
 
-[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
-[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
-[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
+[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetMethod.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.IsType.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
+[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
+[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
 
 ## Constructors
 
-### <a id="AslHelp_Collections_OrderedDictionary_2__ctor_System_Collections_Generic_IEqualityComparer__0__"></a> OrderedDictionary\(IEqualityComparer<TKey\>?\)
-
-```csharp
-protected OrderedDictionary(IEqualityComparer<TKey>? comparer = null)
-```
-
-#### Parameters
-
-`comparer` [IEqualityComparer](https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer\-1)<TKey\>?
+ [OrderedDictionary\(IEqualityComparer<TKey\>?\)](AslHelp.Collections.OrderedDictionary\-2.\-ctor.md\#AslHelp\_Collections\_OrderedDictionary\_2\_\_ctor\_System\_Collections\_Generic\_IEqualityComparer\_\_0\_\_)
 
 ## Properties
 
-### <a id="AslHelp_Collections_OrderedDictionary_2_Count"></a> Count
+ [Count](AslHelp.Collections.OrderedDictionary\-2.Count.md\#AslHelp\_Collections\_OrderedDictionary\_2\_Count)
 
-```csharp
-public int Count { get; }
-```
+ [IsReadOnly](AslHelp.Collections.OrderedDictionary\-2.IsReadOnly.md\#AslHelp\_Collections\_OrderedDictionary\_2\_IsReadOnly)
 
-#### Property Value
+ [Keys](AslHelp.Collections.OrderedDictionary\-2.Keys.md\#AslHelp\_Collections\_OrderedDictionary\_2\_Keys)
 
- [int](https://learn.microsoft.com/dotnet/api/system.int32)
+ [Values](AslHelp.Collections.OrderedDictionary\-2.Values.md\#AslHelp\_Collections\_OrderedDictionary\_2\_Values)
 
-### <a id="AslHelp_Collections_OrderedDictionary_2_IsReadOnly"></a> IsReadOnly
+ [this\[TKey\]](AslHelp.Collections.OrderedDictionary\-2.Item.md\#AslHelp\_Collections\_OrderedDictionary\_2\_Item\_\_0\_)
 
-```csharp
-public bool IsReadOnly { get; }
-```
-
-#### Property Value
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Collections_OrderedDictionary_2_Keys"></a> Keys
-
-```csharp
-public ICollection<TKey> Keys { get; }
-```
-
-#### Property Value
-
- [ICollection](https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection\-1)<TKey\>
-
-### <a id="AslHelp_Collections_OrderedDictionary_2_Values"></a> Values
-
-```csharp
-public ICollection<TValue> Values { get; }
-```
-
-#### Property Value
-
- [ICollection](https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection\-1)<TValue\>
-
-### <a id="AslHelp_Collections_OrderedDictionary_2_Item__0_"></a> this\[TKey\]
-
-```csharp
-public TValue this[TKey key] { get; set; }
-```
-
-#### Property Value
-
- TValue
-
-### <a id="AslHelp_Collections_OrderedDictionary_2_Item_System_Int32_"></a> this\[int\]
-
-```csharp
-public TValue this[int index] { get; set; }
-```
-
-#### Property Value
-
- TValue
+ [this\[int\]](AslHelp.Collections.OrderedDictionary\-2.Item.md\#AslHelp\_Collections\_OrderedDictionary\_2\_Item\_System\_Int32\_)
 
 ## Methods
 
-### <a id="AslHelp_Collections_OrderedDictionary_2_Add__1_"></a> Add\(TValue\)
+ [Add\(TValue\)](AslHelp.Collections.OrderedDictionary\-2.Add.md\#AslHelp\_Collections\_OrderedDictionary\_2\_Add\_\_1\_)
 
-```csharp
-public void Add(TValue item)
-```
+ [Add\(TKey, TValue\)](AslHelp.Collections.OrderedDictionary\-2.Add.md\#AslHelp\_Collections\_OrderedDictionary\_2\_Add\_\_0\_\_1\_)
 
-#### Parameters
+ [Add\(KeyValuePair<TKey, TValue\>\)](AslHelp.Collections.OrderedDictionary\-2.Add.md\#AslHelp\_Collections\_OrderedDictionary\_2\_Add\_System\_Collections\_Generic\_KeyValuePair\_\_0\_\_1\_\_)
 
-`item` TValue
+ [Clear\(\)](AslHelp.Collections.OrderedDictionary\-2.Clear.md\#AslHelp\_Collections\_OrderedDictionary\_2\_Clear)
 
-### <a id="AslHelp_Collections_OrderedDictionary_2_Add__0__1_"></a> Add\(TKey, TValue\)
+ [Contains\(TValue\)](AslHelp.Collections.OrderedDictionary\-2.Contains.md\#AslHelp\_Collections\_OrderedDictionary\_2\_Contains\_\_1\_)
 
-```csharp
-public void Add(TKey key, TValue value)
-```
+ [Contains\(KeyValuePair<TKey, TValue\>\)](AslHelp.Collections.OrderedDictionary\-2.Contains.md\#AslHelp\_Collections\_OrderedDictionary\_2\_Contains\_System\_Collections\_Generic\_KeyValuePair\_\_0\_\_1\_\_)
 
-#### Parameters
+ [ContainsKey\(TKey\)](AslHelp.Collections.OrderedDictionary\-2.ContainsKey.md\#AslHelp\_Collections\_OrderedDictionary\_2\_ContainsKey\_\_0\_)
 
-`key` TKey
+ [CopyTo\(TValue\[\], int\)](AslHelp.Collections.OrderedDictionary\-2.CopyTo.md\#AslHelp\_Collections\_OrderedDictionary\_2\_CopyTo\_\_1\_\_\_System\_Int32\_)
 
-`value` TValue
+ [CopyTo\(KeyValuePair<TKey, TValue\>\[\], int\)](AslHelp.Collections.OrderedDictionary\-2.CopyTo.md\#AslHelp\_Collections\_OrderedDictionary\_2\_CopyTo\_System\_Collections\_Generic\_KeyValuePair\_\_0\_\_1\_\_\_\_System\_Int32\_)
 
-### <a id="AslHelp_Collections_OrderedDictionary_2_Add_System_Collections_Generic_KeyValuePair__0__1__"></a> Add\(KeyValuePair<TKey, TValue\>\)
+ [GetEnumerator\(\)](AslHelp.Collections.OrderedDictionary\-2.GetEnumerator.md\#AslHelp\_Collections\_OrderedDictionary\_2\_GetEnumerator)
 
-```csharp
-public void Add(KeyValuePair<TKey, TValue> item)
-```
+ [GetKeyForItem\(TValue\)](AslHelp.Collections.OrderedDictionary\-2.GetKeyForItem.md\#AslHelp\_Collections\_OrderedDictionary\_2\_GetKeyForItem\_\_1\_)
 
-#### Parameters
+ [IndexOf\(TValue\)](AslHelp.Collections.OrderedDictionary\-2.IndexOf.md\#AslHelp\_Collections\_OrderedDictionary\_2\_IndexOf\_\_1\_)
 
-`item` [KeyValuePair](https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair\-2)<TKey, TValue\>
+ [Insert\(int, TValue\)](AslHelp.Collections.OrderedDictionary\-2.Insert.md\#AslHelp\_Collections\_OrderedDictionary\_2\_Insert\_System\_Int32\_\_1\_)
 
-### <a id="AslHelp_Collections_OrderedDictionary_2_Clear"></a> Clear\(\)
+ [Remove\(TValue\)](AslHelp.Collections.OrderedDictionary\-2.Remove.md\#AslHelp\_Collections\_OrderedDictionary\_2\_Remove\_\_1\_)
 
-```csharp
-public void Clear()
-```
+ [Remove\(TKey\)](AslHelp.Collections.OrderedDictionary\-2.Remove.md\#AslHelp\_Collections\_OrderedDictionary\_2\_Remove\_\_0\_)
 
-### <a id="AslHelp_Collections_OrderedDictionary_2_Contains__1_"></a> Contains\(TValue\)
+ [Remove\(KeyValuePair<TKey, TValue\>\)](AslHelp.Collections.OrderedDictionary\-2.Remove.md\#AslHelp\_Collections\_OrderedDictionary\_2\_Remove\_System\_Collections\_Generic\_KeyValuePair\_\_0\_\_1\_\_)
 
-```csharp
-public bool Contains(TValue item)
-```
+ [RemoveAt\(int\)](AslHelp.Collections.OrderedDictionary\-2.RemoveAt.md\#AslHelp\_Collections\_OrderedDictionary\_2\_RemoveAt\_System\_Int32\_)
 
-#### Parameters
-
-`item` TValue
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Collections_OrderedDictionary_2_Contains_System_Collections_Generic_KeyValuePair__0__1__"></a> Contains\(KeyValuePair<TKey, TValue\>\)
-
-```csharp
-public bool Contains(KeyValuePair<TKey, TValue> item)
-```
-
-#### Parameters
-
-`item` [KeyValuePair](https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair\-2)<TKey, TValue\>
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Collections_OrderedDictionary_2_ContainsKey__0_"></a> ContainsKey\(TKey\)
-
-```csharp
-public bool ContainsKey(TKey key)
-```
-
-#### Parameters
-
-`key` TKey
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Collections_OrderedDictionary_2_CopyTo__1___System_Int32_"></a> CopyTo\(TValue\[\], int\)
-
-```csharp
-public void CopyTo(TValue[] array, int arrayIndex)
-```
-
-#### Parameters
-
-`array` TValue\[\]
-
-`arrayIndex` [int](https://learn.microsoft.com/dotnet/api/system.int32)
-
-### <a id="AslHelp_Collections_OrderedDictionary_2_CopyTo_System_Collections_Generic_KeyValuePair__0__1____System_Int32_"></a> CopyTo\(KeyValuePair<TKey, TValue\>\[\], int\)
-
-```csharp
-public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
-```
-
-#### Parameters
-
-`array` [KeyValuePair](https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair\-2)<TKey, TValue\>\[\]
-
-`arrayIndex` [int](https://learn.microsoft.com/dotnet/api/system.int32)
-
-### <a id="AslHelp_Collections_OrderedDictionary_2_GetEnumerator"></a> GetEnumerator\(\)
-
-```csharp
-public IEnumerator<TValue> GetEnumerator()
-```
-
-#### Returns
-
- [IEnumerator](https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator\-1)<TValue\>
-
-### <a id="AslHelp_Collections_OrderedDictionary_2_GetKeyForItem__1_"></a> GetKeyForItem\(TValue\)
-
-```csharp
-protected abstract TKey GetKeyForItem(TValue item)
-```
-
-#### Parameters
-
-`item` TValue
-
-#### Returns
-
- TKey
-
-### <a id="AslHelp_Collections_OrderedDictionary_2_IndexOf__1_"></a> IndexOf\(TValue\)
-
-```csharp
-public int IndexOf(TValue item)
-```
-
-#### Parameters
-
-`item` TValue
-
-#### Returns
-
- [int](https://learn.microsoft.com/dotnet/api/system.int32)
-
-### <a id="AslHelp_Collections_OrderedDictionary_2_Insert_System_Int32__1_"></a> Insert\(int, TValue\)
-
-```csharp
-public void Insert(int index, TValue item)
-```
-
-#### Parameters
-
-`index` [int](https://learn.microsoft.com/dotnet/api/system.int32)
-
-`item` TValue
-
-### <a id="AslHelp_Collections_OrderedDictionary_2_Remove__1_"></a> Remove\(TValue\)
-
-```csharp
-public bool Remove(TValue item)
-```
-
-#### Parameters
-
-`item` TValue
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Collections_OrderedDictionary_2_Remove__0_"></a> Remove\(TKey\)
-
-```csharp
-public bool Remove(TKey key)
-```
-
-#### Parameters
-
-`key` TKey
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Collections_OrderedDictionary_2_Remove_System_Collections_Generic_KeyValuePair__0__1__"></a> Remove\(KeyValuePair<TKey, TValue\>\)
-
-```csharp
-public bool Remove(KeyValuePair<TKey, TValue> item)
-```
-
-#### Parameters
-
-`item` [KeyValuePair](https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair\-2)<TKey, TValue\>
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Collections_OrderedDictionary_2_RemoveAt_System_Int32_"></a> RemoveAt\(int\)
-
-```csharp
-public void RemoveAt(int index)
-```
-
-#### Parameters
-
-`index` [int](https://learn.microsoft.com/dotnet/api/system.int32)
-
-### <a id="AslHelp_Collections_OrderedDictionary_2_TryGetValue__0__1__"></a> TryGetValue\(TKey, out TValue\)
-
-```csharp
-public bool TryGetValue(TKey key, out TValue value)
-```
-
-#### Parameters
-
-`key` TKey
-
-`value` TValue
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
+ [TryGetValue\(TKey, out TValue\)](AslHelp.Collections.OrderedDictionary\-2.TryGetValue.md\#AslHelp\_Collections\_OrderedDictionary\_2\_TryGetValue\_\_0\_\_1\_\_)
 

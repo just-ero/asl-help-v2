@@ -22,229 +22,43 @@ public record struct MonoDefaults : IEquatable<MonoDefaults>
 
 ## Constructors
 
-### <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults__ctor_System_UIntPtr_System_UIntPtr_System_UIntPtr_System_UIntPtr_System_UIntPtr_System_UIntPtr_System_UIntPtr_System_UIntPtr_System_UIntPtr_System_UIntPtr_System_UIntPtr_System_UIntPtr_System_UIntPtr_System_UIntPtr_System_UIntPtr_System_UIntPtr_System_UIntPtr_System_UIntPtr_"></a> MonoDefaults\(nuint, nuint, nuint, nuint, nuint, nuint, nuint, nuint, nuint, nuint, nuint, nuint, nuint, nuint, nuint, nuint, nuint, nuint\)
-
-```csharp
-public MonoDefaults(nuint Corlib, nuint ObjectClass, nuint ByteClass, nuint VoidClass, nuint BooleanClass, nuint SByteClass, nuint Int16Class, nuint UInt16Class, nuint Int32Class, nuint UInt32Class, nuint IntPtrClass, nuint UIntPtrClass, nuint Int64Class, nuint UInt64Class, nuint SingleClass, nuint DoubleClass, nuint CharClass, nuint StringClass)
-```
-
-#### Parameters
-
-`Corlib` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`ObjectClass` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`ByteClass` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`VoidClass` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`BooleanClass` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`SByteClass` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`Int16Class` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`UInt16Class` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`Int32Class` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`UInt32Class` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`IntPtrClass` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`UIntPtrClass` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`Int64Class` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`UInt64Class` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`SingleClass` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`DoubleClass` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`CharClass` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-`StringClass` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
+ [MonoDefaults\(nuint, nuint, nuint, nuint, nuint, nuint, nuint, nuint, nuint, nuint, nuint, nuint, nuint, nuint, nuint, nuint, nuint, nuint\)](AslHelp.Unity.Runtime.Interop.MonoDefaults.\-ctor.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoDefaults\_\_ctor\_System\_UIntPtr\_System\_UIntPtr\_System\_UIntPtr\_System\_UIntPtr\_System\_UIntPtr\_System\_UIntPtr\_System\_UIntPtr\_System\_UIntPtr\_System\_UIntPtr\_System\_UIntPtr\_System\_UIntPtr\_System\_UIntPtr\_System\_UIntPtr\_System\_UIntPtr\_System\_UIntPtr\_System\_UIntPtr\_System\_UIntPtr\_System\_UIntPtr\_)
 
 ## Properties
 
-### <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_BooleanClass"></a> BooleanClass
+ [BooleanClass](AslHelp.Unity.Runtime.Interop.MonoDefaults.BooleanClass.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoDefaults\_BooleanClass)
 
-```csharp
-public nuint BooleanClass { readonly get; set; }
-```
+ [ByteClass](AslHelp.Unity.Runtime.Interop.MonoDefaults.ByteClass.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoDefaults\_ByteClass)
 
-#### Property Value
+ [CharClass](AslHelp.Unity.Runtime.Interop.MonoDefaults.CharClass.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoDefaults\_CharClass)
 
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
+ [Corlib](AslHelp.Unity.Runtime.Interop.MonoDefaults.Corlib.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoDefaults\_Corlib)
 
-### <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_ByteClass"></a> ByteClass
+ [DoubleClass](AslHelp.Unity.Runtime.Interop.MonoDefaults.DoubleClass.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoDefaults\_DoubleClass)
 
-```csharp
-public nuint ByteClass { readonly get; set; }
-```
+ [Int16Class](AslHelp.Unity.Runtime.Interop.MonoDefaults.Int16Class.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoDefaults\_Int16Class)
 
-#### Property Value
+ [Int32Class](AslHelp.Unity.Runtime.Interop.MonoDefaults.Int32Class.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoDefaults\_Int32Class)
 
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
+ [Int64Class](AslHelp.Unity.Runtime.Interop.MonoDefaults.Int64Class.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoDefaults\_Int64Class)
 
-### <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_CharClass"></a> CharClass
+ [IntPtrClass](AslHelp.Unity.Runtime.Interop.MonoDefaults.IntPtrClass.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoDefaults\_IntPtrClass)
 
-```csharp
-public nuint CharClass { readonly get; set; }
-```
+ [ObjectClass](AslHelp.Unity.Runtime.Interop.MonoDefaults.ObjectClass.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoDefaults\_ObjectClass)
 
-#### Property Value
+ [SByteClass](AslHelp.Unity.Runtime.Interop.MonoDefaults.SByteClass.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoDefaults\_SByteClass)
 
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
+ [SingleClass](AslHelp.Unity.Runtime.Interop.MonoDefaults.SingleClass.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoDefaults\_SingleClass)
 
-### <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_Corlib"></a> Corlib
+ [StringClass](AslHelp.Unity.Runtime.Interop.MonoDefaults.StringClass.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoDefaults\_StringClass)
 
-```csharp
-public nuint Corlib { readonly get; set; }
-```
+ [UInt16Class](AslHelp.Unity.Runtime.Interop.MonoDefaults.UInt16Class.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoDefaults\_UInt16Class)
 
-#### Property Value
+ [UInt32Class](AslHelp.Unity.Runtime.Interop.MonoDefaults.UInt32Class.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoDefaults\_UInt32Class)
 
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
+ [UInt64Class](AslHelp.Unity.Runtime.Interop.MonoDefaults.UInt64Class.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoDefaults\_UInt64Class)
 
-### <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_DoubleClass"></a> DoubleClass
+ [UIntPtrClass](AslHelp.Unity.Runtime.Interop.MonoDefaults.UIntPtrClass.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoDefaults\_UIntPtrClass)
 
-```csharp
-public nuint DoubleClass { readonly get; set; }
-```
-
-#### Property Value
-
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_Int16Class"></a> Int16Class
-
-```csharp
-public nuint Int16Class { readonly get; set; }
-```
-
-#### Property Value
-
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_Int32Class"></a> Int32Class
-
-```csharp
-public nuint Int32Class { readonly get; set; }
-```
-
-#### Property Value
-
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_Int64Class"></a> Int64Class
-
-```csharp
-public nuint Int64Class { readonly get; set; }
-```
-
-#### Property Value
-
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_IntPtrClass"></a> IntPtrClass
-
-```csharp
-public nuint IntPtrClass { readonly get; set; }
-```
-
-#### Property Value
-
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_ObjectClass"></a> ObjectClass
-
-```csharp
-public nuint ObjectClass { readonly get; set; }
-```
-
-#### Property Value
-
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_SByteClass"></a> SByteClass
-
-```csharp
-public nuint SByteClass { readonly get; set; }
-```
-
-#### Property Value
-
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_SingleClass"></a> SingleClass
-
-```csharp
-public nuint SingleClass { readonly get; set; }
-```
-
-#### Property Value
-
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_StringClass"></a> StringClass
-
-```csharp
-public nuint StringClass { readonly get; set; }
-```
-
-#### Property Value
-
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_UInt16Class"></a> UInt16Class
-
-```csharp
-public nuint UInt16Class { readonly get; set; }
-```
-
-#### Property Value
-
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_UInt32Class"></a> UInt32Class
-
-```csharp
-public nuint UInt32Class { readonly get; set; }
-```
-
-#### Property Value
-
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_UInt64Class"></a> UInt64Class
-
-```csharp
-public nuint UInt64Class { readonly get; set; }
-```
-
-#### Property Value
-
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_UIntPtrClass"></a> UIntPtrClass
-
-```csharp
-public nuint UIntPtrClass { readonly get; set; }
-```
-
-#### Property Value
-
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-### <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_VoidClass"></a> VoidClass
-
-```csharp
-public nuint VoidClass { readonly get; set; }
-```
-
-#### Property Value
-
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
+ [VoidClass](AslHelp.Unity.Runtime.Interop.MonoDefaults.VoidClass.md\#AslHelp\_Unity\_Runtime\_Interop\_MonoDefaults\_VoidClass)
 

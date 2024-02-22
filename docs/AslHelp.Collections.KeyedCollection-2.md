@@ -45,178 +45,46 @@ The type of the values in the <xref href="AslHelp.Collections.KeyedCollection%60
 
 #### Extension Methods
 
-[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
-[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
-[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
+[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetMethod.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.IsType.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
+[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
+[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
 
 ## Constructors
 
-### <a id="AslHelp_Collections_KeyedCollection_2__ctor"></a> KeyedCollection\(\)
+ [KeyedCollection\(\)](AslHelp.Collections.KeyedCollection\-2.\-ctor.md\#AslHelp\_Collections\_KeyedCollection\_2\_\_ctor)
 
-```csharp
-protected KeyedCollection()
-```
-
-### <a id="AslHelp_Collections_KeyedCollection_2__ctor_System_Collections_Generic_IEqualityComparer__0__"></a> KeyedCollection\(IEqualityComparer<TKey\>\)
-
-```csharp
-protected KeyedCollection(IEqualityComparer<TKey> comparer)
-```
-
-#### Parameters
-
-`comparer` [IEqualityComparer](https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer\-1)<TKey\>
+ [KeyedCollection\(IEqualityComparer<TKey\>\)](AslHelp.Collections.KeyedCollection\-2.\-ctor.md\#AslHelp\_Collections\_KeyedCollection\_2\_\_ctor\_System\_Collections\_Generic\_IEqualityComparer\_\_0\_\_)
 
 ## Properties
 
-### <a id="AslHelp_Collections_KeyedCollection_2_Count"></a> Count
+ [Count](AslHelp.Collections.KeyedCollection\-2.Count.md\#AslHelp\_Collections\_KeyedCollection\_2\_Count)
 
-```csharp
-public int Count { get; }
-```
+ [Keys](AslHelp.Collections.KeyedCollection\-2.Keys.md\#AslHelp\_Collections\_KeyedCollection\_2\_Keys)
 
-#### Property Value
+ [Values](AslHelp.Collections.KeyedCollection\-2.Values.md\#AslHelp\_Collections\_KeyedCollection\_2\_Values)
 
- [int](https://learn.microsoft.com/dotnet/api/system.int32)
-
-### <a id="AslHelp_Collections_KeyedCollection_2_Keys"></a> Keys
-
-```csharp
-public IEnumerable<TKey> Keys { get; }
-```
-
-#### Property Value
-
- [IEnumerable](https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable\-1)<TKey\>
-
-### <a id="AslHelp_Collections_KeyedCollection_2_Values"></a> Values
-
-```csharp
-public IEnumerable<TValue> Values { get; }
-```
-
-#### Property Value
-
- [IEnumerable](https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable\-1)<TValue\>
-
-### <a id="AslHelp_Collections_KeyedCollection_2_Item__0_"></a> this\[TKey\]
-
-```csharp
-public TValue this[TKey key] { get; }
-```
-
-#### Property Value
-
- TValue
+ [this\[TKey\]](AslHelp.Collections.KeyedCollection\-2.Item.md\#AslHelp\_Collections\_KeyedCollection\_2\_Item\_\_0\_)
 
 ## Methods
 
-### <a id="AslHelp_Collections_KeyedCollection_2_Clear"></a> Clear\(\)
+ [Clear\(\)](AslHelp.Collections.KeyedCollection\-2.Clear.md\#AslHelp\_Collections\_KeyedCollection\_2\_Clear)
 
-```csharp
-public void Clear()
-```
+ [ContainsKey\(TKey\)](AslHelp.Collections.KeyedCollection\-2.ContainsKey.md\#AslHelp\_Collections\_KeyedCollection\_2\_ContainsKey\_\_0\_)
 
-### <a id="AslHelp_Collections_KeyedCollection_2_ContainsKey__0_"></a> ContainsKey\(TKey\)
+ [GetEnumerator\(\)](AslHelp.Collections.KeyedCollection\-2.GetEnumerator.md\#AslHelp\_Collections\_KeyedCollection\_2\_GetEnumerator)
 
-```csharp
-public bool ContainsKey(TKey key)
-```
+ [KeyNotFoundMessage\(TKey\)](AslHelp.Collections.KeyedCollection\-2.KeyNotFoundMessage.md\#AslHelp\_Collections\_KeyedCollection\_2\_KeyNotFoundMessage\_\_0\_)
 
-#### Parameters
+ [OnFound\(TValue\)](AslHelp.Collections.KeyedCollection\-2.OnFound.md\#AslHelp\_Collections\_KeyedCollection\_2\_OnFound\_\_1\_)
 
-`key` TKey
+ [OnNotFound\(TKey\)](AslHelp.Collections.KeyedCollection\-2.OnNotFound.md\#AslHelp\_Collections\_KeyedCollection\_2\_OnNotFound\_\_0\_)
 
-#### Returns
+ [OnSearch\(TKey\)](AslHelp.Collections.KeyedCollection\-2.OnSearch.md\#AslHelp\_Collections\_KeyedCollection\_2\_OnSearch\_\_0\_)
 
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
+ [TryGetKey\(TValue, out TKey?\)](AslHelp.Collections.KeyedCollection\-2.TryGetKey.md\#AslHelp\_Collections\_KeyedCollection\_2\_TryGetKey\_\_1\_\_0\_\_)
 
-### <a id="AslHelp_Collections_KeyedCollection_2_GetEnumerator"></a> GetEnumerator\(\)
-
-```csharp
-public abstract IEnumerator<TValue> GetEnumerator()
-```
-
-#### Returns
-
- [IEnumerator](https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator\-1)<TValue\>
-
-### <a id="AslHelp_Collections_KeyedCollection_2_KeyNotFoundMessage__0_"></a> KeyNotFoundMessage\(TKey\)
-
-```csharp
-protected virtual string KeyNotFoundMessage(TKey key)
-```
-
-#### Parameters
-
-`key` TKey
-
-#### Returns
-
- [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-### <a id="AslHelp_Collections_KeyedCollection_2_OnFound__1_"></a> OnFound\(TValue\)
-
-```csharp
-protected virtual void OnFound(TValue value)
-```
-
-#### Parameters
-
-`value` TValue
-
-### <a id="AslHelp_Collections_KeyedCollection_2_OnNotFound__0_"></a> OnNotFound\(TKey\)
-
-```csharp
-protected virtual void OnNotFound(TKey key)
-```
-
-#### Parameters
-
-`key` TKey
-
-### <a id="AslHelp_Collections_KeyedCollection_2_OnSearch__0_"></a> OnSearch\(TKey\)
-
-```csharp
-protected virtual void OnSearch(TKey key)
-```
-
-#### Parameters
-
-`key` TKey
-
-### <a id="AslHelp_Collections_KeyedCollection_2_TryGetKey__1__0__"></a> TryGetKey\(TValue, out TKey?\)
-
-```csharp
-protected abstract bool TryGetKey(TValue value, out TKey? key)
-```
-
-#### Parameters
-
-`value` TValue
-
-`key` TKey?
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
-
-### <a id="AslHelp_Collections_KeyedCollection_2_TryGetValue__0__1__"></a> TryGetValue\(TKey, out TValue\)
-
-```csharp
-public bool TryGetValue(TKey key, out TValue value)
-```
-
-#### Parameters
-
-`key` TKey
-
-`value` TValue
-
-#### Returns
-
- [bool](https://learn.microsoft.com/dotnet/api/system.boolean)
+ [TryGetValue\(TKey, out TValue\)](AslHelp.Collections.KeyedCollection\-2.TryGetValue.md\#AslHelp\_Collections\_KeyedCollection\_2\_TryGetValue\_\_0\_\_1\_\_)
 

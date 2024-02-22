@@ -25,138 +25,49 @@ public sealed class Module
 
 #### Extension Methods
 
-[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
-[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
-[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
+[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetMethod.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.IsType.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
+[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
+[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
 
 ## Constructors
 
-### <a id="AslHelp_Memory_Module__ctor_System_UIntPtr_System_String_System_String_System_UIntPtr_System_UInt32_"></a> Module\(nuint, string, string, nuint, uint\)
+ [Module\(nuint, string, string, nuint, uint\)](AslHelp.Memory.Module.\-ctor.md\#AslHelp\_Memory\_Module\_\_ctor\_System\_UIntPtr\_System\_String\_System\_String\_System\_UIntPtr\_System\_UInt32\_)
 
 Initializes a new instance of the <xref href="AslHelp.Memory.Module" data-throw-if-not-resolved="false"></xref> class
 using the specified process handle, module name, file path, base address, and memory size.
 
-```csharp
-public Module(nuint processHandle, string name, string fileName, nuint @base, uint memorySize)
-```
-
-#### Parameters
-
-`processHandle` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-The handle of the <xref href="System.Diagnostics.Process" data-throw-if-not-resolved="false"></xref> containing the module.
-
-`name` [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-The name of the module.
-
-`fileName` [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-The fully qualified file path to the module.
-
-`base` [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-The memory address where the module is loaded.
-
-`memorySize` [uint](https://learn.microsoft.com/dotnet/api/system.uint32)
-
-The amount of memory required to load the module, in bytes.
-
 ## Properties
 
-### <a id="AslHelp_Memory_Module_Base"></a> Base
+ [Base](AslHelp.Memory.Module.Base.md\#AslHelp\_Memory\_Module\_Base)
 
 Gets the memory address where the <xref href="AslHelp.Memory.Module" data-throw-if-not-resolved="false"></xref> is loaded.
 
-```csharp
-public nuint Base { get; }
-```
-
-#### Property Value
-
- [nuint](https://learn.microsoft.com/dotnet/api/system.uintptr)
-
-### <a id="AslHelp_Memory_Module_FileName"></a> FileName
+ [FileName](AslHelp.Memory.Module.FileName.md\#AslHelp\_Memory\_Module\_FileName)
 
 Gets the fully qualified file path to the <xref href="AslHelp.Memory.Module" data-throw-if-not-resolved="false"></xref>.
 
-```csharp
-public string FileName { get; }
-```
-
-#### Property Value
-
- [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-### <a id="AslHelp_Memory_Module_MemorySize"></a> MemorySize
+ [MemorySize](AslHelp.Memory.Module.MemorySize.md\#AslHelp\_Memory\_Module\_MemorySize)
 
 Gets the amount of memory required to load the <xref href="AslHelp.Memory.Module" data-throw-if-not-resolved="false"></xref>, in bytes.
 
-```csharp
-public uint MemorySize { get; }
-```
-
-#### Property Value
-
- [uint](https://learn.microsoft.com/dotnet/api/system.uint32)
-
-### <a id="AslHelp_Memory_Module_Name"></a> Name
+ [Name](AslHelp.Memory.Module.Name.md\#AslHelp\_Memory\_Module\_Name)
 
 Gets the name of the <xref href="AslHelp.Memory.Module" data-throw-if-not-resolved="false"></xref>.
 
-```csharp
-public string Name { get; }
-```
-
-#### Property Value
-
- [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-### <a id="AslHelp_Memory_Module_Symbols"></a> Symbols
+ [Symbols](AslHelp.Memory.Module.Symbols.md\#AslHelp\_Memory\_Module\_Symbols)
 
 Gets all debug symbols for the <xref href="AslHelp.Memory.Module" data-throw-if-not-resolved="false"></xref>.
 
-```csharp
-public Dictionary<string, DebugSymbol> Symbols { get; }
-```
-
-#### Property Value
-
- [Dictionary](https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary\-2)<[string](https://learn.microsoft.com/dotnet/api/system.string), [DebugSymbol](AslHelp.Memory.DebugSymbol.md)\>
-
-#### Remarks
-
-The symbols are cached upon the first call to this property due to the non-trivial overhead.
-Both embedded and PDB-contained symbols are queried, searching the module's directory for applicable PDB files.
-
-### <a id="AslHelp_Memory_Module_VersionInfo"></a> VersionInfo
+ [VersionInfo](AslHelp.Memory.Module.VersionInfo.md\#AslHelp\_Memory\_Module\_VersionInfo)
 
 Gets the version information for the <xref href="AslHelp.Memory.Module" data-throw-if-not-resolved="false"></xref>.
 
-```csharp
-public FileVersionInfo VersionInfo { get; }
-```
-
-#### Property Value
-
- [FileVersionInfo](https://learn.microsoft.com/dotnet/api/system.diagnostics.fileversioninfo)
-
 ## Methods
 
-### <a id="AslHelp_Memory_Module_ToString"></a> ToString\(\)
+ [ToString\(\)](AslHelp.Memory.Module.ToString.md\#AslHelp\_Memory\_Module\_ToString)
 
 Converts the value of this instance to its <xref href="System.String" data-throw-if-not-resolved="false"></xref> representation.
-
-```csharp
-public override string ToString()
-```
-
-#### Returns
-
- [string](https://learn.microsoft.com/dotnet/api/system.string)
-
-The name of the <xref href="AslHelp.Memory.Module" data-throw-if-not-resolved="false"></xref>.
 

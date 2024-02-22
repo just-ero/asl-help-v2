@@ -25,154 +25,70 @@ public class AutoSplitter.ScriptActions
 
 #### Extension Methods
 
-[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
-[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
-[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
-[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
+[ReflectionExtensions.GetFieldValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetFieldValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetMethod\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetMethod.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetMethod\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.GetPropertyValue<T\>\(object, string\)](AslHelp.Common.Extensions.ReflectionExtensions.GetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_GetPropertyValue\_\_1\_System\_Object\_System\_String\_), 
+[ReflectionExtensions.IsType<T\>\(object\)](AslHelp.Common.Extensions.ReflectionExtensions.IsType.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_IsType\_\_1\_System\_Object\_), 
+[ReflectionExtensions.SetFieldValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetFieldValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetFieldValue\_\_1\_System\_Object\_System\_String\_\_\_0\_), 
+[ReflectionExtensions.SetPropertyValue<T\>\(object, string, T\)](AslHelp.Common.Extensions.ReflectionExtensions.SetPropertyValue.md\#AslHelp\_Common\_Extensions\_ReflectionExtensions\_SetPropertyValue\_\_1\_System\_Object\_System\_String\_\_\_0\_)
 
 ## Constructors
 
-### <a id="AslHelp_LiveSplit_AutoSplitter_ScriptActions__ctor_LiveSplit_ASL_ASLScript_Methods_"></a> ScriptActions\(Methods\)
+ [ScriptActions\(Methods\)](AslHelp.LiveSplit.AutoSplitter.ScriptActions.\-ctor.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_\_ctor\_LiveSplit\_ASL\_ASLScript\_Methods\_)
 
-```csharp
-public ScriptActions(ASLScript.Methods methods)
-```
-
-#### Parameters
-
-`methods` ASLScript.Methods
+ [ScriptActions\(Methods\)](AslHelp.LiveSplit.AutoSplitter.ScriptActions.\-ctor.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_\_ctor\_LiveSplit\_ASL\_ASLScript\_Methods\_)
 
 ## Properties
 
-### <a id="AslHelp_LiveSplit_AutoSplitter_ScriptActions_Exit"></a> Exit
+ [Exit](AslHelp.LiveSplit.AutoSplitter.ScriptActions.Exit.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_Exit)
 
-```csharp
-public ScriptAction Exit { get; set; }
-```
+ [Exit](AslHelp.LiveSplit.AutoSplitter.ScriptActions.Exit.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_Exit)
 
-#### Property Value
+ [GameTime](AslHelp.LiveSplit.AutoSplitter.ScriptActions.GameTime.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_GameTime)
 
- [ScriptAction](AslHelp.LiveSplit.ScriptAction.md)
+ [GameTime](AslHelp.LiveSplit.AutoSplitter.ScriptActions.GameTime.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_GameTime)
 
-### <a id="AslHelp_LiveSplit_AutoSplitter_ScriptActions_GameTime"></a> GameTime
+ [Init](AslHelp.LiveSplit.AutoSplitter.ScriptActions.Init.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_Init)
 
-```csharp
-public ScriptAction GameTime { get; set; }
-```
+ [Init](AslHelp.LiveSplit.AutoSplitter.ScriptActions.Init.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_Init)
 
-#### Property Value
+ [IsLoading](AslHelp.LiveSplit.AutoSplitter.ScriptActions.IsLoading.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_IsLoading)
 
- [ScriptAction](AslHelp.LiveSplit.ScriptAction.md)
+ [IsLoading](AslHelp.LiveSplit.AutoSplitter.ScriptActions.IsLoading.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_IsLoading)
 
-### <a id="AslHelp_LiveSplit_AutoSplitter_ScriptActions_Init"></a> Init
+ [OnReset](AslHelp.LiveSplit.AutoSplitter.ScriptActions.OnReset.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_OnReset)
 
-```csharp
-public ScriptAction Init { get; set; }
-```
+ [OnReset](AslHelp.LiveSplit.AutoSplitter.ScriptActions.OnReset.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_OnReset)
 
-#### Property Value
+ [OnSplit](AslHelp.LiveSplit.AutoSplitter.ScriptActions.OnSplit.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_OnSplit)
 
- [ScriptAction](AslHelp.LiveSplit.ScriptAction.md)
+ [OnSplit](AslHelp.LiveSplit.AutoSplitter.ScriptActions.OnSplit.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_OnSplit)
 
-### <a id="AslHelp_LiveSplit_AutoSplitter_ScriptActions_IsLoading"></a> IsLoading
+ [OnStart](AslHelp.LiveSplit.AutoSplitter.ScriptActions.OnStart.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_OnStart)
 
-```csharp
-public ScriptAction IsLoading { get; set; }
-```
+ [OnStart](AslHelp.LiveSplit.AutoSplitter.ScriptActions.OnStart.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_OnStart)
 
-#### Property Value
+ [Reset](AslHelp.LiveSplit.AutoSplitter.ScriptActions.Reset.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_Reset)
 
- [ScriptAction](AslHelp.LiveSplit.ScriptAction.md)
+ [Reset](AslHelp.LiveSplit.AutoSplitter.ScriptActions.Reset.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_Reset)
 
-### <a id="AslHelp_LiveSplit_AutoSplitter_ScriptActions_OnReset"></a> OnReset
+ [Shutdown](AslHelp.LiveSplit.AutoSplitter.ScriptActions.Shutdown.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_Shutdown)
 
-```csharp
-public ScriptAction OnReset { get; set; }
-```
+ [Shutdown](AslHelp.LiveSplit.AutoSplitter.ScriptActions.Shutdown.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_Shutdown)
 
-#### Property Value
+ [Split](AslHelp.LiveSplit.AutoSplitter.ScriptActions.Split.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_Split)
 
- [ScriptAction](AslHelp.LiveSplit.ScriptAction.md)
+ [Split](AslHelp.LiveSplit.AutoSplitter.ScriptActions.Split.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_Split)
 
-### <a id="AslHelp_LiveSplit_AutoSplitter_ScriptActions_OnSplit"></a> OnSplit
+ [Start](AslHelp.LiveSplit.AutoSplitter.ScriptActions.Start.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_Start)
 
-```csharp
-public ScriptAction OnSplit { get; set; }
-```
+ [Start](AslHelp.LiveSplit.AutoSplitter.ScriptActions.Start.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_Start)
 
-#### Property Value
+ [Startup](AslHelp.LiveSplit.AutoSplitter.ScriptActions.Startup.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_Startup)
 
- [ScriptAction](AslHelp.LiveSplit.ScriptAction.md)
+ [Startup](AslHelp.LiveSplit.AutoSplitter.ScriptActions.Startup.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_Startup)
 
-### <a id="AslHelp_LiveSplit_AutoSplitter_ScriptActions_OnStart"></a> OnStart
+ [Update](AslHelp.LiveSplit.AutoSplitter.ScriptActions.Update.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_Update)
 
-```csharp
-public ScriptAction OnStart { get; set; }
-```
-
-#### Property Value
-
- [ScriptAction](AslHelp.LiveSplit.ScriptAction.md)
-
-### <a id="AslHelp_LiveSplit_AutoSplitter_ScriptActions_Reset"></a> Reset
-
-```csharp
-public ScriptAction Reset { get; set; }
-```
-
-#### Property Value
-
- [ScriptAction](AslHelp.LiveSplit.ScriptAction.md)
-
-### <a id="AslHelp_LiveSplit_AutoSplitter_ScriptActions_Shutdown"></a> Shutdown
-
-```csharp
-public ScriptAction Shutdown { get; set; }
-```
-
-#### Property Value
-
- [ScriptAction](AslHelp.LiveSplit.ScriptAction.md)
-
-### <a id="AslHelp_LiveSplit_AutoSplitter_ScriptActions_Split"></a> Split
-
-```csharp
-public ScriptAction Split { get; set; }
-```
-
-#### Property Value
-
- [ScriptAction](AslHelp.LiveSplit.ScriptAction.md)
-
-### <a id="AslHelp_LiveSplit_AutoSplitter_ScriptActions_Start"></a> Start
-
-```csharp
-public ScriptAction Start { get; set; }
-```
-
-#### Property Value
-
- [ScriptAction](AslHelp.LiveSplit.ScriptAction.md)
-
-### <a id="AslHelp_LiveSplit_AutoSplitter_ScriptActions_Startup"></a> Startup
-
-```csharp
-public ScriptAction Startup { get; set; }
-```
-
-#### Property Value
-
- [ScriptAction](AslHelp.LiveSplit.ScriptAction.md)
-
-### <a id="AslHelp_LiveSplit_AutoSplitter_ScriptActions_Update"></a> Update
-
-```csharp
-public ScriptAction Update { get; set; }
-```
-
-#### Property Value
-
- [ScriptAction](AslHelp.LiveSplit.ScriptAction.md)
+ [Update](AslHelp.LiveSplit.AutoSplitter.ScriptActions.Update.md\#AslHelp\_LiveSplit\_AutoSplitter\_ScriptActions\_Update)
 
