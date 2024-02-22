@@ -6,7 +6,7 @@ Assembly: AslHelp.Unity.dll
 ## <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_SByteClass"></a> SByteClass
 
 ```csharp
-public nuint SByteClass { readonly get; set; }
+public nuint SByteClass { get; init; }
 ```
 
 ### Property Value

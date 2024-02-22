@@ -6,7 +6,7 @@ Assembly: AslHelp.Unity.dll
 ## <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_ByteClass"></a> ByteClass
 
 ```csharp
-public nuint ByteClass { readonly get; set; }
+public nuint ByteClass { get; init; }
 ```
 
 ### Property Value

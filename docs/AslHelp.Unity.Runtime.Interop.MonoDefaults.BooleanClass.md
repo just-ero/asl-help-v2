@@ -6,7 +6,7 @@ Assembly: AslHelp.Unity.dll
 ## <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_BooleanClass"></a> BooleanClass
 
 ```csharp
-public nuint BooleanClass { readonly get; set; }
+public nuint BooleanClass { get; init; }
 ```
 
 ### Property Value

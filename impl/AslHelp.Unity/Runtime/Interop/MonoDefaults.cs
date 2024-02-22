@@ -1,6 +1,6 @@
 namespace AslHelp.Unity.Runtime.Interop;
 
-public record struct MonoDefaults(
+public readonly record struct MonoDefaults(
     nuint Corlib,
     nuint ObjectClass,
     nuint ByteClass,

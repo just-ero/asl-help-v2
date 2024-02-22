@@ -4,7 +4,7 @@ Namespace: [AslHelp.Unity.Runtime.Interop](AslHelp.Unity.Runtime.Interop.md)
 Assembly: AslHelp.Unity.dll  
 
 ```csharp
-public record struct MonoDefaults : IEquatable<MonoDefaults>
+public readonly record struct MonoDefaults : IEquatable<MonoDefaults>
 ```
 
 #### Implements

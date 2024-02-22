@@ -6,7 +6,7 @@ Assembly: AslHelp.Unity.dll
 ## <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_IntPtrClass"></a> IntPtrClass
 
 ```csharp
-public nuint IntPtrClass { readonly get; set; }
+public nuint IntPtrClass { get; init; }
 ```
 
 ### Property Value

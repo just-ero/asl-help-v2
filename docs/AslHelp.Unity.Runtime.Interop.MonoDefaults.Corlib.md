@@ -6,7 +6,7 @@ Assembly: AslHelp.Unity.dll
 ## <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_Corlib"></a> Corlib
 
 ```csharp
-public nuint Corlib { readonly get; set; }
+public nuint Corlib { get; init; }
 ```
 
 ### Property Value

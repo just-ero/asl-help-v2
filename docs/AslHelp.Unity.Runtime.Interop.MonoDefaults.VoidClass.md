@@ -6,7 +6,7 @@ Assembly: AslHelp.Unity.dll
 ## <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_VoidClass"></a> VoidClass
 
 ```csharp
-public nuint VoidClass { readonly get; set; }
+public nuint VoidClass { get; init; }
 ```
 
 ### Property Value

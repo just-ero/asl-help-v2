@@ -6,7 +6,7 @@ Assembly: AslHelp.Unity.dll
 ## <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_Int64Class"></a> Int64Class
 
 ```csharp
-public nuint Int64Class { readonly get; set; }
+public nuint Int64Class { get; init; }
 ```
 
 ### Property Value

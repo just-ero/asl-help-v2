@@ -6,7 +6,7 @@ Assembly: AslHelp.Unity.dll
 ## <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_DoubleClass"></a> DoubleClass
 
 ```csharp
-public nuint DoubleClass { readonly get; set; }
+public nuint DoubleClass { get; init; }
 ```
 
 ### Property Value

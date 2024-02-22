@@ -6,7 +6,7 @@ Assembly: AslHelp.Unity.dll
 ## <a id="AslHelp_Unity_Runtime_Interop_MonoDefaults_UInt32Class"></a> UInt32Class
 
 ```csharp
-public nuint UInt32Class { readonly get; set; }
+public nuint UInt32Class { get; init; }
 ```
 
 ### Property Value
