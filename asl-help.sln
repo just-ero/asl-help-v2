@@ -1,9 +1,7 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
-#
-#
+# 
 VisualStudioVersion = 17.5.002.0
-MinimumVisualStudioVersion =
-MinimumVisualStudioVersion =
+MinimumVisualStudioVersion = 
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".root", ".root", "{56541453-F5C5-4DAB-AC46-2FE0600E79FC}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig

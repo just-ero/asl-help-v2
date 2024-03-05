@@ -2,7 +2,7 @@ using AslHelp.Memory.Scanning;
 
 namespace AslHelp.Memory.UnitTests.Scanning;
 
-internal sealed class ScanPatternTests
+public sealed class ScanPatternTests
 {
     public static readonly TheoryData<string[], ulong[], ulong[]> StringConstructorTestCases = new()
     {
