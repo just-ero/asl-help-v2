@@ -1,6 +1,6 @@
 # IDE options/cache directories
 .vs/
-!.vscode/
+.vscode/
 .fleet/
 .idea/
 
@@ -15,3 +15,7 @@ BenchmarkDotNet.Artifacts/
 
 # asl-help
 lib/
+temp/
+
+# Exclusions
+!.vscode/settings.json

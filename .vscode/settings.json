@@ -11,7 +11,7 @@
         ".fleet/": true,
         ".idea/": true,
 
-        "**/artifacts/": true,
+        // "**/artifacts/": true,
         "**/bin/": true,
         "**/obj/": true,
 

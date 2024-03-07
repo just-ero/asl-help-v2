@@ -52,6 +52,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AslHelp.Memory.UnitTests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AslHelp.Unity", "impl\AslHelp.Unity\AslHelp.Unity.csproj", "{DCE5A410-765F-4190-BB34-DF730D377F70}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{2F2A1FFB-26BB-4198-A37C-B17C234D73D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AslHelp.DocumentationGenerator", "docs\AslHelp.DocumentationGenerator\AslHelp.DocumentationGenerator.csproj", "{2BF1F3BF-89E9-448D-BE67-44D7A99ABF7E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -114,6 +118,10 @@ Global
 		{DCE5A410-765F-4190-BB34-DF730D377F70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCE5A410-765F-4190-BB34-DF730D377F70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCE5A410-765F-4190-BB34-DF730D377F70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BF1F3BF-89E9-448D-BE67-44D7A99ABF7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BF1F3BF-89E9-448D-BE67-44D7A99ABF7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BF1F3BF-89E9-448D-BE67-44D7A99ABF7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BF1F3BF-89E9-448D-BE67-44D7A99ABF7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -134,5 +142,6 @@ Global
 		{8F909DD9-A587-4F4D-B1F5-658C6144CDD8} = {75F95A94-910E-4A61-8390-FDCDD43DC866}
 		{388C326B-069C-434B-89CC-4A20AC2EF90D} = {E72F50E4-B1FF-409D-87F9-91BCAD5E42A6}
 		{DCE5A410-765F-4190-BB34-DF730D377F70} = {7334D9DB-46FE-4292-8424-3459DA814368}
+		{2BF1F3BF-89E9-448D-BE67-44D7A99ABF7E} = {2F2A1FFB-26BB-4198-A37C-B17C234D73D2}
 	EndGlobalSection
 EndGlobal
