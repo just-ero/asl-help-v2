@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-
-using AslHelp.DocumentationGenerator.Extensions;
 
 using Microsoft.Build.Locator;
 using Microsoft.CodeAnalysis;
@@ -19,97 +16,19 @@ public static class Program
         using var workspace = MSBuildWorkspace.Create();
         workspace.WorkspaceFailed += (o, e) => Console.WriteLine(e.Diagnostic.Message);
 
-        var solution = await workspace.OpenSolutionAsync(args[0]);
-
-        var projectCompilations = new HashSet<Compilation>();
-        var assemblies = new List<(IAssemblySymbol Symbol, Compilation Compilation)>();
-
-        foreach (var project in solution.Projects)
+        Solution solution = await workspace.OpenSolutionAsync(args[0]);
+        foreach (var proj in solution.Projects)
         {
-            var compilation = await project.GetCompilationAsync();
-            if (compilation is not null)
+            if (await proj.GetCompilationAsync() is { Assembly.GlobalNamespace: { } ns })
             {
-                if (projectCompilations.Add(compilation))
+                foreach (var sym in ns.GetMembers())
                 {
-                    var assembly = compilation.Assembly;
-                    assemblies.Add((assembly, compilation));
-                }
-            }
-        }
-
-        var nodes = new List<Node>();
-
-        foreach (var (assembly, compilation) in assemblies)
-        {
-            var symbol = assembly.GlobalNamespace;
-
-            switch (symbol)
-            {
-                case INamespaceSymbol ns when ns.IsGlobalNamespace:
-                {
-                    foreach (var child in ns.GetNamespaceMembers())
+                    if (sym.DeclaredAccessibility == Accessibility.Public)
                     {
-                        foreach (var item in )
+                        Console.WriteLine(sym);
                     }
                 }
             }
         }
     }
-
-    private static IEnumerable<Node> CreateNodes(ISymbol sym, Compilation compilation)
-    {
-        switch (sym)
-        {
-            case INamespaceSymbol ns when ns.IsGlobalNamespace:
-                foreach (var child in ns.GetNamespaceMembers())
-                {
-                    foreach (var item in CreateNodes(child, compilation))
-                    {
-                        yield return item;
-                    }
-                }
-
-                break;
-
-            case INamespaceSymbol ns:
-                foreach (var item in CreateNamespaceNode(ns))
-                {
-                    yield return item;
-                }
-
-                break;
-        }
-    }
-
-    private static IEnumerable<Node> CreateNamespaceNode(INamespaceSymbol ns)
-    {
-        var idExists = true;
-        var
-    }
-}
-
-internal record Node(
-    string Name,
-    string? Href,
-    List<Node>? Items,
-    NodeType Type,
-    string? Id,
-    bool ContainsLeafNodes,
-    List<(ISymbol Symbol, Compilation Compilation)>? Symbols);
-
-internal enum NodeType
-{
-    None,
-    Namespace,
-    Class,
-    Struct,
-    Interface,
-    Enum,
-    Delegate,
-    Constructor,
-    Field,
-    Property,
-    Method,
-    Event,
-    Operator
 }

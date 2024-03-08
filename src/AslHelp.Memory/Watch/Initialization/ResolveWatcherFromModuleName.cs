@@ -1,4 +1,4 @@
-using AslHelp.Memory.Watch.Initialization;
+namespace AslHelp.Memory.Watch.Initialization;
 
 internal sealed class ResolveWatcherFromModuleName : IWatcherResolver
 {

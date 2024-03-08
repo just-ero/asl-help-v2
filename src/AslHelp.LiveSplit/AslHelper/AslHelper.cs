@@ -1,17 +1,23 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
+
+using AslHelp.Common;
 
 namespace AslHelp.LiveSplit;
 
 [Obsolete("Do not use ASL-specific features.", true)]
 public abstract partial class AslHelper
 {
-    public void OnExit()
+    private readonly AutoSplitter? _asl;
+
+    protected AslHelper() { }
+
+    [MemberNotNull(nameof(_asl))]
+    protected void EnsureInitialized()
     {
-
-    }
-
-    public void OnShutdown()
-    {
-
+        if (_asl is null)
+        {
+            ThrowHelper.ThrowInvalidOperationException("ASL is not initialized.");
+        }
     }
 }
