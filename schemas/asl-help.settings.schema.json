@@ -29,7 +29,7 @@
       },
       "children": {
         "description": "An optional amount of child settings.",
-        "$ref": "#"
+        "$ref": "#/additionalProperties"
       }
     }
   }
