@@ -1,7 +1,7 @@
 using System.CommandLine;
 using System.IO;
 
-namespace AslHelp.DocumentationGenerator.Commands;
+namespace AslHelp.DotnetDoc.Commands;
 
 internal sealed class OutputDirectoryOption : Option<DirectoryInfo>
 {

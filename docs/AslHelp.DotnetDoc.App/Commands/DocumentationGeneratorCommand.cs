@@ -1,6 +1,6 @@
 using System.CommandLine;
 
-namespace AslHelp.DocumentationGenerator.Commands;
+namespace AslHelp.DotnetDoc.Commands;
 
 internal sealed class DocumentationGeneratorCommand : RootCommand
 {

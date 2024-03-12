@@ -3,7 +3,7 @@ using System.CommandLine.Parsing;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace AslHelp.DocumentationGenerator.Commands;
+namespace AslHelp.DotnetDoc.Commands;
 
 internal sealed class SolutionCommand : Command
 {

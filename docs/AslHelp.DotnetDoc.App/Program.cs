@@ -1,9 +1,9 @@
 ﻿using System.CommandLine;
 using System.Threading.Tasks;
 
-using AslHelp.DocumentationGenerator.Commands;
+using AslHelp.DotnetDoc.Commands;
 
-namespace AslHelp.DocumentationGenerator;
+namespace AslHelp.DotnetDoc;
 
 public static class Program
 {

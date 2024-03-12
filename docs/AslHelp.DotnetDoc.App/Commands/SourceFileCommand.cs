@@ -2,15 +2,15 @@ using System.CommandLine;
 using System.CommandLine.Parsing;
 using System.IO;
 
-namespace AslHelp.DocumentationGenerator.Commands;
+namespace AslHelp.DotnetDoc.Commands;
 
-internal sealed class ProjectCommand : Command
+internal sealed class SourceFileCommand : Command
 {
-    private readonly ProjectInputArgument _input = new();
+    private readonly SourceFileInputArgument _input = new();
     private readonly OutputDirectoryOption _output = new();
 
-    public ProjectCommand()
-        : base("proj", "Generate documentation for a .NET project.")
+    public SourceFileCommand()
+        : base("src", "Generate documentation for a .NET source file.")
     {
         AddArgument(_input);
         AddOption(_output);
@@ -24,10 +24,10 @@ internal sealed class ProjectCommand : Command
     }
 }
 
-internal sealed class ProjectInputArgument : Argument<FileInfo>
+internal sealed class SourceFileInputArgument : Argument<FileInfo>
 {
-    public ProjectInputArgument()
-        : base("project", "The path to the .NET project file.")
+    public SourceFileInputArgument()
+        : base("source", "The path to the .NET source file.")
     {
         Arity = ArgumentArity.ExactlyOne;
 
@@ -38,7 +38,7 @@ internal sealed class ProjectInputArgument : Argument<FileInfo>
     {
         if (result.GetValueOrDefault<FileInfo>() is not { Exists: true })
         {
-            result.ErrorMessage = "The specified project file does not exist.";
+            result.ErrorMessage = "The specified source file does not exist.";
         }
     }
 }

@@ -2,7 +2,7 @@ using System.CommandLine;
 using System.CommandLine.Parsing;
 using System.IO;
 
-namespace AslHelp.DocumentationGenerator.Commands;
+namespace AslHelp.DotnetDoc.Commands;
 
 internal sealed class AssemblyCommand : Command
 {
