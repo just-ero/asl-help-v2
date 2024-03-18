@@ -1,8 +1,5 @@
 using System.IO;
-using System.Text.Json;
 using System.Threading.Tasks;
-
-using DotnetDoc.Extensions;
 
 using Microsoft.Build.Locator;
 using Microsoft.CodeAnalysis;
@@ -28,12 +25,12 @@ public sealed class DotnetDocumentationGenerator
             var compilation = await project.GetCompilationAsync();
             if (await project.GetCompilationAsync() is { Assembly: { } assembly })
             {
-                var node = assembly.GlobalNamespace.AsNode();
+                // var node = assembly.GlobalNamespace.AsNode();
 
-                System.Console.WriteLine(JsonSerializer.Serialize(node, new JsonSerializerOptions()
-                {
-                    WriteIndented = true
-                }));
+                // System.Console.WriteLine(JsonSerializer.Serialize(node, new JsonSerializerOptions()
+                // {
+                //     WriteIndented = true
+                // }));
             }
         }
     }

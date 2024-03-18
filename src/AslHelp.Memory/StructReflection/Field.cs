@@ -181,12 +181,7 @@ public sealed class Field
     }
 
     private static ReadOnlySpan<byte> TrailingZeroCountDeBruijn
-        => [
-            00, 01, 28, 02, 29, 14, 24, 03,
-            30, 22, 20, 15, 25, 17, 04, 08,
-            31, 27, 13, 23, 21, 19, 16, 07,
-            26, 12, 18, 06, 11, 05, 10, 09
-        ];
+        => [00, 01, 28, 02, 29, 14, 24, 03, 30, 22, 20, 15, 25, 17, 04, 08, 31, 27, 13, 23, 21, 19, 16, 07, 26, 12, 18, 06, 11, 05, 10, 09];
 
     public override string ToString()
     {
