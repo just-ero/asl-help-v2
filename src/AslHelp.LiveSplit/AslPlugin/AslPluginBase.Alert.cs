@@ -4,9 +4,9 @@ using LiveSplit.Model;
 
 namespace AslHelp.LiveSplit;
 
-public partial class AslHelper
+public partial class AslPluginBase
 {
-    public AslHelper AlertRealTime(string? message = default)
+    public AslPluginBase AlertRealTime(string? message = default)
     {
         EnsureInitialized();
 
@@ -29,7 +29,7 @@ public partial class AslHelper
         return this;
     }
 
-    public AslHelper AlertGameTime(string? message = default)
+    public AslPluginBase AlertGameTime(string? message = default)
     {
         EnsureInitialized();
 
@@ -52,7 +52,7 @@ public partial class AslHelper
         return this;
     }
 
-    public AslHelper AlertLoadlessTime(string? message = default)
+    public AslPluginBase AlertLoadless(string? message = default)
     {
         EnsureInitialized();
 
