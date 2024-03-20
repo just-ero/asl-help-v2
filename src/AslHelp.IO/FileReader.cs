@@ -3,14 +3,14 @@ using System.IO;
 
 namespace AslHelp.IO;
 
-public sealed class FileWatcher : IDisposable
+public sealed class FileReader : IDisposable
 {
     private readonly string _filePath;
 
     private bool _isConnected;
     private StreamReader? _reader;
 
-    public FileWatcher(string filePath)
+    public FileReader(string filePath)
     {
         _filePath = filePath;
     }

@@ -1,3 +1,5 @@
+using System;
+
 namespace AslHelp.Memory.Watch.Initialization;
 
 public interface IWatcherFactory
