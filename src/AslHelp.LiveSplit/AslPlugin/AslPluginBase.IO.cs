@@ -1,10 +1,4 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
-
-using AslHelp.Common;
 using AslHelp.IO;
-using AslHelp.LiveSplit.Abstractions;
 using AslHelp.LiveSplit.Control;
 using AslHelp.LiveSplit.Settings;
 

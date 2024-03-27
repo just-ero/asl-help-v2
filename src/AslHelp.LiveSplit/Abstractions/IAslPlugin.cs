@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-using AslHelp.Diagnostics.Logging;
+using AslHelp.IO;
 using AslHelp.LiveSplit.Control;
 using AslHelp.LiveSplit.Settings;
 using AslHelp.Memory;

@@ -1,6 +1,5 @@
 #include <windows.h>
 
-#include "IO/Fwd.hxx"
 #include "Memory/MemoryRequestHandler.hxx"
 
 using namespace std;
@@ -40,7 +39,7 @@ static DWORD WINAPI Main(LPVOID)
         auto memory = MemoryRequestHandler(pipe.value());
         while (true)
         {
-            auto cmd = pipe->TryRead<IO::PipeRequest>();
+            auto cmd = pipe->TryRead<PipeRequest>();
             if (!cmd.has_value())
             {
                 DEBUG_LOG(logger, "Failed reading command ({}).", GetLastError());
@@ -55,7 +54,7 @@ static DWORD WINAPI Main(LPVOID)
 
             DEBUG_LOG(logger, "Received command: {}.", static_cast<int>(cmd.value()));
 
-            if (cmd == IO::PipeRequest::Close)
+            if (cmd == PipeRequest::Close)
             {
                 DEBUG_LOG(logger, "  => Closing pipe connection.");
                 break;

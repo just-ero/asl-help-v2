@@ -9,6 +9,9 @@ public partial class BasicPlugin
         _logger.Stop();
         _logger.Clear();
 
+        _readers.ForEach(reader => reader.Dispose());
+        _readers.Clear();
+
         if (!closing)
         {
             Texts?.RemoveAll();

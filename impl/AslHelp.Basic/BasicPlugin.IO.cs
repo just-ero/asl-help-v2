@@ -1,23 +1,27 @@
-using System;
+using System.Collections.Generic;
 
 using AslHelp.Diagnostics.Logging;
 using AslHelp.IO;
 using AslHelp.LiveSplit;
-using AslHelp.LiveSplit.Diagnostics;
-using AslHelp.Memory.Ipc;
-using AslHelp.Memory.Watch.Initialization;
 
 public partial class BasicPlugin
 {
     private readonly MultiLogger _logger = [];
+    private readonly List<FileReader> _readers = [];
 
     public override AslPluginBase LogToFile(string fileName, int maxLines = 4096, int linesToErase = 512)
     {
-        throw new NotImplementedException();
+        FileLogger logger = new(fileName, maxLines, linesToErase);
+        _logger.Add(logger);
+
+        return this;
     }
 
     public override FileReader CreateFileReader(string fileName)
     {
-        throw new NotImplementedException();
+        FileReader reader = new(fileName);
+        _readers.Add(reader);
+
+        return reader;
     }
 }

@@ -4,7 +4,12 @@
 #include <stdint.h>
 #include <vector>
 
-#include "IO/Fwd.hxx"
+#include "IO/Logging/Loggers.hxx"
+#include "IO/Logging/LoggingService.hxx"
+#include "IO/NamedPipeServer.hxx"
+#include "IO/PipeRequest.hxx"
+#include "IO/PipeResponse.hxx"
+
 
 namespace Memory
 {
