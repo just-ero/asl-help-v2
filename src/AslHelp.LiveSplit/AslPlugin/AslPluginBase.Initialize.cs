@@ -3,7 +3,6 @@ using System.Reflection;
 using System.Runtime.ExceptionServices;
 using System.Text;
 
-using AslHelp.Common;
 using AslHelp.LiveSplit.Diagnostics;
 
 using LiveSplit.ASL;
@@ -14,13 +13,20 @@ public partial class AslPluginBase
 {
     public bool Initialized { get; private set; }
 
-    public AslPluginBase Initialize(string? gameName = null, bool generateCode = false)
+    protected abstract void InitializePlugin();
+    protected abstract void GenerateCode(string? helperName, AutoSplitter asl);
+
+    public AslPluginBase Initialize(
+        string? gameName = null,
+        bool generateCode = false)
     {
         if (Initialized)
         {
-            const string Msg = "asl-help is already initialized.";
-            ThrowHelper.ThrowInvalidOperationException(Msg);
+            AslDebug.Warn("asl-help is already initialized.");
+            return this;
         }
+
+        _gameName = gameName;
 
         AslDebug.Info("Initializing asl-help...");
         using (AslDebug.Indent())
@@ -35,13 +41,46 @@ public partial class AslPluginBase
 
                 AslDebug.Info("Success.");
             }
+
+            AslDebug.Info("Generating code...");
+            using (AslDebug.Indent())
+            {
+                if (generateCode)
+                {
+                    GenerateCode(_asl);
+                }
+
+                AslDebug.Info("Success.");
+            }
+
+            InitializePlugin();
+
+            Timer = new(_asl.State);
+            Texts = new(_asl.State);
+            // Settings = new(_asl.SettingsBuilder);
+
+            AslDebug.Info("Success.");
         }
 
-        _gameName = gameName;
-        // _asl = new AutoSplitter(GameName, generateCode);
         Initialized = true;
 
         return this;
+    }
+
+    private void GenerateCode(AutoSplitter asl)
+    {
+        string? helperName = null;
+
+        foreach (var entry in asl.Vars)
+        {
+            if (entry.Value == this)
+            {
+                helperName = entry.Key;
+                break;
+            }
+        }
+
+        GenerateCode(helperName, asl);
     }
 
     private static Assembly? AssemblyResolve(object? sender, ResolveEventArgs e)
@@ -62,7 +101,7 @@ public partial class AslPluginBase
         catch
         {
             // If the file is not found or could not be loaded, ignore.
-            return default;
+            return null;
         }
     }
 
@@ -131,19 +170,5 @@ public partial class AslPluginBase
         sb.Append(messageLines[^1]);
 
         _messageField.SetValue(ex, sb.ToString());
-    }
-}
-
-public class Class1
-{
-    protected void M1(string foo = "") { }
-    public void M1() { }
-}
-
-public class Class2 : Class1
-{
-    public void M2()
-    {
-        M1();
     }
 }

@@ -18,4 +18,8 @@ public interface IMonoInterop
     Result<string> GetFieldName(nuint field);
     Result<int> GetFieldOffset(nuint field);
     Result<nuint> GetFieldType(nuint field);
+
+    Result<nuint> GetTypeData(nuint type);
+    Result<MonoFieldAttribute> GetTypeAttributes(nuint type);
+    Result<MonoElementType> GetTypeElementType(nuint type);
 }

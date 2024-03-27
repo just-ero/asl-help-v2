@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 
+using AslHelp.Diagnostics.Logging;
 using AslHelp.LiveSplit.Control;
 using AslHelp.LiveSplit.Settings;
 using AslHelp.Memory;
@@ -21,13 +22,16 @@ public interface IAslPlugin<TPlugin>
     bool Initialized { get; }
 
     IProcessMemory? Memory { get; }
-    WatcherFactory? Watchers { get; }
+    IWatcherFactory? Watchers { get; }
 
     Process? Game { get; set; }
 
     SettingsBuilder? Settings { get; }
     TimerController? Timer { get; }
     TextComponentController? Texts { get; }
+
+    TPlugin LogToFile(string fileName, int maxLines = 4096, int linesToErase = 512);
+    FileReader CreateFileReader(string fileName);
 
     TPlugin AlertRealTime(string? message = default);
     TPlugin AlertGameTime(string? message = default);
