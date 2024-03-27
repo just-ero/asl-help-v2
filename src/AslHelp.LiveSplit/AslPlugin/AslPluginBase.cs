@@ -14,8 +14,8 @@ namespace AslHelp.LiveSplit;
 [Obsolete("Do not use ASL-specific features.", true)]
 public abstract partial class AslPluginBase : IAslPlugin<AslPluginBase>
 {
-    private readonly AutoSplitter? _asl;
-    private readonly string? _gameName;
+    private AutoSplitter? _asl;
+    private string? _gameName;
 
     protected AslPluginBase() { }
 

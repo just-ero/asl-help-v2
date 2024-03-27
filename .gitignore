@@ -13,6 +13,9 @@ BenchmarkDotNet.Artifacts/
 # User-specific files
 *.user
 
+# Configs
+.clangd
+
 # asl-help
 lib/
 temp/

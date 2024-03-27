@@ -16,6 +16,7 @@
     <PackageReference Include="ilmerge" Version="3.0.41" />
   </ItemGroup>
 
+  <Import Project="_EmbedNativeLibraries.targets" />
   <Import Project="_MergeAssemblies.targets" />
   <Import Project="_MoveOutput.targets" />
 

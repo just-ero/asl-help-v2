@@ -20,6 +20,7 @@
     <DocsDir>$(RootDir)\docs</DocsDir>
     <ImplDir>$(RootDir)\impl</ImplDir>
     <LibDir>$(RootDir)\lib</LibDir>
+    <NativeDir>$(RootDir)\native</NativeDir>
     <SrcDir>$(RootDir)\src</SrcDir>
     <TestDir>$(RootDir)\test</TestDir>
   </PropertyGroup>

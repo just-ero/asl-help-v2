@@ -2,6 +2,7 @@
 
   <Target Name="_MergeAssemblies" AfterTargets="PostBuildEvent">
     <ItemGroup>
+      <AslHelpReferences Include="AslHelp.Build.dll" />
       <AslHelpReferences Include="AslHelp.Collections.dll" />
       <AslHelpReferences Include="AslHelp.Common.dll" />
       <AslHelpReferences Include="AslHelp.Diagnostics.dll" />

@@ -1,7 +1,6 @@
 using System;
 using System.Diagnostics;
 
-using AslHelp.Diagnostics.Logging;
 using AslHelp.LiveSplit.Control;
 using AslHelp.LiveSplit.Settings;
 using AslHelp.Memory;
@@ -18,6 +17,8 @@ public interface IAslPlugin<TPlugin>
 
     TPlugin Exit();
     TPlugin Shutdown();
+
+    bool Initialized { get; }
 
     IProcessMemory? Memory { get; }
     WatcherFactory? Watchers { get; }

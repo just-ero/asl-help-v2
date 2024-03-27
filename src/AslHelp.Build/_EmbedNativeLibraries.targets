@@ -1,0 +1,16 @@
+<Project>
+
+  <Target Name="_EmbedNativeLibraries" BeforeTargets="BeforeResGen">
+    <MSBuild Projects="$(NativeDir)\AslHelp.Native\AslHelp.Native.cxxproj" Targets="_GetNativeLibraries">
+      <Output TaskParameter="TargetOutputs" ItemName="_NativeLibraries" />
+    </MSBuild>
+
+    <Message Importance="High" Text="Embedding native libraries: @(_NativeLibraries)" />
+
+    <ItemGroup>
+      <EmbeddedResource Include="@(_NativeLibraries)" Type="Non-Resx" WithCulture="false"
+                        LogicalName="%(Filename).$([System.String]::Copy('%(RuntimeIdentifier)').Replace('win-', ''))%(Extension)" />
+    </ItemGroup>
+  </Target>
+
+</Project>

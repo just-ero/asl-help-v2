@@ -1,20 +1,20 @@
 {
-    "dotnet.defaultSolution": "asl-help.sln",
-    "json.schemas": [
-        {
-            "fileMatch": [ "impl/**/Structs/*.json" ],
-            "url": "./schemas/asl-help.structs.schema.json"
-        }
-    ],
-    "files.exclude": {
-        ".vs/": true,
-        ".fleet/": true,
-        ".idea/": true,
-
-        "**/artifacts/": true,
-        "**/bin/": true,
-        "**/obj/": true,
-
-        "lib/": true
+  "dotnet.defaultSolution": "asl-help.sln",
+  "json.schemas": [
+    {
+      "fileMatch": [ "impl/**/Structs/*.json" ],
+      "url": "./schemas/asl-help.structs.schema.json"
     }
+  ],
+  "files.exclude": {
+    ".vs/": true,
+    ".fleet/": true,
+    ".idea/": true,
+
+    "**/artifacts/": true,
+    "**/bin/": true,
+    "**/obj/": true,
+
+    "lib/": true
+  }
 }
