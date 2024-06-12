@@ -1,0 +1,27 @@
+<Project>
+
+  <Target Name="_MergeAssemblies" AfterTargets="PostBuildEvent">
+    <ItemGroup>
+      <AslHelpReferences Include="AslHelp.Build.dll" />
+      <AslHelpReferences Include="AslHelp.Collections.dll" />
+      <AslHelpReferences Include="AslHelp.Common.dll" />
+      <AslHelpReferences Include="AslHelp.Diagnostics.dll" />
+      <AslHelpReferences Include="AslHelp.IO.dll" />
+      <AslHelpReferences Include="AslHelp.LiveSplit.dll" />
+      <AslHelpReferences Include="AslHelp.Memory.dll" />
+
+      <AslHelpReferences Include="AslHelp.Basic.dll" />
+      <!-- <AslHelpReferences Include="AslHelp.Unity.dll" /> -->
+    </ItemGroup>
+
+    <!-- Execute ILMerge with the necessary dependencies. -->
+    <Exec WorkingDirectory="$(OutDir)"
+          Command="
+        $(ILMergeConsolePath) /ndebug ^
+        /out:$(LibraryName).dll ^
+        @(AslHelpReferences, ' ') ^
+        @(MiscReferences, ' ')
+      " />
+  </Target>
+
+</Project>

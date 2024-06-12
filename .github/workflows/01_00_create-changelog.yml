@@ -1,0 +1,64 @@
+name: Create changelog
+
+on:
+  workflow_call:
+    inputs:
+      tag:
+        type: string
+        required: true
+      pre_release:
+        type: boolean
+        required: true
+    outputs:
+      changelog:
+        value: "${{ jobs.create-changelog.outputs.changelog }}"
+
+jobs:
+  create-changelog:
+    runs-on: ubuntu-latest
+
+    outputs:
+      changelog: "${{ steps.create-changelog.outputs.changelog }}"
+
+    steps:
+      - name: Checkout asl-help
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Fetch previous release
+        id: previous-release
+        uses: cardinalby/git-get-release-action@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          latest: true
+          prerelease: ${{ !inputs.pre_release && 'false' || '' }}
+          doNotFailIfNotFound: true
+
+      - name: Create changelog
+        id: create-changelog
+        run: |
+          {
+            echo 'changelog<<EOF'
+
+            if [ -n "${{ steps.previous-release.outputs.tag_name }}" ]; then
+              echo "All changed files: https://github.com/${{ github.repository }}/compare/${{ steps.previous-release.outputs.tag_name }}...${{ inputs.tag }}."
+              echo "<details>"
+              echo "<summary><i>Commit Log</i></summary>"
+              echo ""
+              TZ=UTC0 git log --reverse --date=format:"%d-%b-%Y %H:%M:%S" --pretty=format:"- ``[%ad]`` %H: %s" ${{ steps.previous-release.outputs.tag_name }}..HEAD
+              echo ""
+              echo "</details>"
+            else
+              echo "<details>"
+              echo "<summary><i>Commit Log</i></summary>"
+              echo ""
+              TZ=UTC0 git log --reverse --date=format:"%d-%b-%Y %H:%M:%S" --pretty=format:"- ``[%ad]`` %H: %s"
+              echo ""
+              echo "</details>"
+            fi
+
+            echo EOF
+          } >> $GITHUB_OUTPUT
