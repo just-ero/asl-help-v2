@@ -1,0 +1,41 @@
+<Project>
+
+  <PropertyGroup>
+    <LangVersion>12.0</LangVersion>
+
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <!-- <GenerateDocumentationFile>true</GenerateDocumentationFile> -->
+    <Nullable>enable</Nullable>
+
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+
+    <UseArtifactsOutput>true</UseArtifactsOutput>
+    <ArtifactsOutputPath>$(MSBuildThisFileDirectory)\artifacts</ArtifactsOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <RootDir>$(MSBuildThisFileDirectory)</RootDir>
+
+    <DocsDir>$(RootDir)\docs</DocsDir>
+    <ImplDir>$(RootDir)\impl</ImplDir>
+    <LibDir>$(RootDir)\lib</LibDir>
+    <NativeDir>$(RootDir)\native</NativeDir>
+    <SrcDir>$(RootDir)\src</SrcDir>
+    <TestDir>$(RootDir)\test</TestDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="$(MSBuildProjectName).UnitTests" />
+  </ItemGroup>
+
+  <!-- .NET Standard 2.0 or .NET Framework 4.8.1 -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' Or '$(TargetFramework)' == 'net4.8.1'">
+    <PackageReference Include="PolySharp" Version="1.13.2" PrivateAssets="all" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0' Or '$(TargetFramework)' == 'net4.8.1'">
+    <PolySharpIncludeRuntimeSupportedAttributes>true</PolySharpIncludeRuntimeSupportedAttributes>
+  </PropertyGroup>
+
+</Project>

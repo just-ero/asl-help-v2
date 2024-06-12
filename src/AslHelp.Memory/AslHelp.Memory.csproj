@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(SrcDir)\AslHelp.Collections\*.csproj" />
+    <ProjectReference Include="$(SrcDir)\AslHelp.Common\*.csproj" />
+    <ProjectReference Include="$(SrcDir)\AslHelp.IO\*.csproj" />
+  </ItemGroup>
+
+</Project>

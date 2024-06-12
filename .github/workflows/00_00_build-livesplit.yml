@@ -1,0 +1,43 @@
+name: Build LiveSplit
+
+on:
+  workflow_call:
+
+jobs:
+  build-livesplit:
+    runs-on: windows-2019
+
+    steps:
+      - name: Set up .NET 8.0 environment
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Checkout LiveSplit
+        uses: actions/checkout@v4
+        with:
+          repository: LiveSplit/LiveSplit
+          submodules: recursive
+
+      - name: Build LiveSplit
+        run: >
+          dotnet build
+          -c Release
+          -p:DebugType=None
+          ./LiveSplit.sln
+
+      - name: Collect LiveSplit build artifacts
+        run: |
+          mkdir ./asl-help-lib-artifacts
+          cp ./bin/release/LiveSplit.Core.dll                           ./asl-help-lib-artifacts
+          cp ./bin/release/LiveSplit.View.dll                           ./asl-help-lib-artifacts
+          cp ./bin/release/UpdateManager.dll                            ./asl-help-lib-artifacts
+          cp ./bin/release/Components/LiveSplit.ScriptableAutoSplit.dll ./asl-help-lib-artifacts
+          cp ./bin/release/Components/LiveSplit.Text.dll                ./asl-help-lib-artifacts
+
+      - name: Cache LiveSplit build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: asl-help-lib-artifacts
+          path: ./asl-help-lib-artifacts/*
+          retention-days: 1
