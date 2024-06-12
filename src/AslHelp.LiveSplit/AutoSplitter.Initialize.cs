@@ -3,8 +3,9 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
-using AslHelp.Common;
 using AslHelp.Common.Extensions;
+using AslHelp.Common.Results;
+using AslHelp.LiveSplit.Errors;
 
 using LiveSplit.ASL;
 using LiveSplit.Model;
@@ -15,46 +16,60 @@ namespace AslHelp.LiveSplit;
 
 public sealed partial class AutoSplitter
 {
-    public static AutoSplitter Initialize()
+    public static Result<AutoSplitter> Initialize()
     {
-        LiveSplitState state = GetTimerData();
-        (ASLComponent component, ASLScript script, ASLScript.Methods methods) = GetScriptData(state);
-        ScriptActions actions = ParseActions(component, methods);
+        if (!GetTimerData()
+            .TryUnwrap(out LiveSplitState? state, out var err))
+        {
+            return Result<AutoSplitter>.Err(err);
+        }
+
+        if (!GetScriptData(state)
+            .TryUnwrap(out (ASLComponent, ASLScript, ASLScript.Methods) scriptData, out var error))
+        {
+            return Result<AutoSplitter>.Err(error);
+        }
+
+        (ASLComponent component, ASLScript script, ASLScript.Methods methods) = scriptData;
+
+        if (!ParseActions(component, methods)
+            .TryUnwrap(out ScriptActions? actions, out err))
+        {
+            return Result<AutoSplitter>.Err(err);
+        }
 
         ASLSettings? settings = script.GetFieldValue<ASLSettings>("_settings");
         if (settings?.Builder is not ASLSettingsBuilder builder)
         {
-            const string Msg = $"The '{nameof(ASLScript)}' did not contain a valid instance of '{nameof(ASLSettingsBuilder)}'.";
-            ThrowHelper.ThrowException(Msg);
-
-            return default;
+            return LiveSplitInitError.ScriptSettingsNull;
         }
 
         return new AutoSplitter(state, script, actions, builder);
     }
 
-    private static LiveSplitState GetTimerData()
+    private static Result<LiveSplitState> GetTimerData()
     {
         if (Application.OpenForms[nameof(TimerForm)] is not TimerForm timerForm)
         {
-            const string Msg = $"An instance of type '{nameof(TimerForm)}' could not be found within the open forms of the application.";
-            ThrowHelper.ThrowException(Msg);
-
-            return default;
+            return LiveSplitInitError.TimerFormNotFound;
         }
 
-        return timerForm.CurrentState;
+        if (timerForm.CurrentState is not LiveSplitState state)
+        {
+            return LiveSplitInitError.LiveSplitStateNull;
+        }
+
+        return state;
     }
 
-    private static (ASLComponent Component, ASLScript Script, ASLScript.Methods Methods) GetScriptData(LiveSplitState state)
+    private static Result<(ASLComponent, ASLScript, ASLScript.Methods)> GetScriptData(LiveSplitState state)
     {
         Assembly? scriptAssembly = ReflectionExtensions.AssemblyTrace
             .FirstOrDefault(asm => asm.GetType("CompiledScript") is not null);
 
         if (scriptAssembly is null)
         {
-            const string Msg = $"The compiled assembly for the executing script could not be found.";
-            ThrowHelper.ThrowException(Msg);
+            return LiveSplitInitError.ScriptAssemblyNotFound;
         }
 
         IEnumerable<IComponent?> components = state.Layout.Components.Prepend(state.Run.AutoSplitter?.Component);
@@ -83,8 +98,7 @@ public sealed partial class AutoSplitter
 
         if (component is null || script is null || methods is null)
         {
-            const string Msg = $"The '{nameof(ASLComponent)}' containing the executing script could not be found.";
-            ThrowHelper.ThrowException(Msg);
+            return LiveSplitInitError.ScriptComponentNotFound;
         }
 
         return (component, script, methods);

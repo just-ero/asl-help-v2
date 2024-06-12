@@ -1,44 +1,60 @@
-using System.Diagnostics.CodeAnalysis;
-
-using AslHelp.Common;
+using AslHelp.Common.Results;
+using AslHelp.Memory.Errors;
 using AslHelp.Memory.Native;
 
 namespace AslHelp.Memory.Ipc;
 
 public partial class ProcessMemory
 {
-    public void Write<T>(T value, int baseOffset, params int[] offsets)
+    public Result Write<T>(T value, int baseOffset, params int[] offsets)
         where T : unmanaged
     {
-        Write(value, MainModule, baseOffset, offsets);
+        return Write(value, MainModule, baseOffset, offsets);
     }
 
-    public void Write<T>(T value, [NotNull] string? moduleName, int baseOffset, params int[] offsets)
+    public Result Write<T>(T value, string? moduleName, int baseOffset, params int[] offsets)
         where T : unmanaged
     {
-        ThrowHelper.ThrowIfNull(moduleName);
+        if (moduleName is null)
+        {
+            return IpcError.ModuleNameNull;
+        }
 
-        Write(value, Modules[moduleName], baseOffset, offsets);
+        if (!Modules.TryGetValue(moduleName, out Module? module))
+        {
+            return IpcError.ModuleNotFound(moduleName);
+        }
+
+        return Write(value, module, baseOffset, offsets);
     }
 
-    public void Write<T>(T value, [NotNull] Module? module, int baseOffset, params int[] offsets)
+    public Result Write<T>(T value, Module? module, int baseOffset, params int[] offsets)
         where T : unmanaged
     {
-        ThrowHelper.ThrowIfNull(module);
+        if (module is null)
+        {
+            return IpcError.ModuleNull;
+        }
 
-        Write(value, module.Base + (nuint)baseOffset, offsets);
+        return Write(value, module.Base + (nuint)baseOffset, offsets);
     }
 
-    public unsafe void Write<T>(T value, nuint baseAddress, params int[] offsets)
+    public unsafe Result Write<T>(T value, nuint baseAddress, params int[] offsets)
         where T : unmanaged
     {
-        nuint deref = Deref(baseAddress, offsets);
+        if (!Deref(baseAddress, offsets)
+            .TryUnwrap(out nuint deref, out var err))
+        {
+            return Result.Err(err);
+        }
+
         uint size = GetNativeSizeOf<T>();
 
         if (!WinInteropWrapper.WriteMemory(_handle, deref, &value, size))
         {
-            string msg = $"Failed to write memory at {(ulong)deref:X}: {WinInteropWrapper.GetLastWin32ErrorMessage()}";
-            ThrowHelper.ThrowException(msg);
+            return IpcError.WriteMemoryFailure(deref);
         }
+
+        return Result.Ok();
     }
 }

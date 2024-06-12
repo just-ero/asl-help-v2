@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 
 using AslHelp.Common.Extensions;
+using AslHelp.Common.Results;
 
 using Irony.Parsing;
 
@@ -13,10 +14,19 @@ namespace AslHelp.LiveSplit;
 
 public partial class AutoSplitter
 {
-    private static ScriptActions ParseActions(ASLComponent component, ASLScript.Methods methods)
+    private static Result<ScriptActions> ParseActions(ASLComponent component, ASLScript.Methods methods)
     {
         ComponentSettings settings = component.GetFieldValue<ComponentSettings>("_settings")!;
-        string code = File.ReadAllText(settings.ScriptPath);
+        string code;
+
+        try
+        {
+            code = File.ReadAllText(settings.ScriptPath);
+        }
+        catch (IOException ex)
+        {
+            return ex;
+        }
 
         // Shouldn't need to be careful about any of the below.
         // If the script exists at all, this has already passed.

@@ -1,47 +1,60 @@
-using System.Diagnostics.CodeAnalysis;
-
 using AslHelp.Common;
+using AslHelp.Common.Results;
+using AslHelp.Memory.Errors;
 using AslHelp.Memory.Native;
 
 namespace AslHelp.Memory.Ipc;
 
 public partial class ProcessMemory
 {
-    public T Read<T>(int baseOffset, params int[] offsets)
+    public Result<T> Read<T>(int baseOffset, params int[] offsets)
         where T : unmanaged
     {
         return Read<T>(MainModule, baseOffset, offsets);
     }
 
-    public T Read<T>([NotNull] string? moduleName, int baseOffset, params int[] offsets)
+    public Result<T> Read<T>(string? moduleName, int baseOffset, params int[] offsets)
         where T : unmanaged
     {
-        ThrowHelper.ThrowIfNull(moduleName);
+        if (moduleName is null)
+        {
+            return IpcError.ModuleNameNull;
+        }
 
-        return Read<T>(Modules[moduleName], baseOffset, offsets);
+        if (!Modules.TryGetValue(moduleName, out Module? module))
+        {
+            return IpcError.ModuleNotFound(moduleName);
+        }
+
+        return Read<T>(module, baseOffset, offsets);
     }
 
-    public T Read<T>([NotNull] Module? module, int baseOffset, params int[] offsets)
+    public Result<T> Read<T>(Module? module, int baseOffset, params int[] offsets)
         where T : unmanaged
     {
-        ThrowHelper.ThrowIfNull(module);
+        if (module is null)
+        {
+            return IpcError.ModuleNull;
+        }
 
         return Read<T>(module.Base + (nuint)baseOffset, offsets);
     }
 
-    public unsafe T Read<T>(nuint baseAddress, params int[] offsets)
+    public unsafe Result<T> Read<T>(nuint baseAddress, params int[] offsets)
         where T : unmanaged
     {
-        nuint deref = Deref(baseAddress, offsets);
-        uint size = GetNativeSizeOf<T>();
+        return Deref(baseAddress, offsets)
+            .AndThen<T>(deref =>
+            {
+                uint size = GetNativeSizeOf<T>();
 
-        T result;
-        if (!WinInteropWrapper.ReadMemory(_handle, deref, &result, size))
-        {
-            string msg = $"Failed to read memory at {(ulong)deref:X}: {WinInteropWrapper.GetLastWin32ErrorMessage()}";
-            ThrowHelper.ThrowException(msg);
-        }
+                T result;
+                if (!WinInteropWrapper.ReadMemory(_handle, deref, &result, size))
+                {
+                    return IpcError.ReadMemoryFailure(deref);
+                }
 
-        return result;
+                return result;
+            });
     }
 }

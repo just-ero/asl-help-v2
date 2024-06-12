@@ -1,54 +1,63 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
+using AslHelp.Common.Results;
 using AslHelp.Memory.Scanning;
 
 namespace AslHelp.Memory.Ipc;
 
 public partial class ProcessMemory
 {
-    public nuint Scan(ScanPattern pattern)
+    public Result<nuint> Scan(ScanPattern pattern)
     {
-        return ScanAll(pattern).First();
+        return ScanAll(pattern)
+            .Map(results => results.First());
     }
 
-    public nuint Scan(ScanPattern pattern, int size)
+    public Result<nuint> Scan(ScanPattern pattern, int size)
     {
-        return ScanAll(pattern, size).First();
+        return ScanAll(pattern, size)
+            .Map(results => results.First());
     }
 
-    public nuint Scan(ScanPattern pattern, [NotNull] string? moduleName)
+    public Result<nuint> Scan(ScanPattern pattern, string? moduleName)
     {
-        return ScanAll(pattern, moduleName).First();
+        return ScanAll(pattern, moduleName)
+            .Map(results => results.First());
     }
 
-    public nuint Scan(ScanPattern pattern, [NotNull] string? moduleName, int size)
+    public Result<nuint> Scan(ScanPattern pattern, string? moduleName, int size)
     {
-        return ScanAll(pattern, moduleName, size).First();
+        return ScanAll(pattern, moduleName, size)
+            .Map(results => results.First());
     }
 
-    public nuint Scan(ScanPattern pattern, [NotNull] Module? module)
+    public Result<nuint> Scan(ScanPattern pattern, Module? module)
     {
-        return ScanAll(pattern, module).First();
+        return ScanAll(pattern, module)
+            .Map(results => results.First());
     }
 
-    public nuint Scan(ScanPattern pattern, [NotNull] Module? module, int size)
+    public Result<nuint> Scan(ScanPattern pattern, Module? module, int size)
     {
-        return ScanAll(pattern, module, size).First();
+        return ScanAll(pattern, module, size)
+            .Map(results => results.First());
     }
 
-    public nuint Scan(ScanPattern pattern, nuint startAddress, nuint endAddress)
+    public Result<nuint> Scan(ScanPattern pattern, nuint startAddress, nuint endAddress)
     {
-        return ScanAll(pattern, startAddress, endAddress).First();
+        return ScanAll(pattern, startAddress, endAddress)
+            .Map(results => results.First());
     }
 
-    public nuint Scan(ScanPattern pattern, nuint startAddress, int size)
+    public Result<nuint> Scan(ScanPattern pattern, nuint startAddress, int size)
     {
-        return ScanAll(pattern, startAddress, size).First();
+        return ScanAll(pattern, startAddress, size)
+            .Map(results => results.First());
     }
 
-    public nuint Scan(ScanPattern pattern, nuint startAddress, byte[] memory)
+    public Result<nuint> Scan(ScanPattern pattern, nuint startAddress, byte[] memory)
     {
-        return ScanAll(pattern, startAddress, memory).First();
+        return ScanAll(pattern, startAddress, memory)
+            .Map(results => results.First());
     }
 }

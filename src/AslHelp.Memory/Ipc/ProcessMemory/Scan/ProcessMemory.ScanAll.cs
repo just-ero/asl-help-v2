@@ -1,81 +1,114 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 using AslHelp.Common;
+using AslHelp.Common.Results;
+using AslHelp.Memory.Errors;
 using AslHelp.Memory.Scanning;
 
 namespace AslHelp.Memory.Ipc;
 
 public partial class ProcessMemory
 {
-    public IEnumerable<nuint> ScanAll(ScanPattern pattern)
+    public Result<IEnumerable<nuint>> ScanAll(ScanPattern pattern)
     {
         return ScanAll(pattern, MainModule);
     }
 
-    public IEnumerable<nuint> ScanAll(ScanPattern pattern, int size)
+    public Result<IEnumerable<nuint>> ScanAll(ScanPattern pattern, int size)
     {
         return ScanAll(pattern, MainModule, size);
     }
 
-    public IEnumerable<nuint> ScanAll(ScanPattern pattern, [NotNull] string? moduleName)
+    public Result<IEnumerable<nuint>> ScanAll(ScanPattern pattern, string? moduleName)
     {
-        ThrowHelper.ThrowIfNull(moduleName);
+        if (moduleName is null)
+        {
+            return IpcError.ModuleNameNull;
+        }
 
-        return ScanAll(pattern, Modules[moduleName]);
+        if (!Modules.TryGetValue(moduleName, out Module? module))
+        {
+            return IpcError.ModuleNotFound(moduleName);
+        }
+
+        return ScanAll(pattern, module);
     }
 
-    public IEnumerable<nuint> ScanAll(ScanPattern pattern, [NotNull] string? moduleName, int size)
+    public Result<IEnumerable<nuint>> ScanAll(ScanPattern pattern, string? moduleName, int size)
     {
-        ThrowHelper.ThrowIfNull(moduleName);
+        if (moduleName is null)
+        {
+            return IpcError.ModuleNameNull;
+        }
 
-        return ScanAll(pattern, Modules[moduleName], size);
+        if (!Modules.TryGetValue(moduleName, out Module? module))
+        {
+            return IpcError.ModuleNotFound(moduleName);
+        }
+
+        return ScanAll(pattern, module, size);
     }
 
-    public IEnumerable<nuint> ScanAll(ScanPattern pattern, [NotNull] Module? module)
+    public Result<IEnumerable<nuint>> ScanAll(ScanPattern pattern, Module? module)
     {
-        ThrowHelper.ThrowIfNull(module);
+        if (module is null)
+        {
+            return IpcError.ModuleNull;
+        }
 
         return ScanAll(pattern, module.Base, (int)module.MemorySize);
     }
 
-    public IEnumerable<nuint> ScanAll(ScanPattern pattern, [NotNull] Module? module, int size)
+    public Result<IEnumerable<nuint>> ScanAll(ScanPattern pattern, Module? module, int size)
     {
-        ThrowHelper.ThrowIfNull(module);
+        if (module is null)
+        {
+            return IpcError.ModuleNull;
+        }
 
         return ScanAll(pattern, module.Base, size);
     }
 
-    public IEnumerable<nuint> ScanAll(ScanPattern pattern, nuint startAddress, nuint endAddress)
+    public Result<IEnumerable<nuint>> ScanAll(ScanPattern pattern, nuint startAddress, nuint endAddress)
     {
         if (endAddress < startAddress)
         {
-            const string Msg = "The pattern scan region end address must be greater than the start address.";
-            ThrowHelper.ThrowArgumentOutOfRangeException(nameof(endAddress), Msg);
+            return IpcError.ScanRegionEndLessThanRegionStart;
         }
 
         return ScanAll(pattern, startAddress, (int)(endAddress - startAddress));
     }
 
-    public IEnumerable<nuint> ScanAll(ScanPattern pattern, nuint startAddress, int size)
+    public Result<IEnumerable<nuint>> ScanAll(ScanPattern pattern, nuint startAddress, int size)
     {
         if (size < 0)
         {
-            const string Msg = "The pattern scan region size must be a positive integer.";
-            ThrowHelper.ThrowArgumentOutOfRangeException(nameof(size), Msg);
+            return IpcError.ScanRegionSizeNegative;
         }
 
-        byte[] memory = ReadArray<byte>(size, startAddress);
-        return ScanAll(pattern, startAddress, memory);
+        return ReadArray<byte>(size, startAddress)
+            .AndThen(memory => ScanAll(pattern, startAddress, memory));
     }
 
-    public IEnumerable<nuint> ScanAll(ScanPattern pattern, nuint startAddress, byte[] memory)
+    public Result<IEnumerable<nuint>> ScanAll(ScanPattern pattern, nuint startAddress, byte[] memory)
     {
         ScanEnumerator scanner = new(pattern, memory);
 
-        foreach (uint scanOffset in scanner)
+        if (!scanner.MoveNext())
         {
-            yield return startAddress + scanOffset + (nuint)pattern.Offset;
+            return IpcError.ScanNoMatch;
         }
+
+        return Result<IEnumerable<nuint>>
+            .Ok(ScanAll(scanner, startAddress + (nuint)pattern.Offset));
+    }
+
+    private IEnumerable<nuint> ScanAll(ScanEnumerator scanner, nuint startAddress)
+    {
+        do
+        {
+            yield return startAddress + scanner.Current;
+        } while (scanner.MoveNext());
     }
 }

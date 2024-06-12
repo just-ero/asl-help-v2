@@ -1,40 +1,50 @@
 using System;
 using System.Buffers;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
 using AslHelp.Collections.Extensions;
-using AslHelp.Common;
+using AslHelp.Common.Results;
+using AslHelp.Memory.Errors;
 
 namespace AslHelp.Memory.Ipc;
 
 public partial class ProcessMemory
 {
-    public string ReadString(int maxLength, StringType stringType, int baseOffset, params int[] offsets)
+    public Result<string> ReadString(int maxLength, StringType stringType, int baseOffset, params int[] offsets)
     {
         return ReadString(maxLength, stringType, MainModule, baseOffset, offsets);
     }
 
-    public string ReadString(int maxLength, StringType stringType, [NotNull] string? moduleName, int baseOffset, params int[] offsets)
+    public Result<string> ReadString(int maxLength, StringType stringType, string? moduleName, int baseOffset, params int[] offsets)
     {
-        ThrowHelper.ThrowIfNull(moduleName);
+        if (moduleName is null)
+        {
+            return IpcError.ModuleNameNull;
+        }
 
-        return ReadString(maxLength, stringType, Modules[moduleName], baseOffset, offsets);
+        if (!Modules.TryGetValue(moduleName, out Module? module))
+        {
+            return IpcError.ModuleNotFound(moduleName);
+        }
+
+        return ReadString(maxLength, stringType, module, baseOffset, offsets);
     }
 
-    public string ReadString(int maxLength, StringType stringType, [NotNull] Module? module, int baseOffset, params int[] offsets)
+    public Result<string> ReadString(int maxLength, StringType stringType, Module? module, int baseOffset, params int[] offsets)
     {
-        ThrowHelper.ThrowIfNull(module);
+        if (module is null)
+        {
+            return IpcError.ModuleNull;
+        }
 
         return ReadString(maxLength, stringType, module.Base + (nuint)baseOffset, offsets);
     }
 
-    public string ReadString(int maxLength, StringType stringType, nuint baseAddress, params int[] offsets)
+    public Result<string> ReadString(int maxLength, StringType stringType, nuint baseAddress, params int[] offsets)
     {
         if (maxLength < 0)
         {
-            const string Msg = "The maximum string length must not be a negative integer.";
-            ThrowHelper.ThrowArgumentOutOfRangeException(nameof(maxLength), Msg);
+            return IpcError.ReadStringMaxLengthNegative;
         }
 
         if (maxLength == 0)
@@ -42,54 +52,60 @@ public partial class ProcessMemory
             return "";
         }
 
-        nuint deref = Deref(baseAddress, offsets);
-        return stringType switch
-        {
-            StringType.Ansi => ReadAnsiString(maxLength, deref),
-            StringType.Unicode => ReadUnicodeString(maxLength, deref),
-            _ => ReadAutoString(maxLength, deref)
-        };
+        return Deref(baseAddress, offsets)
+            .AndThen(deref => stringType switch
+            {
+                StringType.Ansi => ReadAnsiString(maxLength, deref),
+                StringType.Unicode => ReadUnicodeString(maxLength, deref),
+                _ => ReadAutoString(maxLength, deref)
+            });
     }
 
-    private unsafe string ReadAnsiString(int maxLength, nuint stringStart)
+    private unsafe Result<string> ReadAnsiString(int maxLength, nuint stringStart)
     {
         sbyte[]? rented = null;
         Span<sbyte> buffer = maxLength <= 1024
             ? stackalloc sbyte[1024]
             : (rented = ArrayPool<sbyte>.Shared.Rent(maxLength));
 
-        try
-        {
-            ReadArray(buffer, stringStart);
-
-            return GetStringFromSByteSpan(buffer, maxLength);
-        }
-        finally
+        if (ReadArray(buffer, stringStart)
+            .TryUnwrapErr(out var err))
         {
             ArrayPool<sbyte>.Shared.ReturnIfNotNull(rented);
+
+            return Result<string>.Err(err);
         }
+
+        string result = GetStringFromSByteSpan(buffer, maxLength);
+
+        ArrayPool<sbyte>.Shared.ReturnIfNotNull(rented);
+
+        return result;
     }
 
-    private unsafe string ReadUnicodeString(int maxLength, nuint stringStart)
+    private unsafe Result<string> ReadUnicodeString(int maxLength, nuint stringStart)
     {
         char[]? rented = null;
         Span<char> buffer = maxLength <= 512
             ? stackalloc char[512]
             : (rented = ArrayPool<char>.Shared.Rent(maxLength));
 
-        try
-        {
-            ReadArray(buffer, stringStart);
-
-            return GetStringFromCharSpan(buffer, maxLength);
-        }
-        finally
+        if (ReadArray(buffer, stringStart)
+            .TryUnwrapErr(out var err))
         {
             ArrayPool<char>.Shared.ReturnIfNotNull(rented);
+
+            return Result<string>.Err(err);
         }
+
+        string result = GetStringFromCharSpan(buffer, maxLength);
+
+        ArrayPool<char>.Shared.ReturnIfNotNull(rented);
+
+        return result;
     }
 
-    private unsafe string ReadAutoString(int maxLength, nuint stringStart)
+    private unsafe Result<string> ReadAutoString(int maxLength, nuint stringStart)
     {
         // Assume unicode for the worst-case scenario and just allocate maxLength * 2.
         byte[]? rented = null;
@@ -97,25 +113,29 @@ public partial class ProcessMemory
             ? stackalloc byte[1024]
             : (rented = ArrayPool<byte>.Shared.Rent(maxLength * 2));
 
-        try
-        {
-            ReadArray(buffer, stringStart);
-
-            if (maxLength >= 2 && buffer is [> 0, 0, > 0, 0, ..]) // Best assumption we can make.
-            {
-                Span<char> charBuffer = MemoryMarshal.Cast<byte, char>(buffer);
-                return GetStringFromCharSpan(charBuffer, maxLength);
-            }
-            else
-            {
-                Span<sbyte> sbyteBuffer = MemoryMarshal.Cast<byte, sbyte>(buffer);
-                return GetStringFromSByteSpan(sbyteBuffer, maxLength);
-            }
-        }
-        finally
+        if (ReadArray(buffer, stringStart)
+            .TryUnwrapErr(out var err))
         {
             ArrayPool<byte>.Shared.ReturnIfNotNull(rented);
+
+            return Result<string>.Err(err);
         }
+
+        string result;
+        if (maxLength >= 2 && buffer is [> 0, 0, > 0, 0, ..]) // Best assumption we can make.
+        {
+            Span<char> charBuffer = MemoryMarshal.Cast<byte, char>(buffer);
+            result = GetStringFromCharSpan(charBuffer, maxLength);
+        }
+        else
+        {
+            Span<sbyte> sbyteBuffer = MemoryMarshal.Cast<byte, sbyte>(buffer);
+            result = GetStringFromSByteSpan(sbyteBuffer, maxLength);
+        }
+
+        ArrayPool<byte>.Shared.ReturnIfNotNull(rented);
+
+        return result;
     }
 
     private static string GetStringFromCharSpan(Span<char> buffer, int maxLength)
@@ -123,10 +143,10 @@ public partial class ProcessMemory
         int length = buffer.IndexOf('\0');
         if (length == -1)
         {
-            maxLength = length;
+            length = maxLength;
         }
 
-        return buffer[..maxLength].ToString();
+        return buffer[..length].ToString();
     }
 
     private static unsafe string GetStringFromSByteSpan(Span<sbyte> buffer, int maxLength)
@@ -134,12 +154,12 @@ public partial class ProcessMemory
         int length = buffer.IndexOf((sbyte)'\0');
         if (length == -1)
         {
-            maxLength = length;
+            length = maxLength;
         }
 
         fixed (sbyte* pBuffer = buffer)
         {
-            return new(pBuffer, 0, maxLength);
+            return new(pBuffer, 0, length);
         }
     }
 }

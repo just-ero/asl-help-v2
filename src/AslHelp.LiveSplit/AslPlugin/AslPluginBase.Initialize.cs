@@ -38,16 +38,14 @@ public partial class AslPluginBase
             AslDebug.Info("Initializing timer and script data...");
             using (AslDebug.Indent())
             {
-                try
-                {
-                    _asl = AutoSplitter.Initialize();
-                }
-                catch
+                if (!AutoSplitter.Initialize()
+                    .TryUnwrap(out _asl, out var err))
                 {
                     AppDomain.CurrentDomain.AssemblyResolve -= AssemblyResolve;
                     AppDomain.CurrentDomain.FirstChanceException -= FirstChanceHandler;
 
-                    throw;
+                    AslDebug.Error("Failed!");
+                    ThrowHelper.ThrowException(err.ToString());
                 }
 
                 AslDebug.Info("Success.");

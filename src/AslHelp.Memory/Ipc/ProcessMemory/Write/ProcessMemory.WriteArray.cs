@@ -1,48 +1,65 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 
-using AslHelp.Common;
+using AslHelp.Common.Results;
+using AslHelp.Memory.Errors;
 using AslHelp.Memory.Native;
 
 namespace AslHelp.Memory.Ipc;
 
 public partial class ProcessMemory
 {
-    public void WriteArray<T>(ReadOnlySpan<T> values, int baseOffset, params int[] offsets)
+    public Result WriteArray<T>(ReadOnlySpan<T> values, int baseOffset, params int[] offsets)
         where T : unmanaged
     {
-        WriteArray(values, MainModule, baseOffset, offsets);
+        return WriteArray(values, MainModule, baseOffset, offsets);
     }
 
-    public void WriteArray<T>(ReadOnlySpan<T> values, [NotNull] string? moduleName, int baseOffset, params int[] offsets)
+    public Result WriteArray<T>(ReadOnlySpan<T> values, string? moduleName, int baseOffset, params int[] offsets)
         where T : unmanaged
     {
-        ThrowHelper.ThrowIfNull(moduleName);
+        if (moduleName is null)
+        {
+            return IpcError.ModuleNameNull;
+        }
 
-        WriteArray(values, Modules[moduleName], baseOffset, offsets);
+        if (!Modules.TryGetValue(moduleName, out Module? module))
+        {
+            return IpcError.ModuleNotFound(moduleName);
+        }
+
+        return WriteArray(values, module, baseOffset, offsets);
     }
 
-    public void WriteArray<T>(ReadOnlySpan<T> values, [NotNull] Module? module, int baseOffset, params int[] offsets)
+    public Result WriteArray<T>(ReadOnlySpan<T> values, Module? module, int baseOffset, params int[] offsets)
         where T : unmanaged
     {
-        ThrowHelper.ThrowIfNull(module);
+        if (module is null)
+        {
+            return IpcError.ModuleNull;
+        }
 
-        WriteArray(values, module.Base + (nuint)baseOffset, offsets);
+        return WriteArray(values, module.Base + (nuint)baseOffset, offsets);
     }
 
-    public unsafe void WriteArray<T>(ReadOnlySpan<T> values, nuint baseAddress, params int[] offsets)
+    public unsafe Result WriteArray<T>(ReadOnlySpan<T> values, nuint baseAddress, params int[] offsets)
         where T : unmanaged
     {
-        nuint deref = Deref(baseAddress, offsets);
+        if (!Deref(baseAddress, offsets)
+            .TryUnwrap(out nuint deref, out var err))
+        {
+            return Result.Err(err);
+        }
+
         uint size = GetNativeSizeOf<T>() * (uint)values.Length;
 
         fixed (T* pValues = values)
         {
             if (!WinInteropWrapper.WriteMemory(_handle, deref, pValues, size))
             {
-                string msg = $"Failed to write memory at {(ulong)deref:X}: {WinInteropWrapper.GetLastWin32ErrorMessage()}";
-                ThrowHelper.ThrowException(msg);
+                return IpcError.WriteMemoryFailure(deref);
             }
         }
+
+        return Result.Ok();
     }
 }

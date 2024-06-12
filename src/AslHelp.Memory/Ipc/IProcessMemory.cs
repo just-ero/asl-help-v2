@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 
 using AslHelp.Collections;
+using AslHelp.Common.Results;
 
 namespace AslHelp.Memory.Ipc;
 
@@ -19,5 +20,5 @@ public interface IProcessMemory : IMemoryReader, IMemoryWriter, IMemoryScanner, 
 
     IEnumerable<MemoryPage> GetMemoryPages(bool allPages = false);
 
-    nuint ReadRelative(nuint relativeAddress, uint instructionSize = 0x4U);
+    Result<nuint> ReadRelative(nuint relativeAddress, uint instructionSize = 0x4U);
 }
