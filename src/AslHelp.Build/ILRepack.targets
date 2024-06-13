@@ -1,0 +1,22 @@
+<Project>
+
+  <Target Name="_MergeAssemblies" AfterTargets="Build">
+    <ItemGroup>
+      <AssembliesToMerge Include="$(OutputPath)\AslHelp.Collections.dll" />
+      <AssembliesToMerge Include="$(OutputPath)\AslHelp.Common.dll" />
+      <AssembliesToMerge Include="$(OutputPath)\AslHelp.Diagnostics.dll" />
+      <AssembliesToMerge Include="$(OutputPath)\AslHelp.IO.dll" />
+      <AssembliesToMerge Include="$(OutputPath)\AslHelp.LiveSplit.dll" />
+      <AssembliesToMerge Include="$(OutputPath)\AslHelp.Memory.dll" />
+
+      <AssembliesToMerge Include="$(OutputPath)\AslHelp.Basic.dll" />
+    </ItemGroup>
+
+    <ILRepack
+      Parallel="true"
+      InputAssemblies="@(AssembliesToMerge)"
+      OutputFile="$(OutputPath)\$(AssemblyName).dll"
+    />
+  </Target>
+
+</Project>

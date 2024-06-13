@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.Build.NoTargets">
+
+  <PropertyGroup>
+    <AssemblyName>asl-help-v2</AssemblyName>
+    <TargetFramework>net4.8.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(ImplDir)\AslHelp.Basic\*.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.34" />
+  </ItemGroup>
+
+  <!-- <Import Project="_MergeAssemblies.targets" /> -->
+  <Import Project="_MoveOutput.targets" />
+
+</Project>

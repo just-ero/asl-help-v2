@@ -38,7 +38,7 @@ jobs:
         run: >
           dotnet build
           -c Release
-          -p:LibraryName=asl-help
+          -p:AssemblyName=asl-help
           ./src/AslHelp.Build
 
       - name: Cache asl-help.dll as artifact
