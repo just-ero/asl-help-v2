@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Irony" Version="1.1.0" />
+    <PackageReference Include="Irony" Version="1.5.1" />
   </ItemGroup>
 
   <ItemGroup>
