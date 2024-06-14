@@ -1,0 +1,6 @@
+version: 2
+udpates:
+  - package-ecosystem: nuget
+    directory: /
+    schedule:
+      interval: daily
