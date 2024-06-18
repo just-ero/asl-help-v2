@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AslHelp.Basic", "impl\AslHe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{21C91B87-963C-4FBA-AF3C-FD49CD56D1FB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AslHelp.Build", "src\AslHelp.Build\AslHelp.Build.csproj", "{49AEA6A7-0D1C-4222-8FC6-15C86235CF85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AslHelp.Build", "src\AslHelp.Build\AslHelp.Build.proj", "{49AEA6A7-0D1C-4222-8FC6-15C86235CF85}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AslHelp.Collections", "src\AslHelp.Collections\AslHelp.Collections.csproj", "{FB8A151B-8CFF-4EEB-B34F-728AC16E37F2}"
 EndProject
@@ -22,6 +22,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AslHelp.LiveSplit", "src\AslHelp.LiveSplit\AslHelp.LiveSplit.csproj", "{9729524B-42FA-4F48-B160-F4FFD8C1F14E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AslHelp.Memory", "src\AslHelp.Memory\AslHelp.Memory.csproj", "{A1A914BE-AA3C-4B69-8763-9D98B468147F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "benchmarks", "benchmarks", "{A53E9B68-DEF0-4619-8AD7-799111FD5AF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBenches", "benchmarks\TestBenches\TestBenches.csproj", "{532BD9E9-01F2-4EF4-B0A3-23C5733E0DE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +65,10 @@ Global
 		{A1A914BE-AA3C-4B69-8763-9D98B468147F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1A914BE-AA3C-4B69-8763-9D98B468147F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1A914BE-AA3C-4B69-8763-9D98B468147F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{532BD9E9-01F2-4EF4-B0A3-23C5733E0DE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{532BD9E9-01F2-4EF4-B0A3-23C5733E0DE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{532BD9E9-01F2-4EF4-B0A3-23C5733E0DE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{532BD9E9-01F2-4EF4-B0A3-23C5733E0DE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +82,7 @@ Global
 		{09899DDD-2708-47F7-B938-1C0BAFD566C8} = {21C91B87-963C-4FBA-AF3C-FD49CD56D1FB}
 		{9729524B-42FA-4F48-B160-F4FFD8C1F14E} = {21C91B87-963C-4FBA-AF3C-FD49CD56D1FB}
 		{A1A914BE-AA3C-4B69-8763-9D98B468147F} = {21C91B87-963C-4FBA-AF3C-FD49CD56D1FB}
+		{532BD9E9-01F2-4EF4-B0A3-23C5733E0DE9} = {A53E9B68-DEF0-4619-8AD7-799111FD5AF1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3422008A-69DB-4BC8-9486-2B456FD3F7E3}

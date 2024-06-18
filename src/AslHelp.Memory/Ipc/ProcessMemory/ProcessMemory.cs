@@ -40,7 +40,7 @@ public partial class ProcessMemory : IProcessMemory
 
     public IEnumerable<MemoryPage> GetMemoryPages(bool allPages = false)
     {
-        return WinInteropWrapper.EnumerateMemoryPages(Process, allPages);
+        return WinInteropWrapper.EnumerateMemoryPages(_handle, Is64Bit, allPages);
     }
 
     public void Dispose()
