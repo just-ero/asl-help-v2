@@ -42,7 +42,6 @@ jobs:
         run: |
           {
             echo 'changelog<<EOF'
-
             echo ""
             echo "---"
 
@@ -51,14 +50,14 @@ jobs:
               echo "<details>"
               echo "<summary><i>Commit Log</i></summary>"
               echo ""
-              TZ=UTC0 git log --reverse --date=format:"%d-%b-%Y %H:%M:%S" --pretty=format:"- [%ad] %H: %s" ${{ steps.previous-release.outputs.tag_name }}..HEAD
+              TZ=UTC0 git log --date=format:"%d-%b-%Y %H:%M:%S" --pretty=format:"- [%ad] %H: %s" ${{ steps.previous-release.outputs.tag_name }}..HEAD
               echo ""
               echo "</details>"
             else
               echo "<details>"
               echo "<summary><i>Commit Log</i></summary>"
               echo ""
-              TZ=UTC0 git log --reverse --date=format:"%d-%b-%Y %H:%M:%S" --pretty=format:"- [%ad] %H: %s"
+              TZ=UTC0 git log --date=format:"%d-%b-%Y %H:%M:%S" --pretty=format:"- [%ad] %H: %s"
               echo ""
               echo "</details>"
             fi

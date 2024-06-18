@@ -15,14 +15,24 @@ public partial class ProcessMemory
         return ReadString(maxLength, stringType, MainModule, baseOffset, offsets);
     }
 
-    public string ReadString(int maxLength, StringType stringType, [NotNull] string? moduleName, int baseOffset, params int[] offsets)
+    public string ReadString(
+        int maxLength,
+        StringType stringType,
+        [NotNull] string? moduleName,
+        int baseOffset,
+        params int[] offsets)
     {
         ThrowHelper.ThrowIfNull(moduleName);
 
         return ReadString(maxLength, stringType, Modules[moduleName], baseOffset, offsets);
     }
 
-    public string ReadString(int maxLength, StringType stringType, [NotNull] Module? module, int baseOffset, params int[] offsets)
+    public string ReadString(
+        int maxLength,
+        StringType stringType,
+        [NotNull] Module? module,
+        int baseOffset,
+        params int[] offsets)
     {
         ThrowHelper.ThrowIfNull(module);
 
@@ -42,54 +52,47 @@ public partial class ProcessMemory
             return "";
         }
 
-        nuint deref = Deref(baseAddress, offsets);
         return stringType switch
         {
-            StringType.Ansi => ReadAnsiString(maxLength, deref),
-            StringType.Unicode => ReadUnicodeString(maxLength, deref),
-            _ => ReadAutoString(maxLength, deref)
+            StringType.Ansi => ReadAnsiString(maxLength, baseAddress, offsets),
+            StringType.Unicode => ReadUnicodeString(maxLength, baseAddress, offsets),
+            _ => ReadAutoString(maxLength, baseAddress, offsets)
         };
     }
 
-    private unsafe string ReadAnsiString(int maxLength, nuint stringStart)
+    private unsafe string ReadAnsiString(int maxLength, nuint baseAddress, int[] offsets)
     {
         sbyte[]? rented = null;
         Span<sbyte> buffer = maxLength <= 1024
             ? stackalloc sbyte[1024]
             : (rented = ArrayPool<sbyte>.Shared.Rent(maxLength));
 
-        try
-        {
-            ReadArray(buffer, stringStart);
+        ReadArray(buffer, baseAddress, offsets);
 
-            return GetStringFromSByteSpan(buffer, maxLength);
-        }
-        finally
-        {
-            ArrayPool<sbyte>.Shared.ReturnIfNotNull(rented);
-        }
+        string result = GetStringFromSByteSpan(buffer[..maxLength]);
+
+        ArrayPool<sbyte>.Shared.ReturnIfNotNull(rented);
+
+        return result;
     }
 
-    private unsafe string ReadUnicodeString(int maxLength, nuint stringStart)
+    private unsafe string ReadUnicodeString(int maxLength, nuint baseAddress, int[] offsets)
     {
         char[]? rented = null;
         Span<char> buffer = maxLength <= 512
             ? stackalloc char[512]
             : (rented = ArrayPool<char>.Shared.Rent(maxLength));
 
-        try
-        {
-            ReadArray(buffer, stringStart);
+        ReadArray(buffer, baseAddress, offsets);
 
-            return GetStringFromCharSpan(buffer, maxLength);
-        }
-        finally
-        {
-            ArrayPool<char>.Shared.ReturnIfNotNull(rented);
-        }
+        string result = GetStringFromCharSpan(buffer[..maxLength]);
+
+        ArrayPool<char>.Shared.ReturnIfNotNull(rented);
+
+        return result;
     }
 
-    private unsafe string ReadAutoString(int maxLength, nuint stringStart)
+    private unsafe string ReadAutoString(int maxLength, nuint baseAddress, int[] offsets)
     {
         // Assume unicode for the worst-case scenario and just allocate maxLength * 2.
         byte[]? rented = null;
@@ -97,49 +100,54 @@ public partial class ProcessMemory
             ? stackalloc byte[1024]
             : (rented = ArrayPool<byte>.Shared.Rent(maxLength * 2));
 
-        try
-        {
-            ReadArray(buffer, stringStart);
+        ReadArray(buffer, baseAddress, offsets);
 
-            if (maxLength >= 2 && buffer is [> 0, 0, > 0, 0, ..]) // Best assumption we can make.
-            {
-                Span<char> charBuffer = MemoryMarshal.Cast<byte, char>(buffer);
-                return GetStringFromCharSpan(charBuffer, maxLength);
-            }
-            else
-            {
-                Span<sbyte> sbyteBuffer = MemoryMarshal.Cast<byte, sbyte>(buffer);
-                return GetStringFromSByteSpan(sbyteBuffer, maxLength);
-            }
-        }
-        finally
+        string result;
+        if (maxLength >= 2 && buffer is [> 0, 0, > 0, 0, ..]) // Best assumption we can make.
         {
-            ArrayPool<byte>.Shared.ReturnIfNotNull(rented);
+            Span<char> charBuffer = MemoryMarshal.Cast<byte, char>(buffer);
+            result = GetStringFromCharSpan(charBuffer[..maxLength]);
         }
+        else
+        {
+            Span<sbyte> sbyteBuffer = MemoryMarshal.Cast<byte, sbyte>(buffer);
+            result = GetStringFromSByteSpan(sbyteBuffer[..maxLength]);
+        }
+
+        ArrayPool<byte>.Shared.ReturnIfNotNull(rented);
+
+        return result;
     }
 
-    private static string GetStringFromCharSpan(Span<char> buffer, int maxLength)
+    private static string GetStringFromCharSpan(Span<char> buffer)
     {
         int length = buffer.IndexOf('\0');
-        if (length == -1)
+        if (length != -1)
         {
-            maxLength = length;
+            return buffer[..length].ToString();
         }
-
-        return buffer[..maxLength].ToString();
+        else
+        {
+            return buffer.ToString();
+        }
     }
 
-    private static unsafe string GetStringFromSByteSpan(Span<sbyte> buffer, int maxLength)
+    private static unsafe string GetStringFromSByteSpan(Span<sbyte> buffer)
     {
         int length = buffer.IndexOf((sbyte)'\0');
-        if (length == -1)
+        if (length != -1)
         {
-            maxLength = length;
+            fixed (sbyte* pBuffer = buffer)
+            {
+                return new(pBuffer, 0, length);
+            }
         }
-
-        fixed (sbyte* pBuffer = buffer)
+        else
         {
-            return new(pBuffer, 0, maxLength);
+            fixed (sbyte* pBuffer = buffer)
+            {
+                return new(pBuffer, 0, buffer.Length);
+            }
         }
     }
 }

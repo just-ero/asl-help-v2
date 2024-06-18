@@ -40,7 +40,7 @@ public partial class ProcessMemory : IProcessMemory
 
     public IEnumerable<MemoryPage> GetMemoryPages(bool allPages = false)
     {
-        return WinInteropWrapper.EnumerateMemoryPages(Process, allPages);
+        return WinInteropWrapper.EnumerateMemoryPages(_handle, Is64Bit, allPages);
     }
 
     public void Dispose()
@@ -69,11 +69,11 @@ public partial class ProcessMemory : IProcessMemory
         return (uint)(IsNativeInt<T>() ? PointerSize : sizeof(T));
     }
 
-    public nuint ReadRelative(nuint relativeAddress, uint instructionSize = 4)
+    public nuint ReadRelative(nuint relativeAddress, uint instructionSize = 0x4U)
     {
         if (Is64Bit)
         {
-            return relativeAddress + instructionSize + Read<uint>(relativeAddress);
+            return relativeAddress + instructionSize + (nuint)Read<int>(relativeAddress);
         }
         else
         {

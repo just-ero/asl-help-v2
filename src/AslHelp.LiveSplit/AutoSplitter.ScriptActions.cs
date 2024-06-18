@@ -31,11 +31,11 @@ public partial class AutoSplitter
 
         foreach (ParseTreeNode method in node.ChildNodes[0].ChildNodes)
         {
-            string name = (string)method.ChildNodes[0].Token.Value;
             string body = (string)method.ChildNodes[2].Token.Value;
+            string name = (string)method.ChildNodes[0].Token.Value;
             int line = method.ChildNodes[2].Token.Location.Line + 1;
 
-            ScriptAction action = new(methods, name, body, line);
+            ScriptAction action = new(methods, body, name, line);
 
             switch (name)
             {

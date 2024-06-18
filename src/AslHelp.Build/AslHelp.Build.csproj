@@ -1,8 +1,10 @@
-﻿<Project Sdk="Microsoft.Build.NoTargets">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <AssemblyName>asl-help-v2</AssemblyName>
+    <OutputAssemblyName>asl-help-v2</OutputAssemblyName>
     <TargetFramework>net4.8.1</TargetFramework>
+
+    <ILRepackTargetsFile>$(MSBuildThisFileDirectory)\_MergeAssemblies.targets</ILRepackTargetsFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,7 +15,6 @@
     <PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.34" />
   </ItemGroup>
 
-  <!-- <Import Project="_MergeAssemblies.targets" /> -->
   <Import Project="_MoveOutput.targets" />
 
 </Project>

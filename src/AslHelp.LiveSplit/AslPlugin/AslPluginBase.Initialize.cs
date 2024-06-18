@@ -1,4 +1,6 @@
 using System;
+using System.Diagnostics;
+using System.IO;
 using System.Reflection;
 using System.Runtime.ExceptionServices;
 using System.Text;
@@ -53,15 +55,15 @@ public partial class AslPluginBase
                 AslDebug.Info("Success.");
             }
 
-            AslDebug.Info("Generating code...");
-            using (AslDebug.Indent())
+            if (generateCode)
             {
-                if (generateCode)
+                AslDebug.Info("Generating code...");
+
+                using (AslDebug.Indent())
                 {
                     GenerateCode(_asl);
+                    AslDebug.Info("Success.");
                 }
-
-                AslDebug.Info("Success.");
             }
 
             InitializePlugin();

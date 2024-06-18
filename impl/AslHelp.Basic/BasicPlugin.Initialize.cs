@@ -2,8 +2,8 @@ using AslHelp.Diagnostics.Logging;
 using AslHelp.LiveSplit;
 using AslHelp.LiveSplit.Diagnostics;
 
-internal delegate void Log(object? output);
-internal delegate void LogFormat(string format, params object?[] args);
+public delegate void Log(object? output);
+public delegate void LogFormat(string format, params object?[] args);
 
 public partial class BasicPlugin
 {

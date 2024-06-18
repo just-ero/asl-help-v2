@@ -20,7 +20,6 @@ public static partial class ThrowHelper
     /// </remarks>
     /// <exception cref="ArgumentException"/>
     [DoesNotReturn]
-    [MethodImpl(MethodImplOptions.NoInlining)]
     public static void ThrowArgumentException(string paramName, string message)
     {
         throw new ArgumentException(message, paramName);
@@ -37,7 +36,6 @@ public static partial class ThrowHelper
     /// </remarks>
     /// <exception cref="ArgumentNullException"/>
     [DoesNotReturn]
-    [MethodImpl(MethodImplOptions.NoInlining)]
     public static void ThrowArgumentNullException(string paramName, string message)
     {
         throw new ArgumentNullException(paramName, message);
@@ -54,7 +52,6 @@ public static partial class ThrowHelper
     /// </remarks>
     /// <exception cref="ArgumentOutOfRangeException"/>
     [DoesNotReturn]
-    [MethodImpl(MethodImplOptions.NoInlining)]
     public static void ThrowArgumentOutOfRangeException(string paramName, string message)
     {
         throw new ArgumentOutOfRangeException(message, paramName);
@@ -69,7 +66,6 @@ public static partial class ThrowHelper
     /// </remarks>
     /// <exception cref="DirectoryNotFoundException"/>
     [DoesNotReturn]
-    [MethodImpl(MethodImplOptions.NoInlining)]
     public static void ThrowDirectoryNotFoundException(string message)
     {
         throw new DirectoryNotFoundException(message);
@@ -84,7 +80,6 @@ public static partial class ThrowHelper
     /// </remarks>
     /// <exception cref="Exception"/>
     [DoesNotReturn]
-    [MethodImpl(MethodImplOptions.NoInlining)]
     public static void ThrowException(string message)
     {
         throw new Exception(message);
@@ -99,7 +94,6 @@ public static partial class ThrowHelper
     /// </remarks>
     /// <exception cref="FileNotFoundException"/>
     [DoesNotReturn]
-    [MethodImpl(MethodImplOptions.NoInlining)]
     public static void ThrowFileNotFoundException(string message)
     {
         throw new FileNotFoundException(message);
@@ -114,7 +108,6 @@ public static partial class ThrowHelper
     /// </remarks>
     /// <exception cref="FormatException"/>
     [DoesNotReturn]
-    [MethodImpl(MethodImplOptions.NoInlining)]
     public static void ThrowFormatException(string message)
     {
         throw new FormatException(message);
@@ -129,7 +122,6 @@ public static partial class ThrowHelper
     /// </remarks>
     /// <exception cref="InvalidDataException"/>
     [DoesNotReturn]
-    [MethodImpl(MethodImplOptions.NoInlining)]
     public static void ThrowInvalidDataException(string message)
     {
         throw new InvalidDataException(message);
@@ -144,7 +136,6 @@ public static partial class ThrowHelper
     /// </remarks>
     /// <exception cref="InvalidOperationException"/>
     [DoesNotReturn]
-    [MethodImpl(MethodImplOptions.NoInlining)]
     public static void ThrowInvalidOperationException(string message)
     {
         throw new InvalidOperationException(message);
@@ -159,7 +150,6 @@ public static partial class ThrowHelper
     /// </remarks>
     /// <exception cref="KeyNotFoundException"/>
     [DoesNotReturn]
-    [MethodImpl(MethodImplOptions.NoInlining)]
     public static void ThrowKeyNotFoundException(string message)
     {
         throw new KeyNotFoundException(message);
@@ -174,7 +164,6 @@ public static partial class ThrowHelper
     /// </remarks>
     /// <exception cref="NotImplementedException"/>
     [DoesNotReturn]
-    [MethodImpl(MethodImplOptions.NoInlining)]
     public static void ThrowNotImplementedException(string message)
     {
         throw new NotImplementedException(message);
@@ -189,7 +178,6 @@ public static partial class ThrowHelper
     /// </remarks>
     /// <exception cref="NotSupportedException"/>
     [DoesNotReturn]
-    [MethodImpl(MethodImplOptions.NoInlining)]
     public static void ThrowNotSupportedException(string message)
     {
         throw new NotSupportedException(message);
@@ -204,7 +192,6 @@ public static partial class ThrowHelper
     /// </remarks>
     /// <exception cref="ObjectDisposedException"/>
     [DoesNotReturn]
-    [MethodImpl(MethodImplOptions.NoInlining)]
     public static void ThrowObjectDisposedException(string objectName)
     {
         throw new ObjectDisposedException(objectName);
@@ -218,7 +205,6 @@ public static partial class ThrowHelper
     /// </remarks>
     /// <exception cref="Win32Exception"/>
     [DoesNotReturn]
-    [MethodImpl(MethodImplOptions.NoInlining)]
     public static void ThrowWin32Exception()
     {
         throw new Win32Exception();
