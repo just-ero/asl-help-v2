@@ -58,7 +58,7 @@ public partial class ProcessMemory
             ? stackalloc sbyte[1024]
             : (rented = ArrayPool<sbyte>.Shared.Rent(maxLength));
 
-        ReadArray(buffer, baseAddress, offsets);
+        ReadArray(buffer[..maxLength], baseAddress, offsets);
 
         string result = GetStringFromSByteSpan(buffer[..maxLength]);
 
@@ -74,7 +74,7 @@ public partial class ProcessMemory
             ? stackalloc char[512]
             : (rented = ArrayPool<char>.Shared.Rent(maxLength));
 
-        ReadArray(buffer, baseAddress, offsets);
+        ReadArray(buffer[..maxLength], baseAddress, offsets);
 
         string result = GetStringFromCharSpan(buffer);
 
@@ -91,7 +91,7 @@ public partial class ProcessMemory
             ? stackalloc byte[1024]
             : (rented = ArrayPool<byte>.Shared.Rent(maxLength * 2));
 
-        ReadArray(buffer, baseAddress, offsets);
+        ReadArray(buffer[..(maxLength * 2)], baseAddress, offsets);
 
         string result;
         if (maxLength >= 2 && buffer is [> 0, 0, > 0, 0, ..]) // Best assumption we can make.
