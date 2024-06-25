@@ -14,12 +14,12 @@ public enum StringType
     Auto,
 
     /// <summary>
-    ///     Read the string as an ANSI string (8-bit characters).
+    ///     Read the string as a UTF-8 string.
     /// </summary>
-    Ansi,
+    Utf8,
 
     /// <summary>
-    ///     Read the string as a Unicode string (16-bit characters).
+    ///     Read the string as a UTF-16 string.
     /// </summary>
-    Unicode
+    Utf16
 }
