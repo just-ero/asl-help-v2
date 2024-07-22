@@ -34,14 +34,14 @@ jobs:
       - name: Load LiveSplit build artifacts
         uses: actions/download-artifact@v4
         with:
-          name: livesplit-artifacts
+          name: asl-help-lib-artifacts
           path: ./lib
 
       - name: Delete cached LiveSplit build artifacts
         uses: geekyeggo/delete-artifact@v5
         if: ${{ github.event_name == 'workflow_dispatch' }}
         with:
-          name: livesplit-artifacts
+          name: asl-help-lib-artifacts
           failOnError: false
 
       - name: Test ${{ inputs.project }}

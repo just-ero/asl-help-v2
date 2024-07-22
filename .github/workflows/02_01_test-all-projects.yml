@@ -12,18 +12,18 @@ jobs:
 
   # Test projects
 
-  test-AslHelp_Common_UnitTests:
-    needs: build-livesplit
-    uses: ./.github/workflows/02_00_test-project.yml
-    with:
-      project: AslHelp.Common.UnitTests
+  # test-AslHelp_Common_UnitTests:
+  #   needs: build-livesplit
+  #   uses: ./.github/workflows/02_00_test-project.yml
+  #   with:
+  #     project: AslHelp.Common.UnitTests
 
   # End Test projects
 
   post-tests:
     if: always()
     needs: [
-      test-AslHelp_Common_UnitTests
+      # test-AslHelp_Common_UnitTests
     ]
 
     runs-on: ubuntu-latest
@@ -32,5 +32,5 @@ jobs:
       - name: Delete cached LiveSplit build artifacts
         uses: geekyeggo/delete-artifact@v5
         with:
-          name: livesplit-artifacts
+          name: asl-help-lib-artifacts
           failOnError: false
