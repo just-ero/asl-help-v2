@@ -54,13 +54,13 @@ public partial class ProcessMemory
 
         return stringType switch
         {
-            StringType.Ansi => ReadAnsiString(maxLength, baseAddress, offsets),
-            StringType.Unicode => ReadUnicodeString(maxLength, baseAddress, offsets),
+            StringType.Utf8 => ReadUtf8String(maxLength, baseAddress, offsets),
+            StringType.Utf16 => ReadUtf16String(maxLength, baseAddress, offsets),
             _ => ReadAutoString(maxLength, baseAddress, offsets)
         };
     }
 
-    private unsafe string ReadAnsiString(int maxLength, nuint baseAddress, int[] offsets)
+    private unsafe string ReadUtf8String(int maxLength, nuint baseAddress, int[] offsets)
     {
         sbyte[]? rented = null;
         Span<sbyte> buffer = maxLength <= 1024
@@ -76,7 +76,7 @@ public partial class ProcessMemory
         return result;
     }
 
-    private unsafe string ReadUnicodeString(int maxLength, nuint baseAddress, int[] offsets)
+    private unsafe string ReadUtf16String(int maxLength, nuint baseAddress, int[] offsets)
     {
         char[]? rented = null;
         Span<char> buffer = maxLength <= 512

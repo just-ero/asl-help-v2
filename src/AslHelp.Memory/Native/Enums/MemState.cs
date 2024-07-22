@@ -50,7 +50,8 @@ public enum MemState : uint
     MEM_PHYSICAL = 0x00400000,
 
     /// <summary>
-    ///     Indicates that the data in the specified memory range is of interest to the caller and attempts to reverse the effects of <see cref="MEM_RESET"/>.
+    ///     Indicates that the data in the specified memory range is of interest to the caller and attempts to reverse the effects of
+    ///     <see cref="MEM_RESET"/>.
     /// </summary>
     MEM_RESET_UNDO = 0x01000000,
 
