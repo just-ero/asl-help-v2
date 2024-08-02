@@ -10,9 +10,6 @@
       <AslHelpBaseAssemblies Include="$(OutputPath)\AslHelp.Memory.dll" />
 
       <AslHelpPluginAssemblies Include="$(OutputPath)\AslHelp.Basic.dll" />
-
-      <DependencyAssemblies Include="$(OutputPath)\System.Memory.dll" />
-      <DependencyAssemblies Include="$(OutputPath)\System.Runtime.CompilerServices.Unsafe.dll" />
     </ItemGroup>
 
     <ILRepack
